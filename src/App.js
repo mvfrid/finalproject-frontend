@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { API_KEY } from 'utils/urls';
+import { API_KEY, BASE_URL } from 'utils/urls';
 
 export const App = () => {
   const [inputLong, setInputLong] = useState(null);
@@ -24,7 +24,7 @@ export const App = () => {
         setInputLat(lat);
         console.log(data.results)
 
-        fetch('https://finalproject-backend-b4prs4elcq-no.a.run.app/api/places', {
+        fetch(`${BASE_URL}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
