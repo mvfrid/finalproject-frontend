@@ -3,5 +3,3 @@
 
 Deploy:
 https://final-project-odyssey.netlify.app/
-
-test2

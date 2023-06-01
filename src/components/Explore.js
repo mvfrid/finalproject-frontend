@@ -50,7 +50,7 @@ export const Explore = () => {
 
   return (
     <div className="main">
-      <form action="">
+      <form action="" onSubmit={handleFormSubmit}>
         <input type="text" value={input} onChange={(event) => setInput(event.target.value)} />
         <button type="button" onClick={handleFormSubmit}>Submit</button>
       </form>
