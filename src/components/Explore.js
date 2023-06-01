@@ -49,9 +49,10 @@ export const Explore = () => {
   };
 
   return (
-    <>
-      <form action="" onSubmit={handleFormSubmit}>
+    <div className="main">
+      <form action="">
         <input type="text" value={input} onChange={(event) => setInput(event.target.value)} />
+        <button type="button" onClick={handleFormSubmit}>Submit</button>
       </form>
       <p>{input} has the coordinates: long {inputLong}, lat {inputLat}</p>
 
@@ -64,6 +65,6 @@ export const Explore = () => {
           <img src={places.photos[0].photo_reference} alt="" />
         </div>
       ))}
-    </>
+    </div>
   );
 }
