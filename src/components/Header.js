@@ -1,8 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { user } from 'reducers/user';
 
 export const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const accessToken = useSelector((store) => store.user.accessToken);
 
   const onClickGoToStart = () => {
     navigate('/');
@@ -24,6 +28,13 @@ export const Header = () => {
     navigate('/about');
   }
 
+  const handleLogOut = () => {
+    dispatch(user.actions.signOut());
+    if (!accessToken) {
+      navigate('/')
+    }
+  }
+
   return (
     <div className="header">
       <h1>Header component</h1>
@@ -32,6 +43,7 @@ export const Header = () => {
       <button type="button" onClick={onClickGoToRegister}>Go to Register</button>
       <button type="button" onClick={onClickGoToExplore}>Go to Explore</button>
       <button type="button" onClick={onClickGoToAbout}>Go to About</button>
+      {accessToken && (<button type="button" onClick={handleLogOut}>Log out</button>)}
     </div>
   )
 }
