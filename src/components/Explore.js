@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { API_KEY, BASE_URL } from 'utils/urls';
+import { API_KEY, PLACES_URL } from 'utils/urls';
 
 export const Explore = () => {
   const [inputLong, setInputLong] = useState(null);
@@ -24,7 +24,7 @@ export const Explore = () => {
         setInputLat(lat);
         console.log(data.results)
 
-        fetch(`${BASE_URL}`, {
+        fetch(`${PLACES_URL}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
