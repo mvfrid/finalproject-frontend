@@ -28,6 +28,10 @@ export const Header = () => {
     navigate('/about');
   }
 
+  const onClickGoToProfile = () => {
+    navigate('/profile');
+  }
+
   const handleLogOut = () => {
     dispatch(user.actions.signOut());
     if (!accessToken) {
@@ -43,6 +47,7 @@ export const Header = () => {
       <button type="button" onClick={onClickGoToRegister}>Go to Register</button>
       <button type="button" onClick={onClickGoToExplore}>Go to Explore</button>
       <button type="button" onClick={onClickGoToAbout}>Go to About</button>
+      <button type="button" onClick={onClickGoToProfile}>Go to Profile</button>
       {accessToken && (<button type="button" onClick={handleLogOut}>Log out</button>)}
     </div>
   )
