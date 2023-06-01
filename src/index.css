@@ -17,7 +17,7 @@ code {
   max-width: 800px;
   min-height: 100px;
   margin: auto;
-  padding: 10px;
+  padding: 20px;
 }
 
 .main {
@@ -25,8 +25,36 @@ code {
   max-width: 800px;
   min-height: 200px;
   margin: auto;
+  padding: 20px;
+}
+
+.profile-section {
+  background-color: #e3ecab;
+  margin: auto;
   padding: 10px;
 }
+
+.trip-section {
+  background-color: #f8bed6;
+  margin: auto;
+  padding: 10px;
+}
+
+.trip-wrapper {
+  border: 1px solid white;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.trip {
+  background-color: #bef4f8;
+  margin: auto;
+  max-width: 300px;
+  max-height: 300px;
+  padding: 10px;
+}
+
 
 button {
   margin-right: 5px;
