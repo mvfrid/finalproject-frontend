@@ -55,10 +55,39 @@ code {
   padding: 10px;
 }
 
+.places {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.single-place {
+  border: 1px solid hotpink;
+  padding: 20px;
+  margin: 10px;
+  max-width: 250px;
+}
+
+.place-photo {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.place-icon {
+  max-width: 50px;
+  max-height: 50px;
+  margin: 10px;
+}
+
+.card {
+  background-color: #fff;
+}
 
 button {
-  margin-right: 5px;
-  margin-top: 5px;
+  margin: 5px;
   padding: 8px;
 }
 

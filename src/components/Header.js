@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
@@ -34,17 +35,20 @@ export const Header = () => {
 
   const handleLogOut = () => {
     dispatch(user.actions.signOut());
-    if (!accessToken) {
-      navigate('/')
-    }
   }
+
+  useEffect(() => {
+    if (!accessToken) {
+      navigate('/');
+    }
+  }, [accessToken]);
 
   return (
     <div className="header">
       <h1>Header component</h1>
       <button type="button" onClick={onClickGoToStart}>Go home</button>
-      <button type="button" onClick={onClickGoToLogin}>Go to Log In</button>
-      <button type="button" onClick={onClickGoToRegister}>Go to Register</button>
+      {!accessToken && (<button type="button" onClick={onClickGoToLogin}>Go to Log In</button>)}
+      {!accessToken && (<button type="button" onClick={onClickGoToRegister}>Go to Register</button>)}
       <button type="button" onClick={onClickGoToExplore}>Go to Explore</button>
       <button type="button" onClick={onClickGoToAbout}>Go to About</button>
       <button type="button" onClick={onClickGoToProfile}>Go to Profile</button>

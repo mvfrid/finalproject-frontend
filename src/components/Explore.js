@@ -5,7 +5,9 @@ export const Explore = () => {
   const [inputLong, setInputLong] = useState(null);
   const [inputLat, setInputLat] = useState(null);
   const [input, setInput] = useState('');
+  const [openCard, setOpenCard] = useState('');
   const [placesData, setPlacesData] = useState([]);
+  const [photoUrl, setPhotoUrl] = useState([]);
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
 
@@ -35,6 +37,16 @@ export const Explore = () => {
           .then((json) => {
             console.log(json);
             setPlacesData(json.results);
+            const urls = json.results.map((result) => {
+              if (result.photos && result.photos.length > 0) {
+                const photoReference = result.photos[0].photo_reference;
+                const photoWidth = 800;
+                return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`;
+              } else {
+                return null;
+              }
+            });
+            setPhotoUrl(urls);
           })
           .catch((error) => console.error('Error:', error));
       })
@@ -48,6 +60,10 @@ export const Explore = () => {
     fetchData();
   };
 
+  const handleClickOpenCard = () => {
+    setOpenCard(!openCard);
+  };
+
   return (
     <div className="main">
       <form action="" onSubmit={handleFormSubmit}>
@@ -56,15 +72,26 @@ export const Explore = () => {
       </form>
       <p>{input} has the coordinates: long {inputLong}, lat {inputLat}</p>
 
-      {placesData && placesData.map((places) => (
-        // eslint-disable-next-line no-underscore-dangle
-        <div key={places.place_id}>
-          <h2>{places.name}</h2>
-          <p>⭐️{places.rating}</p>
-          <img src={places.geometry.icon} alt="" />
-          <img src={places.photos[0].photo_reference} alt="" />
-        </div>
-      ))}
+      <div className="places">
+        {placesData && placesData.map((place, index) => (
+          <div className="single-place" key={place.place_id}>
+            <h2>{place.name}</h2>
+            <p>⭐️{place.rating}</p>
+            <img src={place.icon} alt="" className="place-icon" />
+            {photoUrl[index] ? (
+              <img src={photoUrl[index]} alt="" className="place-photo" />
+            ) : (
+              <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
+            )}
+            <button type="button" onClick={handleClickOpenCard}>Open card</button>
+          </div>
+        ))}
+        {openCard ? (
+          <div className="card">
+            <p>Testing</p>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
