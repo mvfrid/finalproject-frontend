@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { API_KEY, PLACES_URL } from 'utils/urls';
+import { SinglePlace } from './SinglePlace';
 
 export const Explore = () => {
   const [inputLong, setInputLong] = useState(null);
   const [inputLat, setInputLat] = useState(null);
   const [input, setInput] = useState('');
-  const [openCard, setOpenCard] = useState('');
+  const [openCard, setOpenCard] = useState(false);
   const [placesData, setPlacesData] = useState([]);
-  const [photoUrl, setPhotoUrl] = useState([]);
+  const [photoUrl/* setPhotoUrl */] = useState([]);
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
 
@@ -37,6 +39,7 @@ export const Explore = () => {
           .then((json) => {
             console.log(json);
             setPlacesData(json.results);
+            /*
             const urls = json.results.map((result) => {
               if (result.photos && result.photos.length > 0) {
                 const photoReference = result.photos[0].photo_reference;
@@ -47,6 +50,7 @@ export const Explore = () => {
               }
             });
             setPhotoUrl(urls);
+            */
           })
           .catch((error) => console.error('Error:', error));
       })
@@ -60,8 +64,13 @@ export const Explore = () => {
     fetchData();
   };
 
-  const handleClickOpenCard = () => {
-    setOpenCard(!openCard);
+  const handleClickOpenCard = (place) => {
+    setSelectedPlace(place);
+    setOpenCard(true);
+  };
+
+  const handleClose = () => {
+    setOpenCard(false);
   };
 
   return (
@@ -83,12 +92,16 @@ export const Explore = () => {
             ) : (
               <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
             )}
-            <button type="button" onClick={handleClickOpenCard}>Open card</button>
+            <button type="button" onClick={() => handleClickOpenCard(place)}>Open card</button>
+
           </div>
         ))}
         {openCard ? (
           <div className="card">
-            <p>Testing</p>
+            <SinglePlace
+              place={selectedPlace}
+              openModal={openCard}
+              handleClose={handleClose} />
           </div>
         ) : null}
       </div>
