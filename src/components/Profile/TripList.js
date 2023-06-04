@@ -28,6 +28,7 @@ export const TripList = () => {
           dispatch(trip.actions.setError(response.response));
         }
       })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
