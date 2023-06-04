@@ -9,7 +9,7 @@ import { StartPage } from './components/StartPage'
 import { LogInRegister } from './components/LogInRegister'
 import { NotFound } from './components/NotFound'
 import { About } from './components/About'
-import { Profile } from './components/Profile'
+import { Profile } from './components/Profile/Profile'
 // import { Trip } from './components/Trip'
 
 export const App = () => {
