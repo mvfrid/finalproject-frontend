@@ -17,7 +17,7 @@ export const Profile = () => {
     <div className="main">
       <div className="profile-section">
         <h1>Profile</h1>
-        <p>username</p>
+        <p>Username</p>
       </div>
 
       <Button variant="outlined" onClick={handleOpen} endIcon={<AddPhotoAlternateIcon />}>Add new trip</Button>
