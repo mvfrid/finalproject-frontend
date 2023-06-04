@@ -12,7 +12,6 @@ import { LogInRegister } from './components/LogInRegister'
 import { NotFound } from './components/NotFound'
 import { About } from './components/About'
 import { Profile } from './components/Profile/Profile'
-// import { Trip } from './components/Trip'
 
 export const App = () => {
   const reducer = combineReducers({
@@ -35,31 +34,8 @@ export const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
-
-          {/*
-            <Route path="/trip" element={<Trip />} />
-        */}
-
         </Routes>
       </BrowserRouter>
     </Provider>
   )
 }
-
-/*
-MATILDA TESTAR, FUNKAR EJ :(
-
-  const reducer = combineReducers({
-    user: user.reducer,
-    trip: trip.reducer,
-    card: card.reducer
-  });
-
-  const accessToken = useSelector((state) => state.user.accessToken);
-
-          {accessToken !== null ? (
-            <Route path="/profile" element={<Profile />} />
-          ) : (
-            <Route path="/notauthorized" element={<LogInRegister />} />
-          )}
- */
