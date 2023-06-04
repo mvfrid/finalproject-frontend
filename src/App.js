@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { user } from 'reducers/user';
+import { trip } from 'reducers/trip';
+import { card } from 'reducers/card';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { Header } from './components/Header'
@@ -14,7 +16,9 @@ import { Profile } from './components/Profile'
 
 export const App = () => {
   const reducer = combineReducers({
-    user: user.reducer
+    user: user.reducer,
+    trip: trip.reducer,
+    card: card.reducer
   });
 
   const store = configureStore({ reducer })
@@ -41,3 +45,21 @@ export const App = () => {
     </Provider>
   )
 }
+
+/*
+MATILDA TESTAR, FUNKAR EJ :(
+
+  const reducer = combineReducers({
+    user: user.reducer,
+    trip: trip.reducer,
+    card: card.reducer
+  });
+
+  const accessToken = useSelector((state) => state.user.accessToken);
+
+          {accessToken !== null ? (
+            <Route path="/profile" element={<Profile />} />
+          ) : (
+            <Route path="/notauthorized" element={<LogInRegister />} />
+          )}
+ */
