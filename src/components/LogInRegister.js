@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from 'utils/urls';
+import { MONGO_DB_URL } from 'utils/urls';
 
 export const LogInRegister = ({ mode }) => {
   const [username, setUsername] = useState('');
@@ -38,7 +38,7 @@ export const LogInRegister = ({ mode }) => {
       },
       body: JSON.stringify({ username, password })
     }
-    fetch(API_URL(mode), options)
+    fetch(MONGO_DB_URL(mode), options)
       .then((data) => data.json())
       .then((data) => {
         if (data.success) {

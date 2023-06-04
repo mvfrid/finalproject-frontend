@@ -30,8 +30,8 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<StartPage />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/login" element={<LogInRegister mode="login" />} />
-          <Route path="/register" element={<LogInRegister mode="register" />} />
+          <Route path="/login" element={<LogInRegister mode="/users/login" />} />
+          <Route path="/register" element={<LogInRegister mode="/users/register" />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />

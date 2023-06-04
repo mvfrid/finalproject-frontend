@@ -1,10 +1,15 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, TextField, Typography, Modal } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-// import accessToken
+import { trip } from 'reducers/trip';
+// import { user } from 'reducers/user'
+import { MONGO_DB_URL } from 'utils/urls';
 
 export const NewTripModal = ({ open, handleClose }) => {
   const [value, setValue] = React.useState('');
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -12,24 +17,37 @@ export const NewTripModal = ({ open, handleClose }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('value', value, 'accessToken', accessToken)
+
     const options = {
       method: 'POST',
-      header: {
+      headers: {
         'Content-Type': 'application/json',
+        // eslint-disable-next-line quote-props
         'Authorization': accessToken
       },
-      body: JSON.stringify({ tripName })
+      body: JSON.stringify({ tripName: value })
     };
 
-  try {
-    const response = await fetch(PLACES_URL("trips"), options);
-    const data = await response.data.tripName();
-
-    if(data.success) {
-      const 
-    }
+    fetch(MONGO_DB_URL('trips'), options)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.success) {
+          dispatch(trip.actions.setTripName(response.response.data.tripName));
+          dispatch(trip.actions.setTripActiveUser(response.response.data.tripActiveuser));
+          // eslint-disable-next-line no-underscore-dangle
+          dispatch(trip.actions.setTripId(response.response.data._id));
+          dispatch(trip.actions.setCreatedAt(response.response.data.createdAt));
+          dispatch(trip.actions.setError(null));
+          console.log('tripname', response.response.data.tripName)
+        } else {
+          dispatch(trip.actions.setTripName(null));
+          dispatch(trip.actions.setError(response));
+        }
+        console.log('response:', response)
+      })
+      .catch((error) => console.log(error))
   }
-};
 
   const style = {
     position: 'absolute',
@@ -68,4 +86,4 @@ export const NewTripModal = ({ open, handleClose }) => {
       </Box>
     </Modal>
   );
-}
+};

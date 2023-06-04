@@ -8,6 +8,7 @@ export const trip = createSlice({
     tripBucketlist: false,
     tripUpcoming: false,
     tripActiveUser: null,
+    tripId: null,
     createdAt: null,
     cards: [],
     error: null
@@ -27,6 +28,9 @@ export const trip = createSlice({
     },
     setTripActiveUser: (store, action) => {
       store.tripActiveUser = action.payload
+    },
+    setTripId: (store, action) => {
+      store.tripId = action.payload
     },
     setCreatedAt: (store, action) => {
       store.createdAt = action.payload
