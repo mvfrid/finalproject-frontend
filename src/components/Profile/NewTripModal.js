@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Box, Button, TextField, Typography, Modal } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
+// import accessToken
 
 export const NewTripModal = ({ open, handleClose }) => {
   const [value, setValue] = React.useState('');
@@ -8,10 +10,26 @@ export const NewTripModal = ({ open, handleClose }) => {
     setValue(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(value);
-  };
+    const options = {
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': accessToken
+      },
+      body: JSON.stringify({ tripName })
+    };
+
+  try {
+    const response = await fetch(PLACES_URL("trips"), options);
+    const data = await response.data.tripName();
+
+    if(data.success) {
+      const 
+    }
+  }
+};
 
   const style = {
     position: 'absolute',
@@ -39,11 +57,11 @@ export const NewTripModal = ({ open, handleClose }) => {
           <TextField
             value={value}
             onChange={handleChange}
-            label="New trip"
+            label="Name of trip"
             variant="outlined"
             style={{ marginBottom: '10px' }}
             required />
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" endIcon={<SendIcon />}>
             Save
           </Button>
         </form>

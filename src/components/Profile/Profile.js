@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { NewTripModal } from './NewTripModal';
 // import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +18,7 @@ export const Profile = () => {
         <p>username</p>
       </div>
 
-      <Button variant="outlined" onClick={handleOpen}>Add new trip</Button>
+      <Button variant="outlined" onClick={handleOpen} endIcon={<AddPhotoAlternateIcon />}>Add new trip</Button>
       <NewTripModal open={open} handleClose={handleClose} />
 
       <div className="trip-section">
