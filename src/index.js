@@ -23,13 +23,3 @@ root.render(
     <App />
   </Provider>
 );
-
-/*
-  const reducer = combineReducers({
-    user: user.reducer,
-    trip: trip.reducer,
-    card: card.reducer
-  });
-
-  const store = configureStore({ reducer })
-  */
