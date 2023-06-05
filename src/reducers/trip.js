@@ -79,8 +79,15 @@ export const fetchTrips = () => {
           dispatch(trip.actions.setError(response.response));
         }
       })
-  }
-}
+      .catch((error) => {
+        dispatch(trip.actions.setError(error))
+        console.log('error', error)
+      })
+      .finally(() => {
+        dispatch(trip.actions.setLoading(false));
+      })
+  };
+};
 
 export const postNewTrip = (value) => {
   return (dispatch, getState) => {
@@ -109,7 +116,13 @@ export const postNewTrip = (value) => {
         }
         console.log('response:', response)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        dispatch(trip.actions.setError(error))
+        console.log('error', error)
+      })
+      .finally(() => {
+        dispatch(trip.actions.setLoading(false));
+      })
   };
 };
 
@@ -147,7 +160,13 @@ export const patchTripWithNewCard = (tripId, place) => {
           dispatch(trip.actions.setError(response));
         }
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        dispatch(trip.actions.setError(error))
+        console.log('error', error)
+      })
+      .finally(() => {
+        dispatch(trip.actions.setLoading(false));
+      })
   };
 };
 
