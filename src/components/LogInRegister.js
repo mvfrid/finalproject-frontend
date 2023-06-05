@@ -62,7 +62,7 @@ export const LogInRegister = ({ mode }) => {
   return (
     <div className="main">
       <h1>REGISTER & LOGIN COMPONENT HERE</h1>
-      {mode === 'register' ? <h2>Register</h2> : <h2>Login</h2>}
+      {mode === 'users/register' ? <h2>Register</h2> : <h2>Login</h2>}
       <form>
         <input
           type="text"
@@ -76,7 +76,7 @@ export const LogInRegister = ({ mode }) => {
           onChange={(e) => setPassword(e.target.value)} />
         <button type="button" onClick={onFormSubmit}>Submit</button>
       </form>
-      {mode === 'register' ? <button type="button" onClick={onClickGoToLogin}>Log in instead</button> : <button type="button" onClick={onClickGoToRegister}>Register instead</button>}
+      {mode === 'users/register' ? <button type="button" onClick={onClickGoToLogin}>Log in instead</button> : <button type="button" onClick={onClickGoToRegister}>Register instead</button>}
     </div>
   )
 }

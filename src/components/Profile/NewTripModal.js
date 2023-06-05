@@ -1,20 +1,26 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Box, Button, TextField, Typography, Modal } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { trip } from 'reducers/trip';
+import { postNewTrip } from 'reducers/trip';
 // import { user } from 'reducers/user'
-import { MONGO_DB_URL } from 'utils/urls';
+// import { MONGO_DB_URL } from 'utils/urls';
 
 export const NewTripModal = ({ open, handleClose }) => {
   const [value, setValue] = React.useState('');
-  const accessToken = useSelector((store) => store.user.accessToken);
+  // const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postNewTrip(value))
+  }
+
+  /*
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log('value', value, 'accessToken', accessToken)
@@ -48,6 +54,7 @@ export const NewTripModal = ({ open, handleClose }) => {
       })
       .catch((error) => console.log(error))
   }
+  */
 
   const style = {
     position: 'absolute',

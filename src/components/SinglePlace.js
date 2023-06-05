@@ -1,7 +1,15 @@
-import React from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { fetchTrips, patchTripWithNewCard } from 'reducers/trip';
 
 const style = {
   position: 'absolute',
@@ -16,6 +24,29 @@ const style = {
 };
 
 export const SinglePlace = ({ place, openModal, handleClose }) => {
+  const tripList = useSelector((store) => store.trip.tripList);
+  const [chosenTrip, setChosenTrip] = useState('');
+  const dispatch = useDispatch();
+  console.log('place:', place)
+
+  const handleChange = (event) => {
+    setChosenTrip(event.target.value);
+    console.log('handleChange event.target.value:', event.target.value)
+  };
+
+  const handleFetchTrips = () => {
+    dispatch(fetchTrips());
+  };
+
+  const handleChooseTrip = () => {
+    console.log('chosenTrip:', chosenTrip);
+    console.log('place:', place)
+  };
+
+  const handleAddCard = () => {
+    dispatch(patchTripWithNewCard(chosenTrip, place));
+  }
+
   return (
     <div>
       <Modal
@@ -37,8 +68,31 @@ export const SinglePlace = ({ place, openModal, handleClose }) => {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {place.vicinity}
           </Typography>
+          <div>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Select Trip</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={chosenTrip || ''}
+                onChange={handleChange}
+                label="Select Trip">
+                {tripList.map((singleTrip) => (
+                  <MenuItem key={singleTrip._id} value={singleTrip._id}>
+                    {singleTrip.tripName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+
+          <Button onClick={handleFetchTrips}>Click me to get all trips</Button>
+          <Button onClick={handleChooseTrip}>Click me to select a trip</Button>
+          <Button onClick={handleAddCard}>Click me to add card to the selected trip</Button>
         </Box>
       </Modal>
     </div>
   );
 }
+
+//           {tripList.map((singleTrip) => (<Typography>{singleTrip.tripName}</Typography>))}

@@ -11,7 +11,6 @@ export const Profile = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const accessToken = useSelector((store) => store.user.accessToken);
 
   return (
     <div className="main">
