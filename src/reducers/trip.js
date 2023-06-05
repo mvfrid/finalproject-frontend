@@ -56,6 +56,7 @@ export const trip = createSlice({
   }
 });
 
+// Thunk making a GET-request for all available trips from the database
 export const fetchTrips = () => {
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoading(true))
@@ -90,6 +91,7 @@ export const fetchTrips = () => {
   };
 };
 
+// Thunk making a POST-request to add a new trip to the database
 export const postNewTrip = (value) => {
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoading(true))
@@ -129,6 +131,7 @@ export const postNewTrip = (value) => {
   };
 };
 
+// Thunk making a PATCH-request to add a new card to the card array in a trip in the database
 export const patchTripWithNewCard = (tripId, place) => {
   // const { cardIcon, cardName, cardPhotoRef, cardPlaceId, cardRating, cardVicinity } = req.body;
   return (dispatch, getState) => {
