@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -46,6 +46,12 @@ export const SinglePlace = ({ place, openModal, handleClose }) => {
   const handleAddCard = () => {
     dispatch(patchTripWithNewCard(chosenTrip, place));
   }
+
+  useEffect(() => {
+    if (!openModal) {
+      setChosenTrip('');
+    }
+  }, [openModal]);
 
   return (
     <div>
