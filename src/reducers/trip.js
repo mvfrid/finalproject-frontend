@@ -59,6 +59,7 @@ export const trip = createSlice({
 export const fetchTrips = () => {
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoading(true))
+
     const options = {
       method: 'GET',
       headers: {
@@ -91,6 +92,8 @@ export const fetchTrips = () => {
 
 export const postNewTrip = (value) => {
   return (dispatch, getState) => {
+    dispatch(trip.actions.setLoading(true))
+
     const options = {
       method: 'POST',
       headers: {
@@ -129,6 +132,8 @@ export const postNewTrip = (value) => {
 export const patchTripWithNewCard = (tripId, place) => {
   // const { cardIcon, cardName, cardPhotoRef, cardPlaceId, cardRating, cardVicinity } = req.body;
   return (dispatch, getState) => {
+    dispatch(trip.actions.setLoading(true))
+
     const options = {
       method: 'PATCH',
       headers: {
