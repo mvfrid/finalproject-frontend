@@ -17,7 +17,8 @@ export const trip = createSlice({
     cards: [],
     error: null,
     isLoading: false,
-    tripList: []
+    tripList: [],
+    newTrip: null
   },
   reducers: {
     setTripName: (store, action) => {
@@ -51,7 +52,14 @@ export const trip = createSlice({
       store.isLoading = action.payload
     },
     setTripList: (store, action) => {
+      console.log('Setting tripList:', action.payload);
+      if (!Array.isArray(action.payload)) {
+        console.error('setTripList was called with a non-array value:', action.payload);
+      }
       store.tripList = action.payload;
+    },
+    setNewTrip: (store, action) => {
+      store.newTrip = action.payload;
     }
   }
 });
@@ -107,20 +115,22 @@ export const postNewTrip = (value) => {
     };
 
     fetch(MONGO_DB_URL('trips'), options)
+      // postNewTrip
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          // eslint-disable-next-line no-underscore-dangle
           dispatch(trip.actions.setError(null));
-          const responseData = response.response.data; // Access the correct data
+          const responseData = response.response.data; // this is expected to be a single trip
           console.log('responseData:', responseData);
-          dispatch(trip.actions.setTripList(responseData));
+          dispatch(trip.actions.setNewTrip(responseData));
+          dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setTripList([]));
           dispatch(trip.actions.setError(response));
         }
         console.log('response:', response)
       })
+
       .catch((error) => {
         dispatch(trip.actions.setError(error))
         console.log('error', error)
