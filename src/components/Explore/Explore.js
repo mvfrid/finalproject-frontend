@@ -88,7 +88,7 @@ export const Explore = () => {
       <div className="places">
         {placesData && placesData.map((place) => {
           console.log('place inside explore component', place); // Add your console log statement here
-          return <SingleCardPreview props={place} />;
+          return <SingleCardPreview card={place} />;
         })}
         <EmptyState />
       </div>

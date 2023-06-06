@@ -1,9 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from 'reducers/trip';
 import { EmptyState } from 'components/Reusable/EmptyState';
 import { SingleCardPreview } from 'components/Reusable/SingleCardPreview';
+import { Link } from 'react-router-dom';
 
 export const TripList = () => {
   const tripList = useSelector((store) => store.trip.tripList);
@@ -20,12 +22,13 @@ export const TripList = () => {
           <h2>Trip collections:</h2>
           <div className="trip-wrapper">
             {tripList.map((singleTrip) => (
-              // eslint-disable-next-line no-underscore-dangle
               <div className="trip" key={singleTrip._id}>
-                <h3>{singleTrip.tripName}</h3>
-                {singleTrip.cards.slice(0, 3).map((card) => (
-                  <SingleCardPreview props={card} />
-                ))}
+                <Link to={`/trips/${singleTrip._id}`}>
+                  <h3>{singleTrip.tripName}</h3>
+                  {singleTrip.cards.slice(0, 3).map((card) => (
+                    <SingleCardPreview card={card} showButton={false} key={card._id} />
+                  ))}
+                </Link>
               </div>
             ))}
           </div>

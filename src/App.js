@@ -41,10 +41,10 @@ export const App = () => {
         )}
 
         {accessToken !== null ? (
-          <Route path="/singletrip" element={<SingleTrip />} />
+          <Route path="/trips/:id" element={<SingleTrip />} />
         ) : (
           <Route
-            path="/singletrip"
+            path="/trips/:id"
             element={<Navigate to="/unauthorized" replace />} />
         )}
 
