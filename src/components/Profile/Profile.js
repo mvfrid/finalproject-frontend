@@ -24,7 +24,7 @@ export const Profile = () => {
         endIcon={<AddPhotoAlternateIcon />}>
         Add new trip
       </Button>
-      <NewTripModal open={open} handleClose={handleClose} />
+      <NewTripModal open={open} onClose={handleClose} />
       <ModalsProfile />
 
       <TripList />
