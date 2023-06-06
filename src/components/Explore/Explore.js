@@ -11,7 +11,7 @@ export const Explore = () => {
   const [input, setInput] = useState('');
   const [openCard, setOpenCard] = useState(false);
   const [placesData, setPlacesData] = useState([]);
-  const [photoUrl/* setPhotoUrl */] = useState([]);
+  // const [photoUrl/* setPhotoUrl */] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
@@ -86,6 +86,45 @@ export const Explore = () => {
       <p>{input} has the coordinates: long {inputLong}, lat {inputLat}</p>
 
       <div className="places">
+        {placesData && placesData.map((place) => {
+          console.log('place inside explore component', place); // Add your console log statement here
+          return <SingleCardPreview props={place} />;
+        })}
+        <EmptyState />
+      </div>
+
+      {openCard ? (
+        <div className="card">
+          <SingleCardModal
+            place={selectedPlace}
+            openModal={openCard}
+            handleClose={handleClose} />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+/*
+
+      <div className="places">
+        {placesData && placesData.map((place, index) => (
+          <div className="single-place" key={place.place_id}>
+            <h2>{place.name}</h2>
+            <p>⭐️{place.rating}</p>
+            <img src={place.icon} alt="" className="place-icon" />
+            {photoUrl[index] ? (
+              <img src={photoUrl[index]} alt="" className="place-photo" />
+            ) : (
+              <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
+            )}
+            <button type="button" onClick={() => handleClickOpenCard(place)}>Open card</button>
+
+          </div>
+  */
+
+/*
+      <div className="places">
         {placesData && placesData.map((place, index) => (
           <div className="single-place" key={place.place_id}>
             <h2>{place.name}</h2>
@@ -100,19 +139,4 @@ export const Explore = () => {
 
           </div>
         ))}
-
-        <SingleCardPreview />
-        <EmptyState />
-
-        {openCard ? (
-          <div className="card">
-            <SingleCardModal
-              place={selectedPlace}
-              openModal={openCard}
-              handleClose={handleClose} />
-          </div>
-        ) : null}
-      </div>
-    </div>
-  );
-}
+        */
