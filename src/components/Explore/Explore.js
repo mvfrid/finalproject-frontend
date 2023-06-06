@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { API_KEY, PLACES_URL } from 'utils/urls';
-import { SinglePlace } from './SinglePlace';
+import { SingleCardPreview } from 'components/Reusable/SingleCardPreview';
+import { EmptyState } from 'components/Reusable/EmptyState';
+import { SingleCardModal } from './SingleCardModal';
 
 export const Explore = () => {
   const [inputLong, setInputLong] = useState(null);
@@ -96,9 +98,13 @@ export const Explore = () => {
 
           </div>
         ))}
+
+        <SingleCardPreview />
+        <EmptyState />
+
         {openCard ? (
           <div className="card">
-            <SinglePlace
+            <SingleCardModal
               place={selectedPlace}
               openModal={openCard}
               handleClose={handleClose} />

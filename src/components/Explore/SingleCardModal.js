@@ -23,7 +23,7 @@ const style = {
   p: 4
 };
 
-export const SinglePlace = ({ place, openModal, handleClose }) => {
+export const SingleCardModal = ({ place, openModal, handleClose }) => {
   const tripList = useSelector((store) => store.trip.tripList);
   const [chosenTrip, setChosenTrip] = useState('');
   const dispatch = useDispatch();

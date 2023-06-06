@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { ModalsProfile } from 'components/Reusable/ModalsProfile';
 import { NewTripModal } from './NewTripModal';
 import { TripList } from './TripList';
+import { UserInfo } from './UserInfo';
 // import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { user } from 'reducers/user';
@@ -14,13 +16,16 @@ export const Profile = () => {
 
   return (
     <div className="main">
-      <div className="profile-section">
-        <h1>Profile</h1>
-        <p>Username</p>
-      </div>
+      <UserInfo />
 
-      <Button variant="outlined" onClick={handleOpen} endIcon={<AddPhotoAlternateIcon />}>Add new trip</Button>
+      <Button
+        variant="outlined"
+        onClick={handleOpen}
+        endIcon={<AddPhotoAlternateIcon />}>
+        Add new trip
+      </Button>
       <NewTripModal open={open} handleClose={handleClose} />
+      <ModalsProfile />
 
       <TripList />
     </div>
