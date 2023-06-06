@@ -27,6 +27,7 @@ export const Explore = () => {
   const handleCardClick = (place) => {
     // We get a selected object back from SingleCardPreviewExplore
     // We store it in selectedPlace, to use later
+    // Then we launch the handleOpen function to open Modal
     console.log('handleCardClick place selected:', place)
     setSelectedPlace(place);
     handleOpen();
@@ -58,7 +59,7 @@ export const Explore = () => {
         <div className="card">
           <SingleCardModal
             selectedPlace={selectedPlace}
-            openModal={handleOpen}
+            open={openCard}
             handleClose={handleClose} />
         </div>
       ) : null}
@@ -66,10 +67,3 @@ export const Explore = () => {
     </div>
   );
 }
-
-/*
-  const handleClickOpenCard = (place) => {
-    setSelectedPlace(place);
-    setOpenCard(true);
-  };
-  */
