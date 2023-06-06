@@ -45,7 +45,7 @@ export const SingleTrip = () => {
             onCardClick={() => handleCardClick(card)} />
         ))}
       </div>
-      <SingleTripModal open={open} handleClose={handleClose} card={selectedCard} />
+      <SingleTripModal open={open} handleClose={handleClose} card={selectedCard} tripId={id} />
       <Button
         type="submit"
         variant="contained"

@@ -1,9 +1,22 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Box, Button, Typography, Modal, CardMedia } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+import { deleteSingleCard } from 'reducers/trip';
 
-export const SingleTripModal = ({ open, handleClose, card }) => {
+export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+
   const closeModal = () => {
     handleClose();
+  };
+
+  const handleClickDeleteCard = () => {
+    dispatch(deleteSingleCard(tripId, card._id));
+    // NEEDS AN IF ELSE SUCCESS???
   };
 
   const style = {
@@ -57,6 +70,14 @@ export const SingleTripModal = ({ open, handleClose, card }) => {
         <Button type="button" variant="contained" onClick={closeModal}>
           Close modal
         </Button>
+        <Button
+          type="submit"
+          variant="contained"
+          endIcon={<DeleteIcon />}
+          onClick={() => handleClickDeleteCard(card)}>
+        Delete Card
+        </Button>
+
       </Box>
     </Modal>
   );

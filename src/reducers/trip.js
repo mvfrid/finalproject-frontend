@@ -19,7 +19,8 @@ export const trip = createSlice({
     isLoading: false,
     tripList: [],
     newTrip: null,
-    deleteTrip: null
+    deleteTrip: null,
+    deleteCardFromTrip: null
   },
   reducers: {
     setTripName: (store, action) => {
@@ -64,6 +65,9 @@ export const trip = createSlice({
     },
     setDeleteTrip: (state, action) => {
       state.deleteTrip = action.payload;
+    },
+    setDeleteCardFromTrip: (state, action) => {
+      state.deleteCardFromTrip = action.payload;
     }
   }
 });
@@ -216,6 +220,46 @@ export const deleteTrip = (tripId) => {
           const responseData = response.response.data;
           console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteTrip(tripId));
+        } else {
+          dispatch(trip.actions.setError(response));
+        }
+        console.log('response:', response)
+      })
+
+      .catch((error) => {
+        dispatch(trip.actions.setError(error))
+        console.log('error', error)
+      })
+      .finally(() => {
+        dispatch(trip.actions.setLoading(false));
+      })
+  };
+};
+
+// Thunk making a DELETE-request to delete a single card from a trip from the database
+export const deleteSingleCard = (tripId, cardId) => {
+  return (dispatch, getState) => {
+    dispatch(trip.actions.setLoading(true))
+
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        // eslint-disable-next-line quote-props
+        'Authorization': getState().user.accessToken
+      },
+      body: JSON.stringify({ tripId, cardId })
+    };
+
+    fetch(MONGO_DB_URL(`trips/${tripId}/cards/${cardId}`), options)
+      // postNewTrip
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.success) {
+          dispatch(trip.actions.setError(null));
+          const responseData = response.response.data;
+          console.log('responseData:', responseData);
+          dispatch(trip.actions.setDeleteCardFromTrip(cardId));
         } else {
           dispatch(trip.actions.setError(response));
         }
