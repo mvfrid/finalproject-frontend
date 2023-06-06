@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from 'reducers/trip';
 import { EmptyState } from 'components/Reusable/EmptyState';
+import { SingleCardPreview } from 'components/Reusable/SingleCardPreview';
 
 export const TripList = () => {
   const tripList = useSelector((store) => store.trip.tripList);
@@ -22,7 +23,9 @@ export const TripList = () => {
               // eslint-disable-next-line no-underscore-dangle
               <div className="trip" key={singleTrip._id}>
                 <h3>{singleTrip.tripName}</h3>
-                <p>Content here, replace with cards</p>
+                {singleTrip.cards.slice(0, 3).map((card) => (
+                  <SingleCardPreview props={card} />
+                ))}
               </div>
             ))}
           </div>
