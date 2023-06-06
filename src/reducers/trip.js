@@ -18,7 +18,8 @@ export const trip = createSlice({
     error: null,
     isLoading: false,
     tripList: [],
-    newTrip: null
+    newTrip: null,
+    deleteTrip: null
   },
   reducers: {
     setTripName: (store, action) => {
@@ -60,6 +61,9 @@ export const trip = createSlice({
     },
     setNewTrip: (store, action) => {
       store.newTrip = action.payload;
+    },
+    setDeleteTrip: (state, action) => {
+      state.deleteTrip = action.payload;
     }
   }
 });
@@ -178,6 +182,46 @@ export const patchTripWithNewCard = (tripId, place) => {
           dispatch(trip.actions.setError(response));
         }
       })
+      .catch((error) => {
+        dispatch(trip.actions.setError(error))
+        console.log('error', error)
+      })
+      .finally(() => {
+        dispatch(trip.actions.setLoading(false));
+      })
+  };
+};
+
+// Thunk making a DELETE-request to delete a trip from the database
+export const deleteTrip = (tripId) => {
+  return (dispatch, getState) => {
+    dispatch(trip.actions.setLoading(true))
+
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        // eslint-disable-next-line quote-props
+        'Authorization': getState().user.accessToken
+      },
+      body: JSON.stringify({ tripId })
+    };
+
+    fetch(MONGO_DB_URL('trips'), options)
+      // postNewTrip
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.success) {
+          dispatch(trip.actions.setError(null));
+          const responseData = response.response.data;
+          console.log('responseData:', responseData);
+          dispatch(trip.actions.setDeleteTrip(tripId));
+        } else {
+          dispatch(trip.actions.setError(response));
+        }
+        console.log('response:', response)
+      })
+
       .catch((error) => {
         dispatch(trip.actions.setError(error))
         console.log('error', error)
