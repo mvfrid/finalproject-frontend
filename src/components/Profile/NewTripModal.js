@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Box, Button, TextField, Typography, Modal } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
 import { postNewTrip } from 'reducers/trip';
-// import { user } from 'reducers/user'
-// import { MONGO_DB_URL } from 'utils/urls';
+import AddIcon from '@mui/icons-material/Add';
 
-export const NewTripModal = ({ open, onClose }) => {
+export const NewTripModal = ({ open, onClose, handleClose }) => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
 
@@ -17,7 +15,8 @@ export const NewTripModal = ({ open, onClose }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postNewTrip(value));
-    // onClose(); // Close the modal
+    handleClose(); // Close the modal
+    setValue('');
   };
 
   const style = {
@@ -39,8 +38,8 @@ export const NewTripModal = ({ open, onClose }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Add a new trip
+        <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ mb: 4 }}>
+            Add a new trip
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
@@ -49,9 +48,10 @@ export const NewTripModal = ({ open, onClose }) => {
             label="Name of trip"
             variant="outlined"
             style={{ marginBottom: '10px' }}
+            sx={{ mr: 2 }}
             required />
-          <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-            Save
+          <Button type="submit" variant="contained" endIcon={<AddIcon />}>
+              Save
           </Button>
         </form>
       </Box>
@@ -60,37 +60,118 @@ export const NewTripModal = ({ open, onClose }) => {
 };
 
 /*
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log('value', value, 'accessToken', accessToken)
 
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
-        'Authorization': accessToken
-      },
-      body: JSON.stringify({ tripName: value })
+MUI progress button:
+
+      import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Box, Button, TextField, Typography, Modal, Fab, CircularProgress } from '@mui/material';
+import { green } from '@mui/material/colors';
+import { postNewTrip } from 'reducers/trip';
+import AddIcon from '@mui/icons-material/Add';
+import CheckIcon from '@mui/icons-material/Check';
+
+export const NewTripModal = ({ open, onClose }) => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [value, setValue] = useState('');
+  const dispatch = useDispatch();
+  const timer = useRef();
+
+  const buttonSx = success
+    ? {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700]
+      }
+    }
+    : {};
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
     };
+  }, []);
 
-    fetch(MONGO_DB_URL('trips'), options)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.success) {
-          dispatch(trip.actions.setTripName(response.response.data.tripName));
-          dispatch(trip.actions.setTripActiveUser(response.response.data.tripActiveuser));
-          // eslint-disable-next-line no-underscore-dangle
-          dispatch(trip.actions.setTripId(response.response.data._id));
-          dispatch(trip.actions.setCreatedAt(response.response.data.createdAt));
-          dispatch(trip.actions.setError(null));
-          console.log('tripname', response.response.data.tripName)
-        } else {
-          dispatch(trip.actions.setTripName(null));
-          dispatch(trip.actions.setError(response));
-        }
-        console.log('response:', response)
-      })
-      .catch((error) => console.log(error))
-  }
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const handleButtonProgressClick = () => {
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+      timer.current = window.setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 2000);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postNewTrip(value));
+    onClose(); // Close the modal
+  };
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4
+  };
+
+  return (
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description">
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ mb: 4 }}>
+            Add a new trip
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            value={value}
+            onChange={handleChange}
+            label="Name of trip"
+            variant="outlined"
+            style={{ marginBottom: '10px' }}
+            sx={{ mr: 2 }}
+            required />
+          <Box sx={{ position: 'relative' }}>
+            <Button type="submit" variant="contained" endIcon={<AddIcon />}>
+              Save
+            </Button>
+            <Fab
+              aria-label="add"
+              color="primary"
+              onClick={handleButtonProgressClick}
+              sx={buttonSx}>
+              {success ? <CheckIcon /> : <AddIcon />}
+            </Fab>
+            {loading && (
+              <CircularProgress
+                size={68}
+                sx={{
+                  color: green[500],
+                  position: 'absolute',
+                  top: -6,
+                  left: -6,
+                  zIndex: 1
+                }} />
+            )}
+          </Box>
+        </form>
+      </Box>
+    </Modal>
+  );
+};
+
   */
