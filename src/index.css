@@ -95,3 +95,7 @@ input {
   margin-right: 5px;
   padding: 8px;
 }
+
+.placeholder {
+  background-color: #bcebd0;
+}
