@@ -9,7 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { fetchTrips, patchTripWithNewCard } from 'reducers/trip';
+import { patchTripWithNewCard } from 'reducers/trip';
 
 const style = {
   position: 'absolute',
@@ -23,28 +23,26 @@ const style = {
   p: 4
 };
 
-export const SingleCardModal = ({ place, openModal, handleClose }) => {
+export const SingleCardModal = ({ selectedPlace, openModal, handleClose }) => {
   const tripList = useSelector((store) => store.trip.tripList);
   const [chosenTrip, setChosenTrip] = useState('');
   const dispatch = useDispatch();
-  console.log('place:', place)
+  console.log('place:', selectedPlace)
 
   const handleChange = (event) => {
     setChosenTrip(event.target.value);
     console.log('handleChange event.target.value:', event.target.value)
   };
 
-  const handleFetchTrips = () => {
-    dispatch(fetchTrips());
-  };
-
+  /*
   const handleChooseTrip = () => {
     console.log('chosenTrip:', chosenTrip);
-    console.log('place:', place)
+    console.log('place:', selectedPlace)
   };
+  */
 
   const handleAddCard = () => {
-    dispatch(patchTripWithNewCard(chosenTrip, place));
+    dispatch(patchTripWithNewCard(chosenTrip, selectedPlace));
   }
 
   useEffect(() => {
@@ -62,17 +60,17 @@ export const SingleCardModal = ({ place, openModal, handleClose }) => {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {place.name}
-            <img src={place.icon} alt="" className="place-icon" />
+            {selectedPlace.name}
+            <img src={selectedPlace.icon} alt="" className="place-icon" />
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          ⭐️ {place.rating}
+          ⭐️ {selectedPlace.rating}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {place.vicinity}
+            {selectedPlace.vicinity}
           </Typography>
           <div>
             <FormControl fullWidth>
@@ -91,14 +89,9 @@ export const SingleCardModal = ({ place, openModal, handleClose }) => {
               </Select>
             </FormControl>
           </div>
-
-          <Button onClick={handleFetchTrips}>Click me to get all trips</Button>
-          <Button onClick={handleChooseTrip}>Click me to select a trip</Button>
           <Button onClick={handleAddCard}>Click me to add card to the selected trip</Button>
         </Box>
       </Modal>
     </div>
   );
 }
-
-//           {tripList.map((singleTrip) => (<Typography>{singleTrip.tripName}</Typography>))}
