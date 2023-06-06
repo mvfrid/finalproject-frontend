@@ -3,6 +3,7 @@ import { API_KEY, PLACES_URL } from 'utils/urls';
 import { SingleCardPreview } from 'components/Reusable/SingleCardPreview';
 import { EmptyState } from 'components/Reusable/EmptyState';
 import { SingleCardModal } from './SingleCardModal';
+import { Search } from './Search';
 
 export const Explore = () => {
   const [inputLong, setInputLong] = useState(null);
@@ -81,6 +82,7 @@ export const Explore = () => {
         <input type="text" value={input} onChange={(event) => setInput(event.target.value)} />
         <button type="button" onClick={handleFormSubmit}>Submit</button>
       </form>
+      <Search />
       <p>{input} has the coordinates: long {inputLong}, lat {inputLat}</p>
 
       <div className="places">
