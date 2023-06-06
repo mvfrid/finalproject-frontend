@@ -6,7 +6,7 @@ export const UserInfo = () => {
     <div className="main">
       <div className="profile-section">
         <h1>Profile</h1>
-        <p>Username</p>
+        <p>Bla vla</p>
         {/* To change user info/profilename, about text, instagram */}
         <ModalsProfile />
       </div>
