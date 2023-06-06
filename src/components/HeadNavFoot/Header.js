@@ -35,6 +35,7 @@ export const Header = () => {
 
   const handleLogOut = () => {
     dispatch(user.actions.signOut());
+    navigate('/');
   }
 
   useEffect(() => {

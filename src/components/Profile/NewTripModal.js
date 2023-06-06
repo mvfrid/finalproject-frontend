@@ -4,7 +4,7 @@ import { Box, Button, TextField, Typography, Modal } from '@mui/material';
 import { postNewTrip } from 'reducers/trip';
 import AddIcon from '@mui/icons-material/Add';
 
-export const NewTripModal = ({ open, onClose, handleClose }) => {
+export const NewTripModal = ({ open, onClose }) => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
 
@@ -15,7 +15,8 @@ export const NewTripModal = ({ open, onClose, handleClose }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postNewTrip(value));
-    handleClose(); // Close the modal
+    // handleClose(); // Close the modal
+    onClose();
     setValue('');
   };
 

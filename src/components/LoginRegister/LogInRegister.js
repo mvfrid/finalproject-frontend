@@ -46,11 +46,13 @@ export const LogInRegister = ({ mode }) => {
           dispatch(user.actions.setAccessToken(data.response.accessToken));
           dispatch(user.actions.setUsername(data.response.username));
           dispatch(user.actions.setUserId(data.response.id));
+          dispatch(user.actions.setUserInfo(data.response))
           dispatch(user.actions.setError(null));
         } else {
           dispatch(user.actions.setAccessToken(null));
           dispatch(user.actions.setUsername(null));
           dispatch(user.actions.setUserId(null));
+          dispatch(user.actions.setUserInfo(null))
           dispatch(user.actions.setError(data.response))
         }
       })
@@ -61,8 +63,7 @@ export const LogInRegister = ({ mode }) => {
 
   return (
     <div className="main">
-      <h1>REGISTER & LOGIN COMPONENT HERE</h1>
-      {mode === 'users/register' ? <h2>Register</h2> : <h2>Login</h2>}
+      {mode === '/users/register' ? <h2>Register</h2> : <h2>Login</h2>}
       <form>
         <input
           type="text"
@@ -76,7 +77,7 @@ export const LogInRegister = ({ mode }) => {
           onChange={(e) => setPassword(e.target.value)} />
         <button type="button" onClick={onFormSubmit}>Submit</button>
       </form>
-      {mode === 'users/register' ? <button type="button" onClick={onClickGoToLogin}>Log in instead</button> : <button type="button" onClick={onClickGoToRegister}>Register instead</button>}
+      {mode === '/users/register' ? <button type="button" onClick={onClickGoToLogin}>Log in instead</button> : <button type="button" onClick={onClickGoToRegister}>Register instead</button>}
     </div>
   )
 }
