@@ -17,7 +17,7 @@ export const NewTripModal = ({ open, onClose }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postNewTrip(value));
-    onClose(); // Close the modal
+    // onClose(); // Close the modal
   };
 
   const style = {

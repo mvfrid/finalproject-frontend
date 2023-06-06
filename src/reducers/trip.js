@@ -207,7 +207,7 @@ export const deleteTrip = (tripId) => {
       body: JSON.stringify({ tripId })
     };
 
-    fetch(MONGO_DB_URL('trips'), options)
+    fetch(MONGO_DB_URL(`trips/${tripId}`), options)
       // postNewTrip
       .then((response) => response.json())
       .then((response) => {
