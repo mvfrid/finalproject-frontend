@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { API_KEY, PLACES_URL } from 'utils/urls';
 import { SingleCardPreview } from 'components/Reusable/SingleCardPreview';
