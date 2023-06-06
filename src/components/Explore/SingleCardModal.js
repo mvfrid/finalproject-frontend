@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { patchTripWithNewCard } from 'reducers/trip';
+import { NewTripModal } from '../Profile/NewTripModal';
 
 const style = {
   position: 'absolute',
@@ -23,9 +24,18 @@ const style = {
   p: 4
 };
 
-export const SingleCardModal = ({ selectedPlace, openModal, handleClose }) => {
+export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
   const tripList = useSelector((store) => store.trip.tripList);
   const [chosenTrip, setChosenTrip] = useState('');
+  const [openAdd, setOpenAdd] = useState(false);
+
+  const handleOpenAdd = () => {
+    setOpenAdd(true);
+  };
+  const handleCloseAdd = () => {
+    setOpenAdd(false);
+  };
+
   const dispatch = useDispatch();
   console.log('place:', selectedPlace)
 
@@ -34,27 +44,26 @@ export const SingleCardModal = ({ selectedPlace, openModal, handleClose }) => {
     console.log('handleChange event.target.value:', event.target.value)
   };
 
-  /*
-  const handleChooseTrip = () => {
-    console.log('chosenTrip:', chosenTrip);
-    console.log('place:', selectedPlace)
-  };
-  */
+  const addNewTrip = () => {
+    console.log('We want to add a new trip now');
+    handleOpenAdd();
+  }
 
   const handleAddCard = () => {
+    console.log('handleAddCard selectedPlace', selectedPlace)
     dispatch(patchTripWithNewCard(chosenTrip, selectedPlace));
   }
 
   useEffect(() => {
-    if (!openModal) {
+    if (!open) {
       setChosenTrip('');
     }
-  }, [openModal]);
+  }, [open]);
 
   return (
     <div>
       <Modal
-        open={openModal}
+        open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
@@ -86,7 +95,16 @@ export const SingleCardModal = ({ selectedPlace, openModal, handleClose }) => {
                     {singleTrip.tripName}
                   </MenuItem>
                 ))}
+                <MenuItem
+                  value="Add New Trip"
+                  sx={{ fontWeight: 'bold', color: 'blue' }}
+                  onClick={addNewTrip}>
+                    ADD NEW TRIP
+                </MenuItem>
               </Select>
+              <NewTripModal
+                onClose={handleCloseAdd}
+                open={openAdd} />
             </FormControl>
           </div>
           <Button onClick={handleAddCard}>Click me to add card to the selected trip</Button>
