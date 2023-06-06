@@ -64,7 +64,7 @@ export const LogInRegister = ({ mode }) => {
   return (
     <div className="main">
       {mode === '/users/register' ? <h2>Register</h2> : <h2>Login</h2>}
-      <form>
+      <form onSubmit={onFormSubmit}>
         <input
           type="text"
           placeholder="username"
