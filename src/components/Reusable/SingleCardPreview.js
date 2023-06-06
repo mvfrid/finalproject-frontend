@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import * as React from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,7 +7,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export const SingleCardPreview = ({ card, showButton }) => {
+export const SingleCardPreview = ({ card, showButton, onCardClick }) => {
+  const handleOpenModal = () => {
+    onCardClick(card);
+  }
+
   return (
     <Card key={card.place_id} sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -22,7 +26,7 @@ export const SingleCardPreview = ({ card, showButton }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        {showButton && <Button size="small">Read More</Button>}
+        {showButton && <Button size="small" onClick={handleOpenModal}>Read More</Button>}
       </CardActions>
     </Card>
   );
