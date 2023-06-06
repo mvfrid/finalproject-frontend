@@ -1,13 +1,10 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { ModalsProfile } from 'components/Reusable/ModalsProfile';
+// import { ModalsProfile } from 'components/Reusable/ModalsProfile';
 import { NewTripModal } from './NewTripModal';
 import { TripList } from './TripList';
 import { UserInfo } from './UserInfo';
-// import React, { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { user } from 'reducers/user';
 
 export const Profile = () => {
   const [open, setOpen] = React.useState(false);
@@ -25,9 +22,9 @@ export const Profile = () => {
         Add new trip
       </Button>
       <NewTripModal open={open} onClose={handleClose} />
-      <ModalsProfile />
-
       <TripList />
     </div>
   )
 }
+
+//       <ModalsProfile />
