@@ -6,8 +6,8 @@ import { Box, Button, TextField, Typography, Modal } from '@mui/material';
 import { updateSingleCard } from 'reducers/trip';
 import { useParams } from 'react-router-dom';
 
-export const EditSingleCardModal = ({ open, handleClose, card }) => {
-  const { id } = useParams();
+export const EditSingleCardModal = ({ open, handleClose }) => {
+  const { id, cardId } = useParams();
   const currentCommentValue = useSelector((store) => store.trip.cards.cardComment);
   const currentStarsValue = useSelector((store) => store.trip.cards.cardStars);
 
@@ -41,7 +41,7 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
     }
 
     console.log('Dispatching update with data:', updatedData);
-    dispatch(updateSingleCard(id, card, commentValue.trim(), starsValue.trim()));
+    dispatch(updateSingleCard(id, cardId, commentValue.trim(), starsValue.trim()));
 
     console.log('Clearing form values');
     setCommentValue('');

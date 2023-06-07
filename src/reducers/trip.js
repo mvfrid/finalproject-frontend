@@ -20,7 +20,8 @@ export const trip = createSlice({
     tripList: [],
     newTrip: null,
     deleteTrip: null,
-    deleteCardFromTrip: null
+    deleteCardFromTrip: null,
+    updateCardInTrip: null
   },
   reducers: {
     setTripName: (store, action) => {
@@ -63,11 +64,14 @@ export const trip = createSlice({
     setNewTrip: (store, action) => {
       store.newTrip = action.payload;
     },
-    setDeleteTrip: (state, action) => {
-      state.deleteTrip = action.payload;
+    setDeleteTrip: (store, action) => {
+      store.deleteTrip = action.payload;
     },
-    setDeleteCardFromTrip: (state, action) => {
-      state.deleteCardFromTrip = action.payload;
+    setDeleteCardFromTrip: (store, action) => {
+      store.deleteCardFromTrip = action.payload;
+    },
+    setUpdateCardInTrip: (store, action) => {
+      store.updateCardInTrip = action.payload;
     }
   }
 });
@@ -212,7 +216,6 @@ export const deleteTrip = (tripId) => {
     };
 
     fetch(MONGO_DB_URL(`trips/${tripId}`), options)
-      // postNewTrip
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
@@ -252,7 +255,6 @@ export const deleteSingleCard = (tripId, cardId) => {
     };
 
     fetch(MONGO_DB_URL(`trips/${tripId}/cards/${cardId}`), options)
-      // postNewTrip
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
@@ -260,6 +262,45 @@ export const deleteSingleCard = (tripId, cardId) => {
           const responseData = response.response.data;
           console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteCardFromTrip(cardId));
+        } else {
+          dispatch(trip.actions.setError(response));
+        }
+        console.log('response:', response)
+      })
+
+      .catch((error) => {
+        dispatch(trip.actions.setError(error))
+        console.log('error', error)
+      })
+      .finally(() => {
+        dispatch(trip.actions.setLoading(false));
+      })
+  };
+};
+
+// Thunk making a PATCH-request to update a single card in a trip from the database
+export const updateSingleCard = (tripId, cardId, cardComment, cardRating) => {
+  return (dispatch, getState) => {
+    dispatch(trip.actions.setLoading(true))
+
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        // eslint-disable-next-line quote-props
+        'Authorization': getState().user.accessToken
+      },
+      body: JSON.stringify({ cardComment, cardRating })
+    };
+
+    fetch(MONGO_DB_URL(`trips/${tripId}/cards/${cardId}`), options)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.success) {
+          dispatch(trip.actions.setError(null));
+          const responseData = response.response.data;
+          console.log('responseData:', responseData);
+          dispatch(trip.actions.setUpdateCardInTrip(responseData));
         } else {
           dispatch(trip.actions.setError(response));
         }

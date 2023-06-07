@@ -10,6 +10,8 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
   const [instaValue, setInstaValue] = useState('');
+  // const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
   const userId = useSelector((store) => store.user.userId);
   const accessToken = useSelector((store) => store.user.accessToken);
@@ -18,6 +20,7 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
   const currentInstaValue = useSelector((store) => store.user.userInfo.profileInstagram);
 
   const patchProfileUpdate = (event) => {
+    // dispatch(setLoading(True))
     event.preventDefault();
     const updatedData = {}; // Initialize an empty object to store the updated values
 

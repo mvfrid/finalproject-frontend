@@ -8,7 +8,7 @@ import { MONGO_DB_URL } from 'utils/urls';
 export const LogInRegister = ({ mode }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState('true');
+  const [loading, setLoading] = useState(true);
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();

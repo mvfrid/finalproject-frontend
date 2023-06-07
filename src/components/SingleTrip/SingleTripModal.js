@@ -1,14 +1,18 @@
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Typography, Modal, CardMedia } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import { deleteSingleCard } from 'reducers/trip';
+import { EditSingleCardModal } from './EditSingleCardModal';
 
 export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const [openEditModal, setOpenEditModal] = useState(false);
+
+  const handleOpen = () => {
+    setOpenEditModal(true);
+  }
 
   const closeModal = () => {
     handleClose();
@@ -17,6 +21,10 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
   const handleClickDeleteCard = () => {
     dispatch(deleteSingleCard(tripId, card._id));
     // NEEDS AN IF ELSE SUCCESS???
+  };
+
+  const handleEditModalClose = () => {
+    setOpenEditModal(false);
   };
 
   const style = {
@@ -67,6 +75,16 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
             No card selected
           </Typography>
         )}
+        <Button type="button" variant="contained" onClick={handleOpen}>
+          Update information
+        </Button>
+
+        <EditSingleCardModal
+          open={openEditModal}
+          handleClose={handleEditModalClose}
+          card={card}
+          cardId={card._id} />
+
         <Button type="button" variant="contained" onClick={closeModal}>
           Close modal
         </Button>
@@ -74,10 +92,9 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
           type="submit"
           variant="contained"
           endIcon={<DeleteIcon />}
-          onClick={() => handleClickDeleteCard(card)}>
+          onClick={handleClickDeleteCard}>
         Delete Card
         </Button>
-
       </Box>
     </Modal>
   );
