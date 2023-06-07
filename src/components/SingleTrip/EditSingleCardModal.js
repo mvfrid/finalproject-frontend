@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
@@ -6,10 +7,13 @@ import { Box, Button, TextField, Typography, Modal } from '@mui/material';
 import { updateSingleCard } from 'reducers/trip';
 import { useParams } from 'react-router-dom';
 
-export const EditSingleCardModal = ({ open, handleClose }) => {
-  const { id, cardId } = useParams();
+export const EditSingleCardModal = ({ open, handleClose, card }) => {
+  console.log('card id:', card, 'cardid:', card._id);
+  const { id } = useParams();
   const currentCommentValue = useSelector((store) => store.trip.cards.cardComment);
   const currentStarsValue = useSelector((store) => store.trip.cards.cardStars);
+  const cardId = card._id;
+  console.log('2 cardid:', cardId)
 
   const [commentValue, setCommentValue] = useState('');
   const [starsValue, setStarsValue] = useState('');

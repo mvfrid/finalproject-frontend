@@ -82,8 +82,7 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
         <EditSingleCardModal
           open={openEditModal}
           handleClose={handleEditModalClose}
-          card={card}
-          cardId={card._id} />
+          card={card} />
 
         <Button type="button" variant="contained" onClick={closeModal}>
           Close modal
