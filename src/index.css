@@ -134,6 +134,11 @@ p span {
   color: blue;
 }
 
+.filterbtn {
+  font-size: 12px;
+  background-color: #a2fcf7;
+  border: 1px solid #969696;
+}
 
 button {
   margin: 5px;
