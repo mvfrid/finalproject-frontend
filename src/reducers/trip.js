@@ -279,7 +279,7 @@ export const deleteSingleCard = (tripId, cardId) => {
 };
 
 // Thunk making a PATCH-request to update a single card in a trip from the database
-export const updateSingleCard = (tripId, cardId, cardComment, cardRating) => {
+export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoading(true))
 
@@ -290,7 +290,7 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardRating) => {
         // eslint-disable-next-line quote-props
         'Authorization': getState().user.accessToken
       },
-      body: JSON.stringify({ cardComment, cardRating })
+      body: JSON.stringify({ cardComment, cardStars })
     };
 
     fetch(MONGO_DB_URL(`trips/${tripId}/cards/${cardId}`), options)
