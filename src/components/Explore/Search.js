@@ -20,6 +20,10 @@ export const Search = ({ onDataFetched }) => {
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
 
+  const isFilterActive = (filter) => {
+    return selectedFilter === filter ? 'active' : '';
+  };
+
   const fetchData = () => {
     // set loading is true
     fetch(geoUrl)
@@ -67,14 +71,14 @@ export const Search = ({ onDataFetched }) => {
         <button type="button" onClick={handleFormSubmit}>Submit</button>
       </form>
 
-      <button className="filterbtn" type="button" onClick={() => setSelectedFilter(accomodation)}>Accomodation</button>
-      <button className="filterbtn" type="button" onClick={() => setSelectedFilter(foodanddrink)}>Food and Drink</button>
-      <button className="filterbtn" type="button" onClick={() => setSelectedFilter(entertainment)}>Entertainment</button>
-      <button className="filterbtn" type="button" onClick={() => setSelectedFilter(pointofinterest)}>Point of Interest</button>
-      <button className="filterbtn" type="button" onClick={() => setSelectedFilter(shopping)}>Shopping</button>
+      <button className={`filterbtn ${isFilterActive(accomodation)}`} type="button" onClick={() => setSelectedFilter(accomodation)}>Accomodation</button>
+      <button className={`filterbtn ${isFilterActive(foodanddrink)}`} type="button" onClick={() => setSelectedFilter(foodanddrink)}>Food and Drink</button>
+      <button className={`filterbtn ${isFilterActive(entertainment)}`} type="button" onClick={() => setSelectedFilter(entertainment)}>Entertainment</button>
+      <button className={`filterbtn ${isFilterActive(pointofinterest)}`} type="button" onClick={() => setSelectedFilter(pointofinterest)}>Point of Interest</button>
+      <button className={`filterbtn ${isFilterActive(shopping)}`} type="button" onClick={() => setSelectedFilter(shopping)}>Shopping</button>
 
       <p>{input} has the coordinates: long {inputLong}, lat {inputLat}</p>
-      <p>You are currently filtering on {selectedFilter}</p>
+      <p>You are currently filtering on <span className="tiny">{selectedFilter}</span></p>
     </div>
   )
 }
