@@ -160,10 +160,10 @@ export const postNewTrip = (value) => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
-        }, 4000);
+        }, 2000);
         setTimeout(() => {
           dispatch(fetchTrips());
-        }, 4000);
+        }, 2000);
       })
   };
 };
@@ -172,7 +172,7 @@ export const postNewTrip = (value) => {
 export const patchTripWithNewCard = (tripId, place) => {
   // const { cardIcon, cardName, cardPhotoRef, cardPlaceId, cardRating, cardVicinity } = req.body;
   return (dispatch, getState) => {
-    dispatch(trip.actions.setLoading(true))
+    dispatch(trip.actions.setLoadingPost(true))
 
     const options = {
       method: 'PATCH',
@@ -210,7 +210,7 @@ export const patchTripWithNewCard = (tripId, place) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoading(false));
+        dispatch(trip.actions.setLoadingPost(false));
       })
   };
 };
@@ -218,7 +218,7 @@ export const patchTripWithNewCard = (tripId, place) => {
 // Thunk making a DELETE-request to delete a trip from the database
 export const deleteTrip = (tripId) => {
   return (dispatch, getState) => {
-    dispatch(trip.actions.setLoading(true))
+    dispatch(trip.actions.setLoadingPost(true))
 
     const options = {
       method: 'DELETE',
@@ -249,7 +249,7 @@ export const deleteTrip = (tripId) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoading(false));
+        dispatch(trip.actions.setLoadingPost(false));
       })
   };
 };
@@ -257,7 +257,7 @@ export const deleteTrip = (tripId) => {
 // Thunk making a DELETE-request to delete a single card from a trip from the database
 export const deleteSingleCard = (tripId, cardId) => {
   return (dispatch, getState) => {
-    dispatch(trip.actions.setLoading(true))
+    dispatch(trip.actions.setLoadingPost(true))
 
     const options = {
       method: 'DELETE',
@@ -288,7 +288,7 @@ export const deleteSingleCard = (tripId, cardId) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoading(false));
+        dispatch(trip.actions.setLoadingPost(false));
       })
   };
 };
@@ -296,7 +296,7 @@ export const deleteSingleCard = (tripId, cardId) => {
 // Thunk making a PATCH-request to update a single card in a trip from the database
 export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
   return (dispatch, getState) => {
-    dispatch(trip.actions.setLoading(true))
+    dispatch(trip.actions.setLoadingPost(true))
 
     const options = {
       method: 'PATCH',
@@ -327,7 +327,7 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoading(false));
+        dispatch(trip.actions.setLoadingPost(false));
       })
   };
 };
