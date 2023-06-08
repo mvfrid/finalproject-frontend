@@ -11,16 +11,9 @@ export const Search = ({ onDataFetched }) => {
   const [inputLong, setInputLong] = useState(null);
   const [inputLat, setInputLat] = useState(null);
   const [input, setInput] = useState('');
-  // const [type, setType] = useState('');
+  const [type, setType] = useState('tourist_attraction');
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
-
-  const type = 'establishment';
-  /*
-  const isFilterActive = (filter) => {
-    return type === filter ? 'active' : '';
-  };
-  */
 
   const fetchData = () => {
     // set loading is true
@@ -62,6 +55,12 @@ export const Search = ({ onDataFetched }) => {
     fetchData();
   };
 
+  const handleSelectChange = (event) => {
+    setType(event.target.value);
+  }
+
+  console.log('Selected Option:', type);
+
   return (
     <div className="placeholder">
       <form action="" onSubmit={handleFormSubmit}>
@@ -69,16 +68,26 @@ export const Search = ({ onDataFetched }) => {
         <button type="button" onClick={handleFormSubmit}>Submit</button>
       </form>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel htmlFor="grouped-native-select">Grouping</InputLabel>
-        <Select native defaultValue="" id="grouped-native-select" label="Grouping">
+        <InputLabel htmlFor="grouped-native-select">Type</InputLabel>
+        <Select native defaultValue="" id="grouped-native-select" onChange={handleSelectChange} label="Type">
           <option aria-label="None" value="" />
-          <optgroup label="Category 1">
-            <option value={1}>Option 1</option>
-            <option value={2}>Option 2</option>
+          <optgroup label="Accomodation">
+            <option value="establishment">Establishment</option>
+            <option value="campground">Campground</option>
+            <option value="lodging">Lodging</option>
           </optgroup>
-          <optgroup label="Category 2">
-            <option value={3}>Option 3</option>
-            <option value={4}>Option 4</option>
+          <optgroup label="Food & drink">
+            <option value="restaurant">Restaurant</option>
+            <option value="cafe">Cafe</option>
+            <option value="bar">Bar</option>
+            <option value="bakery">Bakery</option>
+          </optgroup>
+          <optgroup label="Entertainment">
+            <option value="tourist_attraction">Tourist attraction</option>
+            <option value="museum">Museum</option>
+            <option value="amusement_park">Amusement park</option>
+            <option value="park">Park</option>
+            <option value="zoo">Zoo</option>
           </optgroup>
         </Select>
       </FormControl>
