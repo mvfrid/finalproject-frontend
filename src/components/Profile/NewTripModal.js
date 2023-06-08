@@ -29,23 +29,16 @@ export const NewTripModal = ({ open, onClose }) => {
     setValue(event.target.value);
   };
 
-  /*
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(postNewTrip(value));
-    // onClose();
-    setValue('');
-  };
-  */
-
   const postData = () => {
     dispatch(postNewTrip(value));
 
     setTimeout(() => {
+      setValue('');
+    }, 4000);
+
+    setTimeout(() => {
       onClose();
     }, 7000);
-
-    setValue('');
   };
 
   const style = {
