@@ -16,7 +16,9 @@ export const trip = createSlice({
     createdAt: null,
     cards: [],
     error: null,
-    isLoading: false,
+    isLoadingPost: false,
+    isLoadingGet: false,
+    isSuccessful: false,
     tripList: [],
     newTrip: null,
     deleteTrip: null,
@@ -51,8 +53,14 @@ export const trip = createSlice({
     setError: (store, action) => {
       store.error = action.payload
     },
-    setLoading: (store, action) => {
-      store.isLoading = action.payload
+    setLoadingPost: (store, action) => {
+      store.isLoadingPost = action.payload;
+    },
+    setLoadingGet: (store, action) => {
+      store.isLoadingGet = action.payload;
+    },
+    setSuccess: (store, action) => {
+      store.isSuccessful = action.payload
     },
     setTripList: (store, action) => {
       console.log('Setting tripList:', action.payload);
@@ -79,7 +87,7 @@ export const trip = createSlice({
 // Thunk making a GET-request for all available trips from the database
 export const fetchTrips = () => {
   return (dispatch, getState) => {
-    dispatch(trip.actions.setLoading(true))
+    dispatch(trip.actions.setLoadingGet(true))
 
     const options = {
       method: 'GET',
@@ -106,7 +114,7 @@ export const fetchTrips = () => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoading(false));
+        dispatch(trip.actions.setLoadingGet(false));
       })
   };
 };
@@ -114,7 +122,8 @@ export const fetchTrips = () => {
 // Thunk making a POST-request to add a new trip to the database
 export const postNewTrip = (value) => {
   return (dispatch, getState) => {
-    dispatch(trip.actions.setLoading(true))
+    dispatch(trip.actions.setLoadingPost(true))
+    dispatch(trip.actions.setSuccess(false))
 
     const options = {
       method: 'POST',
@@ -135,7 +144,6 @@ export const postNewTrip = (value) => {
           const responseData = response.response.data; // this is expected to be a single trip
           console.log('responseData:', responseData);
           dispatch(trip.actions.setNewTrip(responseData));
-          dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setTripList([]));
           dispatch(trip.actions.setError(response));
@@ -148,7 +156,14 @@ export const postNewTrip = (value) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoading(false));
+        // dispatch(trip.actions.setLoading(false));
+        setTimeout(() => {
+          dispatch(trip.actions.setLoadingPost(false));
+          dispatch(trip.actions.setSuccess(true));
+        }, 4000);
+        setTimeout(() => {
+          dispatch(fetchTrips());
+        }, 4000);
       })
   };
 };

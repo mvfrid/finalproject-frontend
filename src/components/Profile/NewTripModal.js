@@ -1,21 +1,50 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Box, Button, TextField, Typography, Modal } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { Box, TextField, Typography, Modal, CircularProgress, Fab } from '@mui/material';
+import { green } from '@mui/material/colors';
+import CheckIcon from '@mui/icons-material/Check';
+import SaveIcon from '@mui/icons-material/Save';
+// import { postNewTrip, setLoading, setSuccess } from 'reducers/trip';
 import { postNewTrip } from 'reducers/trip';
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
 
 export const NewTripModal = ({ open, onClose }) => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
 
+  const loading = useSelector((state) => state.trip.isLoadingPost);
+  const success = useSelector((state) => state.trip.isSuccessful);
+
+  const buttonSx = success
+    ? {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700]
+      }
+    }
+    : {};
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
+  /*
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postNewTrip(value));
-    onClose();
+    // onClose();
+    setValue('');
+  };
+  */
+
+  const postData = () => {
+    dispatch(postNewTrip(value));
+
+    setTimeout(() => {
+      onClose();
+    }, 7000);
+
     setValue('');
   };
 
@@ -41,7 +70,7 @@ export const NewTripModal = ({ open, onClose }) => {
         <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ mb: 4 }}>
             Add a new trip
         </Typography>
-        <form onSubmit={handleSubmit}>
+        <form>
           <TextField
             value={value}
             onChange={handleChange}
@@ -49,10 +78,30 @@ export const NewTripModal = ({ open, onClose }) => {
             variant="outlined"
             style={{ marginBottom: '10px' }}
             sx={{ mr: 2 }}
+            disabled={loading}
             required />
-          <Button type="submit" variant="contained" endIcon={<AddIcon />}>
-              Save
-          </Button>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ m: 1, position: 'relative' }}>
+              <Fab
+                aria-label="save"
+                color="primary"
+                sx={buttonSx}
+                onClick={postData}>
+                {success ? <CheckIcon /> : <SaveIcon />}
+              </Fab>
+              {loading && (
+                <CircularProgress
+                  size={68}
+                  sx={{
+                    color: green[500],
+                    position: 'absolute',
+                    top: -6,
+                    left: -6,
+                    zIndex: 1
+                  }} />
+              )}
+            </Box>
+          </Box>
         </form>
       </Box>
     </Modal>
@@ -60,6 +109,46 @@ export const NewTripModal = ({ open, onClose }) => {
 };
 
 /*
+<Button type="submit" variant="contained" onClick={handleSubmit}
+endIcon={<AddIcon />} disabled={loading || success}>
+            {loading ? (
+              <CircularProgress size={24} color="inherit" />
+            ) : (
+              success ? 'Success!' : 'Save'
+            )}
+          </Button>
+
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ m: 1, position: 'relative' }}>
+              <Fab
+                aria-label="save"
+                color="primary"
+                sx={buttonSx}
+                onClick={patchProfileUpdate}>
+                {success ? <CheckIcon /> : <SaveIcon />}
+              </Fab>
+              {loading && (
+                <CircularProgress
+                  size={68}
+                  sx={{
+                    color: green[500],
+                    position: 'absolute',
+                    top: -6,
+                    left: -6,
+                    zIndex: 1
+                  }} />
+              )}
+            </Box>
+          </Box>
+
+<Button type="submit" variant="contained" onClick={handleSubmit}
+endIcon={<AddIcon />} disabled={loading || success}>
+            {loading ? (
+              <CircularProgress size={24} color="inherit" />
+            ) : (
+              success ? 'Success!' : 'Save'
+            )}
+          </Button>
 
 MUI progress button:
 
