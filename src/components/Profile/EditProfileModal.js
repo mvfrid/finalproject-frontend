@@ -2,7 +2,10 @@
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, TextField, Typography, Modal } from '@mui/material';
+import { Box, TextField, Typography, Modal, CircularProgress, Fab } from '@mui/material';
+import { green } from '@mui/material/colors';
+import CheckIcon from '@mui/icons-material/Check';
+import SaveIcon from '@mui/icons-material/Save';
 import { user } from 'reducers/user';
 import { MONGO_DB_URL } from '../../utils/urls';
 
@@ -10,7 +13,8 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
   const [instaValue, setInstaValue] = useState('');
-  // const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const dispatch = useDispatch();
   const userId = useSelector((store) => store.user.userId);
@@ -19,8 +23,18 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
   const currentTextValue = useSelector((store) => store.user.userInfo.profileText);
   const currentInstaValue = useSelector((store) => store.user.userInfo.profileInstagram);
 
+  const buttonSx = success
+    ? {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700]
+      }
+    }
+    : {};
+
   const patchProfileUpdate = (event) => {
-    // dispatch(setLoading(True))
+    setLoading(true)
+    setSuccess(false);
     event.preventDefault();
     const updatedData = {}; // Initialize an empty object to store the updated values
 
@@ -57,14 +71,21 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
           setNameValue('');
           setTextValue('');
           setInstaValue('');
-          onClose();
+          // onClose();
         } else {
           dispatch(user.actions.setUserInfo(null));
           dispatch(user.actions.setError(data.response.message))
         }
       })
       .finally(() => {
-        // setTimeout(() => setLoading(false), 2000)
+        setTimeout(() => {
+          setLoading(false);
+          setSuccess(true);
+        }, 2000);
+
+        setTimeout(() => {
+          onClose();
+        }, 3000);
       })
   };
 
@@ -124,9 +145,28 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
             variant="outlined"
             placeholder={currentInstaValue}
             style={{ marginBottom: '10px' }} />
-          <Button style={{ margin: '10px' }} type="submit" variant="contained" onClick={patchProfileUpdate}>
-            Update
-          </Button>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ m: 1, position: 'relative' }}>
+              <Fab
+                aria-label="save"
+                color="primary"
+                sx={buttonSx}
+                onClick={patchProfileUpdate}>
+                {success ? <CheckIcon /> : <SaveIcon />}
+              </Fab>
+              {loading && (
+                <CircularProgress
+                  size={68}
+                  sx={{
+                    color: green[500],
+                    position: 'absolute',
+                    top: -6,
+                    left: -6,
+                    zIndex: 1
+                  }} />
+              )}
+            </Box>
+          </Box>
         </form>
       </Box>
     </Modal>
@@ -168,4 +208,45 @@ const options = {
         // setTimeout(() => setLoading(false), 2000)
       })
   };
+
+        return (
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description">
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ mb: 4 }}>
+          Update your bio
+        </Typography>
+        <form>
+          <TextField
+            value={nameValue}
+            onChange={handleNameChange}
+            label="Name"
+            variant="outlined"
+            placeholder={currentNameValue}
+            style={{ marginBottom: '10px' }} />
+          <TextField
+            value={textValue}
+            onChange={handleTextChange}
+            label="Profile text"
+            variant="outlined"
+            placeholder={currentTextValue}
+            style={{ marginBottom: '10px' }} />
+          <TextField
+            value={instaValue}
+            onChange={handleInstaChange}
+            label="Instagram link"
+            variant="outlined"
+            placeholder={currentInstaValue}
+            style={{ marginBottom: '10px' }} />
+          <Button style={{ margin: '10px' }} type="submit" variant="contained" onClick={patchProfileUpdate}>
+            Update
+          </Button>
+        </form>
+      </Box>
+    </Modal>
+  )
+}
   */
