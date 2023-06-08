@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './StartPage.css';
 
 export const StartPage = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export const StartPage = () => {
 
   return (
     <div className="main">
-      <h1>ODYSSEY</h1>
+      <h1>Start Page</h1>
       <button type="button" onClick={onClickGoToLogin}>Go to Log In</button>
     </div>
   )

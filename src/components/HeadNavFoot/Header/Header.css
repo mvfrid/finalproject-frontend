@@ -1,0 +1,36 @@
+
+.header {
+  background-color: transparent;
+  max-width: 100%;
+  min-height: 100px;
+  margin: auto;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+    color: white;
+    font-size: 52px;
+    font-weight: 900;
+  }
+
+  .header-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+.MenuBtn {
+    border: none;
+    color: white;
+    background-color: transparent;
+    font-weight: 700;
+}
+
+.MenuBtn:hover {
+    text-decoration: underline;
+}

@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { API_KEY, PLACES_URL } from 'utils/urls';
 import { EmptyState } from 'components/Reusable/EmptyState';
 import { fetchTrips, patchTripWithNewCard } from 'reducers/trip';
-import SingleCardPreviewExplore from './SingleCardPreviewExplore';
-import { SingleCardModal } from './SingleCardModal';
-import { Search } from './Search';
+import SingleCardPreviewExplore from '../SingleCardPreviewExplore/SingleCardPreviewExplore.js';
+import { SingleCardModal } from '../SingleCardModal/SingleCardModal.js';
+import { Search } from '../Search/Search.js';
+import './Explore.css';
 
 export const Explore = () => {
   const dispatch = useDispatch();

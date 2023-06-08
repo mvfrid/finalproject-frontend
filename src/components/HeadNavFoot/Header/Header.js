@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
+import './Header.css';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -46,14 +47,16 @@ export const Header = () => {
 
   return (
     <div className="header">
-      <h1>Header component</h1>
-      <button type="button" onClick={onClickGoToStart}>Go home</button>
-      {!accessToken && (<button type="button" onClick={onClickGoToLogin}>Go to Log In</button>)}
-      {!accessToken && (<button type="button" onClick={onClickGoToRegister}>Go to Register</button>)}
-      <button type="button" onClick={onClickGoToExplore}>Go to Explore</button>
-      <button type="button" onClick={onClickGoToAbout}>Go to About</button>
-      <button type="button" onClick={onClickGoToProfile}>Go to Profile</button>
-      {accessToken && (<button type="button" onClick={handleLogOut}>Log out</button>)}
+      <h1>ODYSSEY</h1>
+      <div className="header-nav">
+        <button className="MenuBtn" type="button" onClick={onClickGoToStart}>Home</button>
+        {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToLogin}>Log In</button>)}
+        {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToRegister}>Register</button>)}
+        <button className="MenuBtn" type="button" onClick={onClickGoToExplore}>Explore</button>
+        <button className="MenuBtn" type="button" onClick={onClickGoToAbout}>About Us</button>
+        <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
+        {accessToken && (<button className="MenuBtn" type="button" onClick={handleLogOut}>Log out</button>)}
+      </div>
     </div>
   )
 }
