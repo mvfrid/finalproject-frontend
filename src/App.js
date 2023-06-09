@@ -17,50 +17,48 @@ export const App = () => {
   return (
     <BrowserRouter>
       <div className="OuterWrapper">
+        <div className="BackgroundUnderlay" />
         <div className="InnerWrapper">
-          <div className="BackgroundOverlay" />
-          <div className="GradientOverlay" />
-          <div className="InnerContent">
-            <Header />
-            <Routes>
-              <Route path="/" element={<StartPage />} />
 
-              {accessToken !== null ? (
-                <Route path="/explore" element={<Explore />} />
-              ) : (
-                <Route
-                  path="/explore"
-                  element={<Navigate to="/unauthorized" replace />} />
-              )}
+          <Header />
+          <Routes>
+            <Route path="/" element={<StartPage />} />
 
+            {accessToken !== null ? (
+              <Route path="/explore" element={<Explore />} />
+            ) : (
               <Route
-                path="/login"
-                element={<LogInRegister mode="/users/login" />} />
+                path="/explore"
+                element={<Navigate to="/unauthorized" replace />} />
+            )}
+
+            <Route
+              path="/login"
+              element={<LogInRegister mode="/users/login" />} />
+            <Route
+              path="/register"
+              element={<LogInRegister mode="/users/register" />} />
+            <Route path="/about" element={<About />} />
+
+            {accessToken !== null ? (
+              <Route path="/profile" element={<Profile />} />
+            ) : (
               <Route
-                path="/register"
-                element={<LogInRegister mode="/users/register" />} />
-              <Route path="/about" element={<About />} />
+                path="/profile"
+                element={<Navigate to="/unauthorized" replace />} />
+            )}
 
-              {accessToken !== null ? (
-                <Route path="/profile" element={<Profile />} />
-              ) : (
-                <Route
-                  path="/profile"
-                  element={<Navigate to="/unauthorized" replace />} />
-              )}
+            {accessToken !== null ? (
+              <Route path="/trips/:id" element={<SingleTrip />} />
+            ) : (
+              <Route
+                path="/trips/:id"
+                element={<Navigate to="/unauthorized" replace />} />
+            )}
 
-              {accessToken !== null ? (
-                <Route path="/trips/:id" element={<SingleTrip />} />
-              ) : (
-                <Route
-                  path="/trips/:id"
-                  element={<Navigate to="/unauthorized" replace />} />
-              )}
-
-              <Route path="/unauthorized" element={<UnAuthorized />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
+            <Route path="/unauthorized" element={<UnAuthorized />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
       </div>
     </BrowserRouter>
