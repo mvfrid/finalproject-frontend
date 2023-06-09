@@ -1,0 +1,47 @@
+.trip-section {
+    background-color: #f8bed6;
+    margin: auto;
+    padding: 10px;
+}
+  
+.trip-wrapper {
+    border: 1px solid white;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+  
+.trip {
+    background-color: #bef4f8;
+    margin: auto;
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.mini-card-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (min-width: 668px) {
+    .trip {
+        width: 90%;
+        height: 180px;
+        padding: 10px;
+    }
+
+}
+
+@media (min-width: 1025px) {
+
+}

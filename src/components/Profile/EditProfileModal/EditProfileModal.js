@@ -7,7 +7,7 @@ import { green } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
 import SaveIcon from '@mui/icons-material/Save';
 import { user } from 'reducers/user';
-import { MONGO_DB_URL } from '../../utils/urls';
+import { MONGO_DB_URL } from '../../../utils/urls';
 
 export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
   const [nameValue, setNameValue] = useState('');

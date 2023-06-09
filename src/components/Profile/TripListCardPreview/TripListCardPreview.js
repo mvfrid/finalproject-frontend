@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import './TripListCardPreview.css'
 
 export const TripListCardPreview = ({ card, showButton, onCardClick }) => {
   const handleOpenModal = () => {
@@ -13,17 +14,17 @@ export const TripListCardPreview = ({ card, showButton, onCardClick }) => {
   }
 
   return (
-    <Card key={card.place_id} sx={{ maxWidth: 345 }}>
+    <Card key={card.place_id} className="card-preview-container">
       <CardMedia
-        sx={{ height: 140 }}
+        className="card-preview-img"
         image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+      <CardContent style={{ padding: 0 }}>
+        <Typography gutterBottom component="div" className="card-preview-name" style={{ fontSize: '12px', padding: 1 }}>
           {card.cardName}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-                ⭐️{card.cardRating}
-        </Typography>
+        {/* <Typography variant="body2" color="text.secondary">
+          ⭐️{card.cardRating}
+        </Typography> */}
       </CardContent>
       <CardActions>
         {showButton && <Button size="small" onClick={handleOpenModal}>Read More</Button>}

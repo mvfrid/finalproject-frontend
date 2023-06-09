@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { EditProfileModal } from '../EditProfileModal';
+import { EditProfileModal } from '../EditProfileModal/EditProfileModal';
 import './UserInfo.css';
 
 export const UserInfo = () => {
