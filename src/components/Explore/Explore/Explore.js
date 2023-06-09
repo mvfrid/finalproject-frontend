@@ -52,32 +52,31 @@ export const Explore = () => {
   };
 
   return (
-    <div className="main">
-
+    <>
       <Search onDataFetched={handleDataFetched} onLoadingChange={handleLoadingChange} />
-
-      <div className="places">
-        {isLoading && <Loading />}
-        {!isLoading && placesData && placesData.length > 0 && (
-          placesData.map((place) => (
-            <SingleCardPreviewExplore
-              place={place}
-              key={place.place_id}
-              onCardClick={handleCardClick} />
-          ))
-        )}
-        {!isLoading && (!placesData || placesData.length === 0) && <EmptyState />}
-      </div>
-
-      {openCard ? (
-        <div className="card">
-          <SingleCardModal
-            selectedPlace={selectedPlace}
-            open={openCard}
-            handleClose={handleClose} />
+      <div className="main">
+        <div className="places">
+          {isLoading && <Loading />}
+          {!isLoading && placesData && placesData.length > 0 && (
+            placesData.map((place) => (
+              <SingleCardPreviewExplore
+                place={place}
+                key={place.place_id}
+                onCardClick={handleCardClick} />
+            ))
+          )}
+          {!isLoading && (!placesData || placesData.length === 0) && <EmptyState />}
         </div>
-      ) : null}
 
-    </div>
+        {openCard ? (
+          <div className="card">
+            <SingleCardModal
+              selectedPlace={selectedPlace}
+              open={openCard}
+              handleClose={handleClose} />
+          </div>
+        ) : null}
+      </div>
+    </>
   );
 }

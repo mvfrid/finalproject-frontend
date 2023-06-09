@@ -1,17 +1,26 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Select } from '@mui/material';
+import { Select, useTheme } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+// import { useTheme } from '@mui/material/styles';
 import { API_KEY, PLACES_URL } from 'utils/urls';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SearchIcon from '@mui/icons-material/Search';
+import './Search.css';
 
 export const Search = ({ onDataFetched, onLoadingChange }) => {
   const [inputLong, setInputLong] = useState(null);
   const [inputLat, setInputLat] = useState(null);
   const [input, setInput] = useState('');
   const [type, setType] = useState('tourist_attraction');
-  // const [loading, setLoading] = useState(false);
+
+  const theme = useTheme();
+  const isMobile = theme.breakpoints.down('sm'); // or 'xs' depending on your desired breakpoint
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
 
@@ -66,9 +75,80 @@ export const Search = ({ onDataFetched, onLoadingChange }) => {
   }
 
   console.log('Selected Option:', type);
+  console.log('isMobile:', isMobile);
 
   return (
-    <div className="placeholder">
+    <Box sx={{ display: 'flex',
+      flexDirection: isMobile ? 'column' : 'row',
+      fontSize: isMobile ? '32px' : '11px',
+      alignItems: 'stretch',
+      justifyContent: 'space-between',
+      backgroundColor: 'white',
+      p: 1,
+      borderRadius: 2,
+      mt: 6,
+      mb: 2 }}>
+      <Box sx={{ display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: isMobile ? 'center' : 'space-between' }}>
+        <LocationOnIcon sx={{ color: 'action.active', ml: 1, mr: 2, my: 2 }} />
+        <TextField
+          id="input-with-sx"
+          label="Destination"
+          variant="standard"
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+          sx={{ my: 1 }} />
+        <FormControl sx={{ m: 1, minWidth: '80px' }}>
+          <InputLabel htmlFor="grouped-native-select">Type</InputLabel>
+          <Select native defaultValue="" id="grouped-native-select" onChange={handleSelectChange} label="Type" variant="standard">
+            <option aria-label="None" value="" />
+            <optgroup label="Accomodation">
+              <option value="establishment">Establishment</option>
+              <option value="campground">Campground</option>
+              <option value="lodging">Lodging</option>
+            </optgroup>
+            <optgroup label="Food & drink">
+              <option value="restaurant">Restaurant</option>
+              <option value="cafe">Cafe</option>
+              <option value="bar">Bar</option>
+              <option value="bakery">Bakery</option>
+            </optgroup>
+            <optgroup label="Entertainment">
+              <option value="tourist_attraction">Tourist attraction</option>
+              <option value="museum">Museum</option>
+              <option value="amusement_park">Amusement park</option>
+              <option value="park">Park</option>
+              <option value="zoo">Zoo</option>
+            </optgroup>
+          </Select>
+        </FormControl>
+      </Box>
+      <Button
+        variant="contained"
+        endIcon={<SearchIcon />}
+        onClick={handleFormSubmit}
+        sx={{
+          m: 0.5,
+          backgroundColor: '#43B97F',
+          fontSize: '18px',
+          '&:hover': {
+            backgroundColor: '#2A8D5C'
+          }
+        }}>
+          Explore now
+      </Button>
+    </Box>
+  )
+}
+
+/*
+
+      <form action="" onSubmit={handleFormSubmit}>
+        <input type="text" value={input} onChange={(event) => setInput(event.target.value)} />
+        <button type="button" onClick={handleFormSubmit}>Submit</button>
+      </form>
+
       <form action="" onSubmit={handleFormSubmit}>
         <input type="text" value={input} onChange={(event) => setInput(event.target.value)} />
         <button type="button" onClick={handleFormSubmit}>Submit</button>
@@ -98,11 +178,31 @@ export const Search = ({ onDataFetched, onLoadingChange }) => {
         </Select>
       </FormControl>
       <p>{input} has the coordinates: long {inputLong}, lat {inputLat}</p>
-    </div>
-  )
-}
 
-/*
+      <TextField
+        id="outlined-select-currency"
+        select
+        label="Select"
+        defaultValue="EUR"
+        helperText="Please select your currency">
+        {currencies.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+
+      <TextField
+        id="input-with-icon-textfield"
+        label="TextField"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <LocationOnIcon />
+            </InputAdornment>
+          )
+        }}
+        variant="standard" />
 
 <button type="button" onClick={() => setType('establishment')}>Accomodation</button>
       <p>You are currently filtering on <span className="tiny">{type}</span></p>
