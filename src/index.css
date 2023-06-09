@@ -34,6 +34,7 @@ code {
   position: relative;
   top: 0;
   width: 80%;
+  max-width: 800px; /* Added max-width */
   margin: 0 auto;
   height: 100vh;
   padding: 0 10px;
@@ -46,30 +47,31 @@ code {
 .BackgroundUnderlay {
   position: fixed;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 80%;
+  max-width: 800px; /* Added max-width */
   height: 100%;
   padding: 0 10px;
   background-color: #F8F5B5;
   z-index: 1;
 }
 
-@media (min-width: 667px) {}
-
+@media (min-width: 667px) {
+  /* Styles for tablet view */
+}
 
 @media (min-width: 1025px) {
+  /* Styles for desktop view */
 
   .InnerWrapper {
-    max-width: 800px;
+    width: 100%; /* Change width to 100% to fill the available width within the max-width */
   }
 
   .BackgroundUnderlay {
-    max-width: 800px;
+    width: 100%; /* Change width to 100% to fill the available width within the max-width */
   }
-  
 }
-
 
 
 /*
