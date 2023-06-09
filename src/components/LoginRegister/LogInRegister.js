@@ -12,6 +12,8 @@ import { TextField } from 'formik-mui';
 
 export const LogInRegister = ({ mode }) => {
   const [loading, setLoading] = useState(true);
+  // const [errorMsgRegister, setErrorMsgRegister] = useState('');
+  // const [errorMsgLogin, setErrorMsgLogin] = useState('');
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,29 +34,38 @@ export const LogInRegister = ({ mode }) => {
     navigate('/register');
   }
 
-  const validateValues = async (values) => {
+  const validateValues = (values) => {
     const errors = {};
-    if (mode === 'register')
-        if (!values.username) {
-          errors.username = 'Required';
+    if (mode === 'users/register') {
+      if (!values.username) {
+        errors.username = 'Required';
+      }
+
+      if (!values.password) {
+        errors.password = 'Required';
+      } else {
+        if (values.password.length < 6) {
+          errors.password = 'Needs to contain a minimum of 6 characters';
         }
-  
-        if (!values.password) {
-          errors.password = 'Required';
-        } else {
-          if (values.password.length < 6) {
-            errors.password = 'Needs to contain a minimum of 6 characters';
-          }
-          if (!/(?=.*[a-z])/.test(values.password)) {
-            errors.password = 'Needs to contain a lowercase letter';
-          }
-          if (!/(?=.*[A-Z])/.test(values.password)) {
-            errors.password = 'Needs to contain an uppercase letter';
-          }
-          if (!/(?=.*\d)/.test(values.password)) {
-            errors.password = 'Needs to contain a number';
-          }
+        if (!/(?=.*[a-z])/.test(values.password)) {
+          errors.password = 'Needs to contain a lowercase letter';
         }
+        if (!/(?=.*[A-Z])/.test(values.password)) {
+          errors.password = 'Needs to contain an uppercase letter';
+        }
+        if (!/(?=.*\d)/.test(values.password)) {
+          errors.password = 'Needs to contain a number';
+        }
+      }
+    }
+
+    if (mode === 'users/login') {
+      if (!values.username) {
+        errors.username = 'Required';
+      }
+      if (!values.password) {
+        errors.password = 'Required';
+      }
     }
     return errors;
   };
@@ -77,12 +88,6 @@ export const LogInRegister = ({ mode }) => {
           dispatch(user.actions.setUserId(data.response.id));
           dispatch(user.actions.setUserInfo(data.response))
           dispatch(user.actions.setError(null));
-        } else if (mode === '/users/register' && data.response.message === 'Username is already taken') {
-          dispatch(user.actions.setAccessToken(null));
-          dispatch(user.actions.setUsername(null));
-          dispatch(user.actions.setUserId(null));
-          dispatch(user.actions.setUserInfo(null));
-          dispatch(user.actions.setError(data.response));
         } else {
           dispatch(user.actions.setAccessToken(null));
           dispatch(user.actions.setUsername(null));
@@ -109,7 +114,7 @@ export const LogInRegister = ({ mode }) => {
       validateOnMount>
       {({ isSubmitting, isValid }) => (
         <Form noValidate>
-          {mode === '/users/register' ? <h2>Register</h2> : <h2>Login</h2>}
+          {mode === 'users/register' ? <h2>Register</h2> : <h2>Login</h2>}
           <Box margin={1}>
             <Field
               component={TextField}
@@ -117,6 +122,7 @@ export const LogInRegister = ({ mode }) => {
               type="text"
               label="Username" />
           </Box>
+          {/* {errorMsgRegister && <p>{errorMsgRegister}</p>} */}
           <Box margin={1}>
             <Field
               component={TextField}
@@ -125,6 +131,7 @@ export const LogInRegister = ({ mode }) => {
               name="password" />
             {isSubmitting && <LinearProgress />}
           </Box>
+          {/* {errorMsgLogin && <p>{errorMsgLogin}</p>} */}
           <Box margin={1}>
             <Button
               sx={{ margin: 1 }}
@@ -134,7 +141,7 @@ export const LogInRegister = ({ mode }) => {
               type="submit">
               Submit
             </Button>
-            {mode === '/users/register' ? <Button type="button" variant="outlined" onClick={onClickGoToLogin}>Log in instead</Button> : <Button type="button" variant="outlined" onClick={onClickGoToRegister}>Register instead</Button>}
+            {mode === 'users/register' ? <Button type="button" variant="outlined" onClick={onClickGoToLogin}>Log in instead</Button> : <Button type="button" variant="outlined" onClick={onClickGoToRegister}>Register instead</Button>}
           </Box>
         </Form>
       )}
@@ -161,3 +168,18 @@ export const LogInRegister = ({ mode }) => {
       // eslint-disable-next-line max-len
       {mode === '/users/register' ? <button type="button" onClick={onClickGoToLogin}>Log in instead</button> : <button type="button" onClick={onClickGoToRegister}>Register instead</button>}
     </div> */ }
+
+// else if (mode === '/users/register' && data.response.message === 'Username is already taken') {
+//   dispatch(user.actions.setAccessToken(null));
+//   dispatch(user.actions.setUsername(null));
+//   dispatch(user.actions.setUserId(null));
+//   dispatch(user.actions.setUserInfo(null));
+//   dispatch(user.actions.setError(data.response));
+// setErrorMsgRegister('Username is already taken');
+// } else if (mode === '/users/login') {
+//   dispatch(user.actions.setAccessToken(null));
+//   dispatch(user.actions.setUsername(null));
+//   dispatch(user.actions.setUserId(null));
+//   dispatch(user.actions.setUserInfo(null));
+//   // setErrorMsgLogin('Credentials do not match')
+// }
