@@ -17,30 +17,39 @@ export const NavBarHamburger = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
 
   const onClickGoToStart = () => {
+    setIsOpen(false);
     navigate('/');
   }
 
   const onClickGoToLogin = () => {
+    setIsOpen(false);
     navigate('/login');
   }
 
   const onClickGoToRegister = () => {
+    setIsOpen(false);
     navigate('/register');
   }
 
   const onClickGoToExplore = () => {
+    setIsOpen(false);
     navigate('/explore');
   }
 
   const onClickGoToAbout = () => {
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 200);
     navigate('/about');
   }
 
   const onClickGoToProfile = () => {
+    setIsOpen(false);
     navigate('/profile');
   }
 
   const handleLogOut = () => {
+    setIsOpen(false);
     dispatch(user.actions.signOut());
     navigate('/');
   }

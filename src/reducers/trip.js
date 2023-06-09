@@ -114,7 +114,9 @@ export const fetchTrips = () => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoadingGet(false));
+        setTimeout(() => {
+          dispatch(trip.actions.setLoadingGet(false));
+        }, 2000);
       })
   };
 };

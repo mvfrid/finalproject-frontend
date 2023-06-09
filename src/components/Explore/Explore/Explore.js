@@ -7,11 +7,13 @@ import { fetchTrips, patchTripWithNewCard } from 'reducers/trip';
 import SingleCardPreviewExplore from '../SingleCardPreviewExplore/SingleCardPreviewExplore.js';
 import { SingleCardModal } from '../SingleCardModal/SingleCardModal.js';
 import { Search } from '../Search/Search.js';
+import { Loading } from '../../Other/Loading.js';
 import './Explore.css';
 
 export const Explore = () => {
   const dispatch = useDispatch();
   const [openCard, setOpenCard] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
   const [placesData, setPlacesData] = useState([]); // All 20 places fetched
   const [selectedPlace, setSelectedPlace] = useState(null); // One object
@@ -41,19 +43,30 @@ export const Explore = () => {
     setPlacesData(data);
   };
 
+  const handleLoadingChange = (loading) => {
+    // Handle the loading state change in the parent component
+    // You can perform any necessary actions based on the loading state
+    console.log('Loading state changed:', loading);
+    setIsLoading(loading)
+    // Additional logic here if needed
+  };
+
   return (
     <div className="main">
 
-      <Search onDataFetched={handleDataFetched} />
+      <Search onDataFetched={handleDataFetched} onLoadingChange={handleLoadingChange} />
 
       <div className="places">
-        {placesData && placesData.map((place) => {
-          return <SingleCardPreviewExplore
-            place={place}
-            key={place.place_id}
-            onCardClick={handleCardClick} />;
-        })}
-        <EmptyState />
+        {isLoading && <Loading />}
+        {!isLoading && placesData && placesData.length > 0 && (
+          placesData.map((place) => (
+            <SingleCardPreviewExplore
+              place={place}
+              key={place.place_id}
+              onCardClick={handleCardClick} />
+          ))
+        )}
+        {!isLoading && (!placesData || placesData.length === 0) && <EmptyState />}
       </div>
 
       {openCard ? (

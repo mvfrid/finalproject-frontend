@@ -1,21 +1,22 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Button, Menu, MenuItem, MyListSubheader, Select } from '@mui/material';
+import { Select } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
-import ListSubheader from '@mui/material/ListSubheader';
 import FormControl from '@mui/material/FormControl';
 import { API_KEY, PLACES_URL } from 'utils/urls';
 
-export const Search = ({ onDataFetched }) => {
+export const Search = ({ onDataFetched, onLoadingChange }) => {
   const [inputLong, setInputLong] = useState(null);
   const [inputLat, setInputLat] = useState(null);
   const [input, setInput] = useState('');
   const [type, setType] = useState('tourist_attraction');
+  // const [loading, setLoading] = useState(false);
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
 
   const fetchData = () => {
+    onLoadingChange(true);
     // set loading is true
     fetch(geoUrl)
       .then((response) => {
@@ -44,6 +45,11 @@ export const Search = ({ onDataFetched }) => {
             onDataFetched(json.results); // Call the callback function with the fetched data
             // set loading is false
           })
+          .finally(() => {
+            setTimeout(() => {
+              onLoadingChange(false);
+            }, 3500);
+          });
       })
       .catch((error) => {
         console.log(error);
