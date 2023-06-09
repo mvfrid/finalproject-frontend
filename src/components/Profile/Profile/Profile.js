@@ -2,9 +2,9 @@ import React from 'react';
 import { Button } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 // import { ModalsProfile } from 'components/Reusable/ModalsProfile';
-import { NewTripModal } from './NewTripModal';
-import { TripList } from './TripList';
-import { UserInfo } from './UserInfo/UserInfo';
+import { NewTripModal } from '../NewTripModal/NewTripModal';
+import { TripList } from '../TripList/TripList';
+import { UserInfo } from '../UserInfo/UserInfo';
 
 export const Profile = () => {
   const [open, setOpen] = React.useState(false);
@@ -26,5 +26,3 @@ export const Profile = () => {
     </div>
   )
 }
-
-//       <ModalsProfile />

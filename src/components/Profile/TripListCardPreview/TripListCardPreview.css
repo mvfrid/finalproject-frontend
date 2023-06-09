@@ -1,0 +1,27 @@
+.card-preview-container {
+    height: 80px;
+    width: 80px;
+    margin-right: 20px;
+}
+
+.card-preview-img {
+    height: 50%;
+    width: 100%;
+}
+
+.card-preview-name {
+    font-size: 20px;
+}
+
+@media (min-width: 668px) {
+    .card-preview-container {
+        height: 140px;
+        width: 140px;
+        margin-right: 20px;
+    }
+
+}
+
+@media (min-width: 1025px) {
+
+}

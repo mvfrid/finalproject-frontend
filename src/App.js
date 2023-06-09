@@ -9,7 +9,7 @@ import { LogInRegister } from './components/LoginRegister/LogInRegister'
 import { UnAuthorized } from './components/Other/UnAuthorized'
 import { NotFound } from './components/Other/NotFound'
 import { About } from './components/About/About.js'
-import { Profile } from './components/Profile/Profile.js'
+import { Profile } from './components/Profile/Profile/Profile.js'
 
 export const App = () => {
   const accessToken = useSelector((state) => state.user.accessToken);
