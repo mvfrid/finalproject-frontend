@@ -12,8 +12,6 @@ import { TextField } from 'formik-mui';
 
 export const LogInRegister = ({ mode }) => {
   const [loading, setLoading] = useState(true);
-  // const [errorMsgRegister, setErrorMsgRegister] = useState('');
-  // const [errorMsgLogin, setErrorMsgLogin] = useState('');
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,7 +68,7 @@ export const LogInRegister = ({ mode }) => {
     return errors;
   };
 
-  const onFormSubmit = (values, { setSubmitting }) => {
+  const onFormSubmit = (values, { setSubmitting, setFieldError }) => {
     const options = {
       method: 'POST',
       headers: {
@@ -88,6 +86,20 @@ export const LogInRegister = ({ mode }) => {
           dispatch(user.actions.setUserId(data.response.id));
           dispatch(user.actions.setUserInfo(data.response))
           dispatch(user.actions.setError(null));
+        } else if (mode === 'users/register' && data.response.message === 'Username is already taken') {
+          dispatch(user.actions.setAccessToken(null));
+          dispatch(user.actions.setUsername(null));
+          dispatch(user.actions.setUserId(null));
+          dispatch(user.actions.setUserInfo(null));
+          dispatch(user.actions.setError(data.response));
+          setFieldError('username', 'Username is already taken');
+        } else if (mode === 'users/login') {
+          dispatch(user.actions.setAccessToken(null));
+          dispatch(user.actions.setUsername(null));
+          dispatch(user.actions.setUserId(null));
+          dispatch(user.actions.setUserInfo(null));
+          setFieldError('username', 'Credentials do not match');
+          setFieldError('password', 'Credentials do not match');
         } else {
           dispatch(user.actions.setAccessToken(null));
           dispatch(user.actions.setUsername(null));
@@ -122,7 +134,6 @@ export const LogInRegister = ({ mode }) => {
               type="text"
               label="Username" />
           </Box>
-          {/* {errorMsgRegister && <p>{errorMsgRegister}</p>} */}
           <Box margin={1}>
             <Field
               component={TextField}
@@ -131,7 +142,6 @@ export const LogInRegister = ({ mode }) => {
               name="password" />
             {isSubmitting && <LinearProgress />}
           </Box>
-          {/* {errorMsgLogin && <p>{errorMsgLogin}</p>} */}
           <Box margin={1}>
             <Button
               sx={{ margin: 1 }}
