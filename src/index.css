@@ -56,7 +56,7 @@ code {
   width: 80%;
   max-width: 800px; /* Added max-width */
   margin: 0 auto;
-  min-height: 100vh;
+  height: 100vh;
   padding: 0 8px;
   background-image: url('https://i.postimg.cc/Y0GmTmWp/ian-dooley-hp-TH5b6mo2s-unsplash-gradient-yellow3-short.png');
   background-repeat: no-repeat;
