@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import './SingleTripCardPreview.css'
 
 export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
   const handleOpenModal = () => {
@@ -13,12 +14,12 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
   }
 
   return (
-    <Card key={card.place_id} sx={{ maxWidth: 345 }}>
+    <Card key={card.place_id} className="card-preview-container-single">
       <CardMedia
-        sx={{ height: 140 }}
+        className="card-preview-img-single"
         image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+      <CardContent className="cardcontent-single" style={{ padding: 0 }}>
+        <Typography gutterBottom variant="h5" component="div" style={{ fontSize: '16px', padding: 1 }}>
           {card.cardName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
