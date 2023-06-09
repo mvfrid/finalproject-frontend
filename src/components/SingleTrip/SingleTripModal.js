@@ -1,15 +1,22 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
-import { Box, Button, Typography, Modal, CardMedia } from '@mui/material';
+import { Box, Button, Typography, Modal, CardMedia, Rating } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteSingleCard } from 'reducers/trip';
 import { EditSingleCardModal } from './EditSingleCardModal';
 
-export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
+export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
+  console.log('cardid from props', cardId)
   const dispatch = useDispatch();
   const [openEditModal, setOpenEditModal] = useState(false);
 
+  const singleCard = useSelector((store) => {
+    if (!cardId) return null;
+    const singleTrip = store.trip.tripList.find((trip) => trip._id === tripId);
+    return singleTrip.cards.find((card) => card._id === cardId);
+  });
+  console.log('singlecard', singleCard)
   const handleOpen = () => {
     setOpenEditModal(true);
   }
@@ -19,7 +26,7 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
   };
 
   const handleClickDeleteCard = () => {
-    dispatch(deleteSingleCard(tripId, card._id));
+    dispatch(deleteSingleCard(tripId, singleCard._id));
     // NEEDS AN IF ELSE SUCCESS???
   };
 
@@ -39,7 +46,7 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
     p: 4
   };
 
-  const cardDataAvailable = card !== null;
+  const cardDataAvailable = singleCard !== null;
 
   return (
     <Modal
@@ -54,27 +61,31 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
               sx={{ height: 140 }}
               image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              {card.cardName}
+              {singleCard.cardName}
             </Typography>
-            <img src={card.cardIcon} alt="card icon" className="card-icon" />
+            <img src={singleCard.cardIcon} alt="card icon" className="card-icon" />
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              ⭐️ {card.cardRating}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {card.cardVicinity}
+              ⭐️ {singleCard.cardRating}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {card.cardComment}
+              {singleCard.cardVicinity}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {card.cardStars}
+              {singleCard.cardComment}
             </Typography>
+
+            <Rating
+              name="read-only"
+              value={singleCard.cardStars}
+              readOnly />
+
           </>
         ) : (
           <Typography id="modal-modal-title" variant="h6" component="h2">
             No card selected
           </Typography>
         )}
+
         <Button type="button" variant="contained" onClick={handleOpen}>
           Update information
         </Button>
@@ -82,7 +93,7 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
         <EditSingleCardModal
           open={openEditModal}
           handleClose={handleEditModalClose}
-          card={card} />
+          card={singleCard} />
 
         <Button type="button" variant="contained" onClick={closeModal}>
           Close modal

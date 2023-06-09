@@ -5,8 +5,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from 'reducers/trip';
 import { EmptyState } from 'components/Reusable/EmptyState';
-import { SingleCardPreview } from 'components/Reusable/SingleCardPreview';
 import { Link } from 'react-router-dom';
+import { TripListCardPreview } from './TripListCardPreview';
 
 export const TripList = () => {
   const tripList = useSelector((store) => store.trip.tripList);
@@ -27,7 +27,7 @@ export const TripList = () => {
                 <Link to={`/trips/${singleTrip._id}`}>
                   <h3>{singleTrip.tripName}</h3>
                   {singleTrip.cards.slice(0, 3).map((card) => (
-                    <SingleCardPreview card={card} showButton={false} key={card._id} />
+                    <TripListCardPreview card={card} showButton={false} key={card._id} />
                   ))}
                 </Link>
               </div>

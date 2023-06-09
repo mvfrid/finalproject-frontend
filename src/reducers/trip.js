@@ -316,6 +316,7 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
           const responseData = response.response.data;
           console.log('responseData:', responseData);
           dispatch(trip.actions.setUpdateCardInTrip(responseData));
+          dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }
