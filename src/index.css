@@ -63,6 +63,10 @@ code {
   .InnerWrapper {
     max-width: 800px;
   }
+
+  .BackgroundUnderlay {
+    max-width: 800px;
+  }
   
 }
 
