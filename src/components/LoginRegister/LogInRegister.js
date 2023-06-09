@@ -1,20 +1,23 @@
 /* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { MONGO_DB_URL } from 'utils/urls';
 import './LogInRegister.css'
-import { Box, Button, LinearProgress } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
+import { green } from '@mui/material/colors';
 
 export const LogInRegister = ({ mode }) => {
   const [loading, setLoading] = useState(true);
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const timer = useRef();
+  const [success, setSuccess] = useState(false);
 
   console.log('mode:', mode, loading)
 
@@ -33,6 +36,21 @@ export const LogInRegister = ({ mode }) => {
     resetForm({ values });
     navigate('/register');
   }
+
+  const buttonSx = success
+    ? {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700]
+      }
+    }
+    : {};
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
   const validateValues = (values) => {
     const errors = {};
@@ -114,47 +132,71 @@ export const LogInRegister = ({ mode }) => {
   };
 
   return (
-    <Formik
-      key={mode}
-      initialValues={{
-        username: '',
-        password: ''
-      }}
-      validate={validateValues}
-      onSubmit={onFormSubmit}
-      validateOnMount>
-      {({ isSubmitting, isValid, resetForm, values }) => (
-        <Form noValidate>
-          {mode === 'users/register' ? <h2>Register</h2> : <h2>Login</h2>}
-          <Box margin={1}>
-            <Field
-              component={TextField}
-              name="username"
-              type="text"
-              label="Username" />
-          </Box>
-          <Box margin={1}>
-            <Field
-              component={TextField}
-              type="password"
-              label="Password"
-              name="password" />
-            {isSubmitting && <LinearProgress />}
-          </Box>
-          <Box margin={1}>
-            <Button
-              sx={{ margin: 1 }}
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting || !isValid}
-              type="submit">
-              Submit
-            </Button>
-            {mode === 'users/register' ? <Button type="button" variant="outlined" onClick={() => onClickGoToLogin(resetForm, values)}>Log in instead</Button> : <Button type="button" variant="outlined" onClick={() => onClickGoToRegister(resetForm, values)}>Register instead</Button>}
-          </Box>
-        </Form>
-      )}
-    </Formik>
+    <div className="main">
+      <Formik
+        key={mode}
+        initialValues={{
+          username: '',
+          password: ''
+        }}
+        validate={validateValues}
+        onSubmit={onFormSubmit}
+        validateOnMount>
+        {({ isSubmitting, isValid, resetForm, values }) => (
+          <Form noValidate className="formbox">
+            {mode === 'users/register' ? <h2>Register</h2> : <h2>Login</h2>}
+            <Box margin={1}>
+              <Field
+                component={TextField}
+                name="username"
+                type="text"
+                label="Username" />
+            </Box>
+            <Box margin={1}>
+              <Field
+                component={TextField}
+                type="password"
+                label="Password"
+                name="password" />
+              {/* {isSubmitting && <LinearProgress />} */}
+            </Box>
+            <Box margin={1}>
+              <Button
+                sx={buttonSx}
+                variant="contained"
+                color="primary"
+                disabled={isSubmitting || !isValid}
+                type="submit"
+                onClick={() => {
+                  if (!isSubmitting) {
+                    setSuccess(false);
+                    timer.current = window.setTimeout(() => {
+                      setSuccess(true);
+                    }, 2000);
+                  }
+                }}>
+                {isSubmitting && !success ? 'Submitting...' : 'Submit'}
+              </Button>
+              {isSubmitting && (
+                <CircularProgress
+                  size={24}
+                  sx={{
+                    color: green[500],
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    marginTop: '-12px',
+                    marginLeft: '-12px'
+                  }} />
+              )}
+              <Box margin={1}>
+                {mode === 'users/register' ? <Button type="button" variant="outlined" onClick={() => onClickGoToLogin(resetForm, values)}>Log in instead</Button> : <Button type="button" variant="outlined" onClick={() => onClickGoToRegister(resetForm, values)}>Register instead</Button>}
+              </Box>
+            </Box>
+          </Form>
+        )}
+      </Formik>
+    </div>
   )
 }
 
