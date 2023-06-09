@@ -1,27 +1,24 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
+import { SingleCardPreview } from 'components/Reusable/SingleCardPreview';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteTrip } from 'reducers/trip';
-import { SingleTripCardPreview } from './SingleTripCardPreview/SingleTripCardPreview';
-import { SingleTripModal } from './SingleTripModal';
+import { SingleTripModal } from '../SingleTripModal/SingleTripModal';
+import './SingleTrip.css'
 
 export const SingleTrip = () => {
   const { id } = useParams();
   const tripList = useSelector((store) => store.trip.tripList);
-  console.log('data from singletrip', tripList)
-
   const trip = tripList.find((singleTrip) => singleTrip._id === id);
-  console.log('data from trip', trip)
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [selectedCardId, setSelectedCardId] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleClickDelete = (event) => {
     event.preventDefault();
@@ -31,7 +28,7 @@ export const SingleTrip = () => {
   };
 
   const handleCardClick = (card) => {
-    setSelectedCardId(card._id);
+    setSelectedCard(card);
     handleOpen();
   };
 
@@ -40,16 +37,16 @@ export const SingleTrip = () => {
       <div>
         <h2>Trip Name: {trip.tripName}</h2>
       </div>
-      <div className="trip-wrapper">
+      <div className="trip-wrapper-single">
         {trip.cards.map((card) => (
-          <SingleTripCardPreview
+          <SingleCardPreview
             card={card}
             showButton
             key={card._id}
             onCardClick={() => handleCardClick(card)} />
         ))}
       </div>
-      <SingleTripModal open={open} handleClose={handleClose} cardId={selectedCardId} tripId={id} />
+      <SingleTripModal open={open} handleClose={handleClose} card={selectedCard} tripId={id} />
       <Button
         type="submit"
         variant="contained"
