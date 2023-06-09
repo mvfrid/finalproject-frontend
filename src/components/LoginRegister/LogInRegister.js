@@ -24,11 +24,13 @@ export const LogInRegister = ({ mode }) => {
     }
   }, [accessToken]);
 
-  const onClickGoToLogin = () => {
+  const onClickGoToLogin = (resetForm, values) => {
+    resetForm({ values });
     navigate('/login');
   }
 
-  const onClickGoToRegister = () => {
+  const onClickGoToRegister = (resetForm, values) => {
+    resetForm({ values });
     navigate('/register');
   }
 
@@ -76,6 +78,15 @@ export const LogInRegister = ({ mode }) => {
       },
       body: JSON.stringify(values)
     }
+
+    const clearUserInfo = (error) => {
+      dispatch(user.actions.setAccessToken(null));
+      dispatch(user.actions.setUsername(null));
+      dispatch(user.actions.setUserId(null));
+      dispatch(user.actions.setUserInfo(null));
+      dispatch(user.actions.setError(error));
+    }
+
     fetch(MONGO_DB_URL(mode), options)
       .then((data) => data.json())
       .then((data) => {
@@ -86,26 +97,14 @@ export const LogInRegister = ({ mode }) => {
           dispatch(user.actions.setUserId(data.response.id));
           dispatch(user.actions.setUserInfo(data.response))
           dispatch(user.actions.setError(null));
-        } else if (mode === 'users/register' && data.response.message === 'Username is already taken') {
-          dispatch(user.actions.setAccessToken(null));
-          dispatch(user.actions.setUsername(null));
-          dispatch(user.actions.setUserId(null));
-          dispatch(user.actions.setUserInfo(null));
-          dispatch(user.actions.setError(data.response));
-          setFieldError('username', 'Username is already taken');
-        } else if (mode === 'users/login') {
-          dispatch(user.actions.setAccessToken(null));
-          dispatch(user.actions.setUsername(null));
-          dispatch(user.actions.setUserId(null));
-          dispatch(user.actions.setUserInfo(null));
-          setFieldError('username', 'Credentials do not match');
-          setFieldError('password', 'Credentials do not match');
         } else {
-          dispatch(user.actions.setAccessToken(null));
-          dispatch(user.actions.setUsername(null));
-          dispatch(user.actions.setUserId(null));
-          dispatch(user.actions.setUserInfo(null))
-          dispatch(user.actions.setError(data.response))
+          clearUserInfo(data.response);
+          if (mode === 'users/register' && data.response.message === 'Username is already taken') {
+            setFieldError('username', 'Username is already taken');
+          } else if (mode === 'users/login') {
+            setFieldError('username', 'Credentials do not match');
+            setFieldError('password', 'Credentials do not match');
+          }
         }
       })
       .finally(() => {
@@ -124,7 +123,7 @@ export const LogInRegister = ({ mode }) => {
       validate={validateValues}
       onSubmit={onFormSubmit}
       validateOnMount>
-      {({ isSubmitting, isValid }) => (
+      {({ isSubmitting, isValid, resetForm, values }) => (
         <Form noValidate>
           {mode === 'users/register' ? <h2>Register</h2> : <h2>Login</h2>}
           <Box margin={1}>
@@ -151,7 +150,7 @@ export const LogInRegister = ({ mode }) => {
               type="submit">
               Submit
             </Button>
-            {mode === 'users/register' ? <Button type="button" variant="outlined" onClick={onClickGoToLogin}>Log in instead</Button> : <Button type="button" variant="outlined" onClick={onClickGoToRegister}>Register instead</Button>}
+            {mode === 'users/register' ? <Button type="button" variant="outlined" onClick={() => onClickGoToLogin(resetForm, values)}>Log in instead</Button> : <Button type="button" variant="outlined" onClick={() => onClickGoToRegister(resetForm, values)}>Register instead</Button>}
           </Box>
         </Form>
       )}
