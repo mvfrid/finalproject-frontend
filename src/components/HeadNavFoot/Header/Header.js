@@ -1,4 +1,50 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable max-len */
+import React, { useEffect, useState } from 'react';
+import { NavBar } from '../NavBar'
+import { NavBarHamburger } from '../NavBarHamburger'
+import './Header.css';
+
+export const Header = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 1025);
+    };
+    // Attach the resize event listener
+    window.addEventListener('resize', handleResize);
+    // Clean up the listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  console.log('window.innerWidth', window.innerWidth, 'isDesktop:', isDesktop)
+
+  return (
+    <div className="header">
+      <h1>
+        ODYSSEY
+      </h1>
+      {isDesktop ? <NavBar /> : <NavBarHamburger />}
+    </div>
+  )
+}
+
+/*
+    <div className="hamburger-menu">
+      <button className={`hamburger-menu__button ${isOpen ? 'open' : ''}`}
+      onClick={toggleMenu}>
+        <span className="hamburger-menu__icon"></span>
+      </button>
+
+      <ul className={`hamburger-menu__list ${isOpen ? 'open' : ''}`}>
+        <li className="hamburger-menu__item">Home</li>
+        <li className="hamburger-menu__item">About</li>
+        <li className="hamburger-menu__item">Contact</li>
+      </ul>
+    </div>
+
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,3 +106,4 @@ export const Header = () => {
     </div>
   )
 }
+    */
