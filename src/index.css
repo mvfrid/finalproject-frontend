@@ -53,7 +53,7 @@ code {
 .InnerWrapper {
   position: relative;
   top: 0;
-  width: 80%;
+  width: 100%;
   max-width: 800px; /* Added max-width */
   margin: 0 auto;
   height: 100vh;
@@ -69,7 +69,7 @@ code {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 100%;
   max-width: 800px; /* Added max-width */
   height: 100%;
   padding: 0 8px;
@@ -82,10 +82,12 @@ code {
   
   .InnerWrapper {
     padding: 0 16px;
+    width: 80%;
   }
 
   .BackgroundUnderlay {
     padding: 0 16px;
+    width: 80%;
   }
 }
 
