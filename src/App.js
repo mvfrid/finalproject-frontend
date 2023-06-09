@@ -34,10 +34,12 @@ export const App = () => {
 
             <Route
               path="/login"
-              element={<LogInRegister mode="/users/login" />} />
+              element={<LogInRegister mode="users/login" />} />
+
             <Route
               path="/register"
-              element={<LogInRegister mode="/users/register" />} />
+              element={<LogInRegister mode="users/register" />} />
+
             <Route path="/about" element={<About />} />
 
             {accessToken !== null ? (
