@@ -56,7 +56,7 @@ export const NavBarHamburger = () => {
   };
 
   return (
-    <div className="header-nav-hamburger">
+    <div className="hamburger-menu">
       <div className="hamburger-close">
         <MenuIcon sx={{ fontSize: '60px', color: 'white' }} onClick={toggleMenu} />
       </div>

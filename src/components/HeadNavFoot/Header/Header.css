@@ -6,6 +6,7 @@
   margin: auto;
   padding: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
@@ -24,15 +25,27 @@
     gap: 12px;
   }
 
+  .hamburger-menu {
+    position: relative;
+  }
+
   .hamburger-open {
+    padding: 16px;
+    width: 120px;
+    background-color: rgb(40, 56, 83);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
-    gap: 12px;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    top: 100%;
+    right: -50%;
+    border-radius: 8px;
   }
 
 .MenuBtn {
+    font-size: 18px;
     border: none;
     color: white;
     background-color: transparent;
@@ -41,6 +54,31 @@
 
 .MenuBtn:hover {
     text-decoration: underline;
+}
+
+
+
+@media (min-width: 667px) {
+  /* Styles for tablet view */
+  
+  .header {
+    flex-direction: row;
+  }
+
+  .hamburger-open {
+    padding: 16px;
+    width: 120px;
+    align-items: flex-end;
+    top: 100%;
+    right: 8px;
+  }
+
+}
+
+@media (min-width: 1025px) {
+  /* Styles for desktop view */
+
+
 }
 
 
