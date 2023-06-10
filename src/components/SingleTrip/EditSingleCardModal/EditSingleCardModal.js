@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, TextField, Typography, Modal, Rating } from '@mui/material';
 import { updateSingleCard, fetchTrips } from 'reducers/trip';
 import { useParams } from 'react-router-dom';
+import * as styles from './StyledEditSingleCardModal'
 
 export const EditSingleCardModal = ({ open, handleClose, card }) => {
   const { id } = useParams();
@@ -50,18 +51,6 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
     handleClose();
   };
 
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4
-  };
-
   return (
     <Modal
       open={open}
@@ -69,42 +58,41 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
 
-      <Box sx={style}>
+      <Box sx={styles.StyledBoxContainer}>
 
-        <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ mb: 4 }}>
+        <Typography
+          sx={styles.StyledTypo}
+          variant="h2"
+          component="h2">
           Update your review
         </Typography>
 
         <form onSubmit={patchCardUpdate}>
-          <TextField
-            value={commentValue}
-            onChange={handleCommentChange}
-            label="Comment"
-            variant="outlined"
-            placeholder={currentCommentValue}
-            style={{ marginBottom: '10px' }} />
+          <Box sx={styles.StyledFormBox}>
+            <TextField
+              sx={styles.StyledTextField}
+              value={commentValue}
+              onChange={handleCommentChange}
+              label="Comment"
+              variant="outlined"
+              placeholder={currentCommentValue} />
 
-          <Rating
-            name="simple-controlled"
-            value={starsValue}
-            onChange={(event, newValue) => {
-              console.log(`New starsValue: ${newValue}`);
-              setStarsValue(newValue);
-            }} />
-
-          {/*
-          <TextField
-            value={starsValue}
-            onChange={handleStarsChange}
-            label="Stars"
-            variant="outlined"
-            placeholder={currentStarsValue}
-            style={{ marginBottom: '10px' }} />
-            */}
-
-          <Button style={{ margin: '10px' }} type="submit" variant="contained">
+            <Rating
+              name="simple-controlled"
+              value={starsValue}
+              size="large"
+              onChange={(event, newValue) => {
+                console.log(`New starsValue: ${newValue}`);
+                setStarsValue(newValue);
+              }} />
+          </Box>
+          <Box sx={styles.StyledBtnBox}>
+            <Button
+              type="submit"
+              variant="contained">
             Update
-          </Button>
+            </Button>
+          </Box>
         </form>
       </Box>
     </Modal>

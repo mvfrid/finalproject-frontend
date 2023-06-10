@@ -14,11 +14,11 @@ export const StyledBoxContainer = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: '90%',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid #000',
   boxShadow: 24,
-  px: 4,
+  px: 2,
   py: 1
 };
 
@@ -83,6 +83,6 @@ export const StyledBtnBox = {
 };
 
 export const StyledBottomBtns = {
-  width: '45%',
-  mr: '5px'
+  width: '50%',
+  mr: '2px'
 };
