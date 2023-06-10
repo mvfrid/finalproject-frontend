@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteTrip } from 'reducers/trip';
 import { SingleTripCardPreview } from '../SingleTripCardPreview/SingleTripCardPreview';
 import { SingleTripModal } from '../SingleTripModal/SingleTripModal';
+import * as styles from './StyledSingleTrip'
 
 export const SingleTrip = () => {
   const { id } = useParams();
@@ -41,8 +42,9 @@ export const SingleTrip = () => {
         <h2>Trip Name: {trip.tripName}</h2>
       </div>
       <Button
+        sx={styles.StyledDltBtn}
         type="submit"
-        variant="contained"
+        variant="outlined"
         endIcon={<DeleteIcon />}
         onClick={handleClickDelete}>
         Delete trip
@@ -56,7 +58,11 @@ export const SingleTrip = () => {
             onCardClick={() => handleCardClick(card)} />
         ))}
       </div>
-      <SingleTripModal open={open} handleClose={handleClose} cardId={selectedCardId} tripId={id} />
+      <SingleTripModal
+        open={open}
+        handleClose={handleClose}
+        cardId={selectedCardId}
+        tripId={id} />
     </>
   );
 };

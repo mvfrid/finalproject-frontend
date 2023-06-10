@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable camelcase */
 import React from 'react';
 import Card from '@mui/material/Card';
@@ -6,7 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import './SingleTripCardPreview.css'
+import * as styles from './StyledSingleTripCardPreview.js'
 
 export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
   const handleOpenModal = () => {
@@ -14,38 +15,36 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
   }
 
   return (
-    <Card key={card.place_id} className="card-preview-container-single">
+    <Card
+      key={card.place_id}
+      sx={styles.StyledPreviewContainer}>
       <CardMedia
-        className="card-preview-img-single"
+        sx={styles.StyledCardPreviewImg}
         image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
-      <CardContent className="cardcontent-single" style={{ padding: 0 }}>
+      <CardContent
+        sx={styles.StyledCardContentSingle}>
         <Typography
+          sx={styles.StyledCardTypoName}
           gutterBottom
           variant="h5"
-          component="div"
-          style={{
-            fontSize: '16px',
-            padding: 3,
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxWidth: '100%',
-            display: 'block'
-          }}>
+          component="div">
           {card.cardName}
         </Typography>
         <Typography
-          variant="body2"
-          color="text.secondary"
-          style={{
-            fontSize: '14px',
-            padding: 2
-          }}>
+          sx={styles.StyledCardTypoRat}
+          variant="body2">
           ⭐️ {card.cardRating}
         </Typography>
       </CardContent>
-      <CardActions style={{ padding: 2, paddingTop: 4 }}>
-        {showButton && <Button size="small" variant="outlined" onClick={handleOpenModal} style={{ color: 'black', fontSize: 12 }}>Read More</Button>}
+      <CardActions>
+        {showButton
+        && <Button
+          sx={styles.StyledCardBtn}
+          size="small"
+          variant="outlined"
+          onClick={handleOpenModal}>
+          Read More
+        </Button>}
       </CardActions>
     </Card>
   );

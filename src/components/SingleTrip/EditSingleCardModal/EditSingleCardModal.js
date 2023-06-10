@@ -3,9 +3,10 @@
 /* eslint-disable quote-props */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, TextField, Typography, Modal, Rating } from '@mui/material';
+import { Box, Button, TextField, Typography, Modal, Rating, IconButton } from '@mui/material';
 import { updateSingleCard, fetchTrips } from 'reducers/trip';
 import { useParams } from 'react-router-dom';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import * as styles from './StyledEditSingleCardModal'
 
 export const EditSingleCardModal = ({ open, handleClose, card }) => {
@@ -21,6 +22,10 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
   useEffect(() => {
     dispatch(fetchTrips());
   }, [id, dispatch]);
+
+  const closeModal = () => {
+    handleClose();
+  };
 
   const handleCommentChange = (event) => {
     const newValue = event.target.value;
@@ -59,41 +64,50 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
       aria-describedby="modal-modal-description">
 
       <Box sx={styles.StyledBoxContainer}>
-
-        <Typography
-          sx={styles.StyledTypo}
-          variant="h2"
-          component="h2">
+        <Box sx={styles.StyledCloseBtnBox}>
+          <IconButton
+            type="button"
+            sx={styles.StyledCloseBtn}
+            onClick={closeModal}>
+            <CloseRoundedIcon />
+          </IconButton>
+        </Box>
+        <Box>
+          <Typography
+            sx={styles.StyledTypo}
+            variant="h2"
+            component="h2">
           Update your review
-        </Typography>
+          </Typography>
 
-        <form onSubmit={patchCardUpdate}>
-          <Box sx={styles.StyledFormBox}>
-            <TextField
-              sx={styles.StyledTextField}
-              value={commentValue}
-              onChange={handleCommentChange}
-              label="Comment"
-              variant="outlined"
-              placeholder={currentCommentValue} />
+          <form onSubmit={patchCardUpdate}>
+            <Box sx={styles.StyledFormBox}>
+              <TextField
+                sx={styles.StyledTextField}
+                value={commentValue}
+                onChange={handleCommentChange}
+                label="Comment"
+                variant="outlined"
+                placeholder={currentCommentValue} />
 
-            <Rating
-              name="simple-controlled"
-              value={starsValue}
-              size="large"
-              onChange={(event, newValue) => {
-                console.log(`New starsValue: ${newValue}`);
-                setStarsValue(newValue);
-              }} />
-          </Box>
-          <Box sx={styles.StyledBtnBox}>
-            <Button
-              type="submit"
-              variant="contained">
+              <Rating
+                name="simple-controlled"
+                value={starsValue}
+                size="large"
+                onChange={(event, newValue) => {
+                  console.log(`New starsValue: ${newValue}`);
+                  setStarsValue(newValue);
+                }} />
+            </Box>
+            <Box sx={styles.StyledBtnBox}>
+              <Button
+                type="submit"
+                variant="contained">
             Update
-            </Button>
-          </Box>
-        </form>
+              </Button>
+            </Box>
+          </form>
+        </Box>
       </Box>
     </Modal>
   );

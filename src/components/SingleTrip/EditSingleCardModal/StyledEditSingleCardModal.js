@@ -14,6 +14,15 @@ export const StyledBoxContainer = {
   py: 1
 };
 
+export const StyledCloseBtnBox = {
+  display: 'flex',
+  justifyContent: 'flex-end'
+};
+
+export const StyledCloseBtn = {
+  p: 0
+};
+
 export const StyledTypo = {
   fontSize: '22px',
   my: '8px'
