@@ -1,7 +1,17 @@
+export const StyledTypoName = {
+  fontSize: '38px',
+  fontWeight: 'bold',
+  mx: '3%'
+};
+
+export const StyledBtnBox = {
+  display: 'flex'
+};
+
 export const StyledDltBtn = {
-  display: 'flex',
-  gap: '25px',
-  flexWrap: 'wrap',
-  flexDirection: 'row',
-  justifyContent: 'center'
+  width: '37%',
+  mt: '10px',
+  mx: '3%',
+  mb: '5%',
+  backgroundColor: '#38b000'
 };

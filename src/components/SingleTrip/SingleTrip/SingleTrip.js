@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -38,17 +38,10 @@ export const SingleTrip = () => {
 
   return (
     <>
-      <div>
-        <h2>Trip Name: {trip.tripName}</h2>
-      </div>
-      <Button
-        sx={styles.StyledDltBtn}
-        type="submit"
-        variant="outlined"
-        endIcon={<DeleteIcon />}
-        onClick={handleClickDelete}>
-        Delete trip
-      </Button>
+      <Typography
+        sx={styles.StyledTypoName}>
+        {trip.tripName}
+      </Typography>
       <div className="trip-wrapper">
         {trip.cards.map((card) => (
           <SingleTripCardPreview
@@ -63,6 +56,17 @@ export const SingleTrip = () => {
         handleClose={handleClose}
         cardId={selectedCardId}
         tripId={id} />
+      <Box sx={styles.StyledBtnBox}>
+        <Button
+          sx={styles.StyledDltBtn}
+          type="submit"
+          variant="contained"
+          size="small"
+          endIcon={<DeleteIcon />}
+          onClick={handleClickDelete}>
+        Delete trip
+        </Button>
+      </Box>
     </>
   );
 };

@@ -101,6 +101,7 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
             </Box>
             <Box sx={styles.StyledBtnBox}>
               <Button
+                sx={styles.StyledUpdBtn}
                 type="submit"
                 variant="contained">
             Update

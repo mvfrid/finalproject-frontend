@@ -3,9 +3,8 @@
     margin: auto;
     padding: 10px;
 }
-  
+
 .trip-wrapper {
-    border: 1px solid white;
     display: flex;
     gap: 25px;
     flex-wrap: wrap;

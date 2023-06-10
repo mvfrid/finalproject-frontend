@@ -44,3 +44,7 @@ export const StyledBtnBox = {
   justifyContent: 'center',
   mt: '10px'
 };
+
+export const StyledUpdBtn = {
+  backgroundColor: '#38b000'
+};

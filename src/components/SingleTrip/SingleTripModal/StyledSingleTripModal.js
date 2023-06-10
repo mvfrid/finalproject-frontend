@@ -84,5 +84,7 @@ export const StyledBtnBox = {
 
 export const StyledBottomBtns = {
   width: '50%',
-  mr: '2px'
+  mr: '2px',
+  borderColor: '#38b000',
+  color: '#38b000'
 };
