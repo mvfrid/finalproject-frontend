@@ -1,16 +1,24 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
-import { Box, Button, Typography, Modal, CardMedia } from '@mui/material';
+import { Box, Button, Typography, Modal, Rating, CardMedia, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteSingleCard } from 'reducers/trip';
-import { EditSingleCardModal } from '../EditSingleTripmodal/EditSingleCardModal';
-import './SingleTripModal.css'
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { EditSingleCardModal } from '../EditSingleCardModal/EditSingleCardModal';
+import * as styles from './StyledSingleTripModal.js'
 
-export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
+export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
+  console.log('cardid from props', cardId)
   const dispatch = useDispatch();
   const [openEditModal, setOpenEditModal] = useState(false);
 
+  const singleCard = useSelector((store) => {
+    if (!cardId) return null;
+    const singleTrip = store.trip.tripList.find((trip) => trip._id === tripId);
+    return singleTrip.cards.find((card) => card._id === cardId);
+  });
+  console.log('singlecard', singleCard)
   const handleOpen = () => {
     setOpenEditModal(true);
   }
@@ -20,82 +28,108 @@ export const SingleTripModal = ({ open, handleClose, card, tripId }) => {
   };
 
   const handleClickDeleteCard = () => {
-    dispatch(deleteSingleCard(tripId, card._id));
-    // NEEDS AN IF ELSE SUCCESS???
+    dispatch(deleteSingleCard(tripId, singleCard._id));
   };
 
   const handleEditModalClose = () => {
     setOpenEditModal(false);
   };
 
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4
-  };
-
-  const cardDataAvailable = card !== null;
+  const cardDataAvailable = singleCard !== null;
 
   return (
     <Modal
+      sx={styles.StyledModal}
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
-      <Box sx={style}>
+      <Box
+        sx={styles.StyledBoxContainer}>
         {cardDataAvailable ? (
           <>
-            <CardMedia
-              sx={{ height: 140 }}
-              image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              {card.cardName}
+            <Box sx={styles.StyledCloseBtnBox}>
+              <IconButton
+                type="button"
+                sx={styles.StyledCloseBtn}
+                onClick={closeModal}>
+                <CloseRoundedIcon />
+              </IconButton>
+            </Box>
+            <Box sx={styles.StyledMediaBox}>
+              <CardMedia
+                sx={styles.StyledCardMediaImg}
+                image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
+            </Box>
+            <Typography
+              sx={styles.StyledTypographyName}
+              id="modal-modal-title">
+              {singleCard.cardName}
             </Typography>
-            <img src={card.cardIcon} alt="card icon" className="card-icon" />
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              ⭐️ {card.cardRating}
+
+            <Typography
+              sx={styles.StyledIconRat}>
+              <img src={singleCard.cardIcon} alt="card icon" className="card-icon" />
+              ⭐️ {singleCard.cardRating}
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {card.cardVicinity}
+
+            <Typography
+              sx={styles.StyledTypoVic}>
+              {singleCard.cardVicinity}
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {card.cardComment}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {card.cardStars}
-            </Typography>
+
+            <Box sx={styles.StyledReviewBox}>
+              <Typography
+                id="modal-modal-description"
+                sx={styles.StyledTypoReview}>
+              My review:
+              </Typography>
+
+              <Typography
+                id="modal-modal-description"
+                sx={styles.StyledTypoReview}>
+                {singleCard.cardComment}
+              </Typography>
+
+              <Rating
+                name="read-only"
+                size="large"
+                value={singleCard.cardStars}
+                readOnly />
+            </Box>
+
+            <Box sx={styles.StyledBtnBox}>
+              <Button
+                sx={styles.StyledBottomBtns}
+                type="button"
+                size="small"
+                variant="outlined"
+                onClick={handleOpen}>
+                Update review
+              </Button>
+
+              <EditSingleCardModal
+                open={openEditModal}
+                handleClose={handleEditModalClose}
+                card={singleCard} />
+
+              <Button
+                sx={styles.StyledBottomBtns}
+                type="submit"
+                size="small"
+                variant="outlined"
+                endIcon={<DeleteIcon />}
+                onClick={handleClickDeleteCard}>
+                Delete Card
+              </Button>
+            </Box>
           </>
         ) : (
           <Typography id="modal-modal-title" variant="h6" component="h2">
             No card selected
           </Typography>
         )}
-        <Button type="button" variant="contained" onClick={handleOpen}>
-          Update information
-        </Button>
-
-        <EditSingleCardModal
-          open={openEditModal}
-          handleClose={handleEditModalClose}
-          card={card} />
-
-        <Button type="button" variant="contained" onClick={closeModal}>
-          Close modal
-        </Button>
-        <Button
-          type="submit"
-          variant="contained"
-          endIcon={<DeleteIcon />}
-          onClick={handleClickDeleteCard}>
-        Delete Card
-        </Button>
       </Box>
     </Modal>
   );
-};
+}

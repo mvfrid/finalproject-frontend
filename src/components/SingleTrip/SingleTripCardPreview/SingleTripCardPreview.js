@@ -19,15 +19,33 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
         className="card-preview-img-single"
         image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
       <CardContent className="cardcontent-single" style={{ padding: 0 }}>
-        <Typography gutterBottom variant="h5" component="div" style={{ fontSize: '16px', padding: 1 }}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          style={{
+            fontSize: '16px',
+            padding: 3,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxWidth: '100%',
+            display: 'block'
+          }}>
           {card.cardName}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-                ⭐️{card.cardRating}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          style={{
+            fontSize: '14px',
+            padding: 2
+          }}>
+          ⭐️ {card.cardRating}
         </Typography>
       </CardContent>
-      <CardActions>
-        {showButton && <Button size="small" onClick={handleOpenModal}>Read More</Button>}
+      <CardActions style={{ padding: 2, paddingTop: 4 }}>
+        {showButton && <Button size="small" variant="outlined" onClick={handleOpenModal} style={{ color: 'black', fontSize: 12 }}>Read More</Button>}
       </CardActions>
     </Card>
   );

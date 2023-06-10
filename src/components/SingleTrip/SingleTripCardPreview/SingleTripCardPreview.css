@@ -8,6 +8,8 @@
     width: 100%;
 }
 
+
+
 @media (min-width: 668px) {
     .card-preview-container-single {
         height: 140px;

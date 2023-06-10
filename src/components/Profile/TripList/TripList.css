@@ -9,7 +9,8 @@
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
-    flex-direction: column;
+    justify-content: space-around;
+    padding: 2%;
 }
   
 .trip {
@@ -35,7 +36,7 @@ a {
 
 @media (min-width: 668px) {
     .trip {
-        width: 90%;
+        width: 80%;
         height: 180px;
         padding: 10px;
     }
@@ -43,5 +44,9 @@ a {
 }
 
 @media (min-width: 1025px) {
-
+.trip {
+    width: 70%;
+    height: 180px;
+    padding: 10px;
+}
 }
