@@ -8,6 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import SaveIcon from '@mui/icons-material/Save';
 import { user } from 'reducers/user';
 import { MONGO_DB_URL } from '../../../utils/urls';
+import * as styles from './StyledEditProfileModal'
 
 export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
   const [nameValue, setNameValue] = useState('');
@@ -30,7 +31,12 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
         bgcolor: green[700]
       }
     }
-    : {};
+    : {
+      bgcolor: '#446173',
+      '&:hover': {
+        bgcolor: '#2a3d47'
+      }
+    };
 
   const patchProfileUpdate = (event) => {
     setLoading(true)
@@ -101,70 +107,60 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
     setInstaValue(event.target.value);
   };
 
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4
-  };
-
   return (
     <Modal
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
-      <Box sx={style}>
+      <Box sx={styles.StyledBoxContainer}>
         <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ mb: 4 }}>
-          Update your bio
+          Update your profile
         </Typography>
         <form>
-          <TextField
-            value={nameValue}
-            onChange={handleNameChange}
-            label="Name"
-            variant="outlined"
-            placeholder={currentNameValue}
-            style={{ marginBottom: '10px' }} />
-          <TextField
-            value={textValue}
-            onChange={handleTextChange}
-            label="Profile text"
-            variant="outlined"
-            placeholder={currentTextValue}
-            style={{ marginBottom: '10px' }} />
-          <TextField
-            value={instaValue}
-            onChange={handleInstaChange}
-            label="Instagram link"
-            variant="outlined"
-            placeholder={currentInstaValue}
-            style={{ marginBottom: '10px' }} />
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box sx={{ m: 1, position: 'relative' }}>
-              <Fab
-                aria-label="save"
-                color="primary"
-                sx={buttonSx}
-                onClick={patchProfileUpdate}>
-                {success ? <CheckIcon /> : <SaveIcon />}
-              </Fab>
-              {loading && (
-                <CircularProgress
-                  size={68}
-                  sx={{
-                    color: green[500],
-                    position: 'absolute',
-                    top: -6,
-                    left: -6,
-                    zIndex: 1
-                  }} />
-              )}
+          <Box sx={styles.StyledFormContainer}>
+            <TextField
+              value={nameValue}
+              onChange={handleNameChange}
+              label="Name"
+              variant="outlined"
+              placeholder={currentNameValue}
+              style={{ marginBottom: '10px' }} />
+            <TextField
+              value={textValue}
+              onChange={handleTextChange}
+              label="About text"
+              variant="outlined"
+              placeholder={currentTextValue}
+              style={{ marginBottom: '10px' }} />
+            <TextField
+              value={instaValue}
+              onChange={handleInstaChange}
+              label="Instagram link"
+              variant="outlined"
+              placeholder={currentInstaValue}
+              style={{ marginBottom: '10px' }} />
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ m: 1, position: 'relative' }}>
+                <Fab
+                  aria-label="save"
+                  color="primary"
+                  sx={buttonSx}
+                  onClick={patchProfileUpdate}>
+                  {success ? <CheckIcon color="inherit" /> : <SaveIcon color="inherit" />}
+                </Fab>
+                {loading && (
+                  <CircularProgress
+                    size={68}
+                    sx={{
+                      color: green[500],
+                      position: 'absolute',
+                      top: -6,
+                      left: -6,
+                      zIndex: 1
+                    }} />
+                )}
+              </Box>
             </Box>
           </Box>
         </form>

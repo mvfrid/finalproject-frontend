@@ -1,13 +1,13 @@
 import React from 'react'
 import { Player } from '@lottiefiles/react-lottie-player';
-import './EmptyState.css'
+import './EmptyStateExplore.css';
 
-export const EmptyState = () => {
+export const EmptyStateExplore = () => {
   return (
     <div className="empty-container">
-      <h3>You have not created any trips yet!</h3>
+      <h3>Search to explore new places</h3>
       <Player
-        src="https://assets2.lottiefiles.com/packages/lf20_bdnjxekx.json"
+        src="https://assets4.lottiefiles.com/datafiles/AtGF4p7zA8LpP2R/data.json"
         loop
         autoplay
         style={{

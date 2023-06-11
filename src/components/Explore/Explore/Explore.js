@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_KEY, PLACES_URL } from 'utils/urls';
-import { EmptyState } from 'components/Reusable/EmptyState';
 import { fetchTrips, patchTripWithNewCard } from 'reducers/trip';
 import SingleCardPreviewExplore from '../SingleCardPreviewExplore/SingleCardPreviewExplore.js';
 import { SingleCardModal } from '../SingleCardModal/SingleCardModal.js';
 import { Search } from '../Search/Search.js';
 import { Loading } from '../../Other/Loading.js';
 import './Explore.css';
+import { EmptyStateExplore } from '../EmptyStateExplore/EmptyStateExplore.js';
 
 export const Explore = () => {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ export const Explore = () => {
                 onCardClick={handleCardClick} />
             ))
           )}
-          {!isLoading && (!placesData || placesData.length === 0) && <EmptyState />}
+          {!isLoading && (!placesData || placesData.length === 0) && <EmptyStateExplore />}
         </div>
 
         {openCard ? (

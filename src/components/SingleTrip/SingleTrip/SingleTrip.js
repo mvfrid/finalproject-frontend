@@ -4,10 +4,12 @@ import { Box, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import { deleteTrip } from 'reducers/trip';
 import { SingleTripCardPreview } from '../SingleTripCardPreview/SingleTripCardPreview';
 import { SingleTripModal } from '../SingleTripModal/SingleTripModal';
 import * as styles from './StyledSingleTrip'
+import { EmptyStateSingleTrip } from '../EmptyStateSingleTrip/EmptyStateSingleTrip';
 
 export const SingleTrip = () => {
   const { id } = useParams();
@@ -29,6 +31,10 @@ export const SingleTrip = () => {
     dispatch(deleteTrip(id));
     navigate('/profile')
     // NEEDS AN IF ELSE SUCCESS???
+  };
+
+  const handleClickBack = () => {
+    navigate('/profile')
   };
 
   const handleCardClick = (card) => {
@@ -56,7 +62,17 @@ export const SingleTrip = () => {
         handleClose={handleClose}
         cardId={selectedCardId}
         tripId={id} />
+
       <Box sx={styles.StyledBtnBox}>
+        <Button
+          sx={styles.StyledBackBtn}
+          type="submit"
+          variant="contained"
+          size="small"
+          startIcon={<ArrowBackIosNewRoundedIcon />}
+          onClick={handleClickBack}>
+        Go Back
+        </Button>
         <Button
           sx={styles.StyledDltBtn}
           type="submit"
@@ -67,6 +83,8 @@ export const SingleTrip = () => {
         Delete trip
         </Button>
       </Box>
+
+      {trip.cards.length === 0 && <EmptyStateSingleTrip />}
     </>
   );
 };

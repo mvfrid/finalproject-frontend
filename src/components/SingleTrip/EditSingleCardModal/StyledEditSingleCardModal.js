@@ -46,5 +46,5 @@ export const StyledBtnBox = {
 };
 
 export const StyledUpdBtn = {
-  backgroundColor: '#38b000'
+  backgroundColor: '#446173'
 };

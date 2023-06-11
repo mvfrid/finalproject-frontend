@@ -33,7 +33,7 @@ a {
     flex-direction: row;
 }
 
-h3 {
+.trip h3 {
   color: #3e5767;
   margin: 0;
 }

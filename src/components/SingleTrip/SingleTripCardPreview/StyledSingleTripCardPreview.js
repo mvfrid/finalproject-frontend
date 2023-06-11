@@ -31,5 +31,5 @@ export const StyledCardTypoRat = {
 export const StyledCardBtn = {
   color: 'black',
   fontSize: 12,
-  borderColor: '#38b000'
+  borderColor: '#446173'
 };

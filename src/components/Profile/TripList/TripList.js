@@ -3,13 +3,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from 'reducers/trip';
-import { EmptyState } from 'components/Reusable/EmptyState';
 import { Link } from 'react-router-dom';
 import './TripList.css'
 import { Button } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { NewTripModal } from '../NewTripModal/NewTripModal';
 import { TripListCardPreview } from '../TripListCardPreview/TripListCardPreview';
+import { EmptyStateTripList } from '../EmptyStateTripList/EmptyStateTripList';
 
 export const TripList = () => {
   const tripList = useSelector((store) => store.trip.tripList);
@@ -51,7 +51,7 @@ export const TripList = () => {
           ))}
         </div>
       ) : (
-        <EmptyState />
+        <EmptyStateTripList />
       )}
     </div>
   )
