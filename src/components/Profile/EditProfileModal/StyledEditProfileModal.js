@@ -18,3 +18,12 @@ export const StyledFormContainer = {
   flexDirection: 'column',
   alignItems: 'center'
 };
+
+export const StyledCloseBtnBox = {
+  display: 'flex',
+  justifyContent: 'flex-end'
+};
+
+export const StyledCloseBtn = {
+  p: 0
+};

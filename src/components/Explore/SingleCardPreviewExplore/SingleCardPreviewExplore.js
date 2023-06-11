@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './SingleCardPreviewExplore.css'
+import * as styles from './StyledSingleCardPreviewExplore'
 
 const SingleCardPreviewExplore = ({ place, onCardClick }) => {
   // console.log('props/place from explore:', place);
@@ -18,40 +19,28 @@ const SingleCardPreviewExplore = ({ place, onCardClick }) => {
   };
 
   return (
-    <Card className="card-preview-container-explore">
+    <Card sx={styles.StyledPreviewContainerExplore}>
       <CardMedia
-        className="card-preview-img-explore"
+        sx={styles.StyledCardPreviewImgExplore}
         image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
       <CardContent
-        className="card-preview-content-explore"
-        sx={{ p: 0 }}>
+        sx={styles.StyledPreviewContentExplore}>
         <Typography
+          sx={styles.StyledCardNameExp}
           gutterBottom
-          component="div"
-          className="card-preview-name-explore"
-          style={{
-            fontSize: '18px',
-            padding: 2,
-            margin: 0,
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxWidth: '100%',
-            display: 'block'
-          }}>
+          component="h3"
+          className="card-preview-name-explore">
           {place.name}
         </Typography>
         <Typography
+          sx={styles.StyledCardRatExp}
           variant="body2"
-          color="text.secondary"
-          style={{
-            fontSize: '14px'
-          }}>
+          color="text.secondary">
           ⭐️{place.rating}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => handleButtonClick(place)}>Read More</Button>
+        <Button size="small" sx={{ color: '#446173' }} onClick={() => handleButtonClick(place)}>Read More</Button>
       </CardActions>
     </Card>
   );

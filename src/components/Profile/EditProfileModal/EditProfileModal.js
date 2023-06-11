@@ -2,10 +2,11 @@
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, TextField, Typography, Modal, CircularProgress, Fab } from '@mui/material';
+import { Box, TextField, Typography, Modal, CircularProgress, Fab, IconButton } from '@mui/material';
 import { green } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
 import SaveIcon from '@mui/icons-material/Save';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { user } from 'reducers/user';
 import { MONGO_DB_URL } from '../../../utils/urls';
 import * as styles from './StyledEditProfileModal'
@@ -37,6 +38,10 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
         bgcolor: '#2a3d47'
       }
     };
+
+  const closeModal = () => {
+    onClose();
+  };
 
   const patchProfileUpdate = (event) => {
     setLoading(true)
@@ -114,6 +119,14 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
       <Box sx={styles.StyledBoxContainer}>
+        <Box sx={styles.StyledCloseBtnBox}>
+          <IconButton
+            type="button"
+            sx={styles.StyledCloseBtn}
+            onClick={closeModal}>
+            <CloseRoundedIcon />
+          </IconButton>
+        </Box>
         <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ mb: 4 }}>
           Update your profile
         </Typography>

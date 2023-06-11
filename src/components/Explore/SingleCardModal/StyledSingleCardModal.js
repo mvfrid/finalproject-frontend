@@ -1,3 +1,12 @@
+export const StyledCloseBtnBox = {
+  display: 'flex',
+  justifyContent: 'flex-end'
+};
+
+export const StyledCloseBtn = {
+  p: 0
+};
+
 export const StyledBoxContainer = {
   display: 'flex',
   flexDirection: 'column',
