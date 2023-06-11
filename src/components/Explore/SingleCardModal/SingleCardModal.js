@@ -9,6 +9,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { CardMedia, IconButton } from '@mui/material';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { patchTripWithNewCard } from 'reducers/trip';
 import { NewTripModal } from '../../Profile/NewTripModal/NewTripModal';
 import * as styles from './StyledSingleCardModal'
@@ -23,6 +25,10 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
   };
   const handleCloseAdd = () => {
     setOpenAdd(false);
+  };
+
+  const closeModal = () => {
+    handleClose();
   };
 
   const dispatch = useDispatch();
@@ -58,9 +64,20 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
         aria-describedby="modal-modal-description">
         <Box
           sx={styles.StyledBoxContainer}>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
-          </Typography>
+          <Box sx={styles.StyledCloseBtnBox}>
+            <IconButton
+              type="button"
+              sx={styles.StyledCloseBtn}
+              onClick={closeModal}>
+              <CloseRoundedIcon />
+            </IconButton>
+          </Box>
+          <Box sx={styles.StyledMediaBox}>
+            <CardMedia
+              component="img"
+              image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
+              sx={styles.StyledModalImg} />
+          </Box>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {selectedPlace.name}
             <img src={selectedPlace.icon} alt="" className="place-icon" />

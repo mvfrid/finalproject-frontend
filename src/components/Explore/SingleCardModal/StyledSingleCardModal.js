@@ -1,3 +1,12 @@
+export const StyledCloseBtnBox = {
+  display: 'flex',
+  justifyContent: 'flex-end'
+};
+
+export const StyledCloseBtn = {
+  p: 0
+};
+
 export const StyledBoxContainer = {
   display: 'flex',
   flexDirection: 'column',
@@ -11,4 +20,14 @@ export const StyledBoxContainer = {
   boxShadow: 24,
   px: 2,
   py: 1
+};
+
+export const StyledModalImg = {
+  height: '150px',
+  width: '150px'
+};
+
+export const StyledMediaBox = {
+  display: 'flex',
+  justifyContent: 'center'
 };

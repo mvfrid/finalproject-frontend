@@ -45,3 +45,12 @@ export const StyledCircularProgress = {
   left: -6,
   zIndex: 1
 };
+
+export const StyledCloseBtnBox = {
+  display: 'flex',
+  justifyContent: 'flex-end'
+};
+
+export const StyledCloseBtn = {
+  p: 0
+};

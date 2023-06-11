@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, TextField, Typography, Modal, CircularProgress, Fab } from '@mui/material';
+import { Box, TextField, Typography, Modal, CircularProgress, Fab, IconButton } from '@mui/material';
 import { green } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { trip, postNewTrip } from 'reducers/trip';
 import AddIcon from '@mui/icons-material/Add';
 import * as styles from './StyleNewTripModal'
@@ -29,6 +30,10 @@ export const NewTripModal = ({ open, onClose }) => {
       }
     };
 
+  const closeModal = () => {
+    onClose();
+  };
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -50,6 +55,14 @@ export const NewTripModal = ({ open, onClose }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
       <Box sx={styles.StyledBoxContainer}>
+        <Box sx={styles.StyledCloseBtnBox}>
+          <IconButton
+            type="button"
+            sx={styles.StyledCloseBtn}
+            onClick={closeModal}>
+            <CloseRoundedIcon />
+          </IconButton>
+        </Box>
         <Typography
           sx={styles.StyledTypoTitle}
           variant="h2"
