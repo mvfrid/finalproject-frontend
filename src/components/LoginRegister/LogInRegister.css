@@ -1,0 +1,16 @@
+.formbox h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.formbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-wrapper {
+    display: flex;
+    
+}

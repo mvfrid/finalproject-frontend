@@ -44,7 +44,12 @@ export const LogInRegister = ({ mode }) => {
         bgcolor: green[700]
       }
     }
-    : {};
+    : {
+      bgcolor: '#446173',
+      '&:hover': {
+        bgcolor: '#2a3d47'
+      }
+    };
 
   useEffect(() => {
     return () => {
@@ -160,11 +165,13 @@ export const LogInRegister = ({ mode }) => {
                 name="password" />
               {/* {isSubmitting && <LinearProgress />} */}
             </Box>
-            <Box margin={1}>
+
+            <Box
+              margin={1}
+              sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Button
                 sx={buttonSx}
                 variant="contained"
-                color="primary"
                 disabled={isSubmitting || !isValid}
                 type="submit"
                 onClick={() => {
@@ -177,6 +184,7 @@ export const LogInRegister = ({ mode }) => {
                 }}>
                 {isSubmitting && !success ? 'Submitting...' : 'Submit'}
               </Button>
+
               {isSubmitting && (
                 <CircularProgress
                   size={24}
@@ -190,8 +198,9 @@ export const LogInRegister = ({ mode }) => {
                   }} />
               )}
               <Box margin={1}>
-                {mode === 'users/register' ? <Button type="button" variant="outlined" onClick={() => onClickGoToLogin(resetForm, values)}>Log in instead</Button> : <Button type="button" variant="outlined" onClick={() => onClickGoToRegister(resetForm, values)}>Register instead</Button>}
+                {mode === 'users/register' ? <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToLogin(resetForm, values)}>Already a member? Login here</Button> : <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToRegister(resetForm, values)}>Not a member yet? Register here</Button>}
               </Box>
+
             </Box>
           </Form>
         )}
