@@ -21,3 +21,13 @@ export const StyledBoxContainer = {
   px: 2,
   py: 1
 };
+
+export const StyledModalImg = {
+  height: '150px',
+  width: '150px'
+};
+
+export const StyledMediaBox = {
+  display: 'flex',
+  justifyContent: 'center'
+};
