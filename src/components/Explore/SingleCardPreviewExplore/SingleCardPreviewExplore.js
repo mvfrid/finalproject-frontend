@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import './SingleCardPreviewExplore.css'
 
 const SingleCardPreviewExplore = ({ place, onCardClick }) => {
   // console.log('props/place from explore:', place);
@@ -17,15 +18,33 @@ const SingleCardPreviewExplore = ({ place, onCardClick }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="card-preview-container-explore">
       <CardMedia
-        sx={{ height: 140 }}
+        className="card-preview-img-explore"
         image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          component="div"
+          className="card-preview-name-explore"
+          style={{
+            fontSize: '18px',
+            padding: 2,
+            margin: 0,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxWidth: '100%',
+            display: 'block'
+          }}>
           {place.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          style={{
+            fontSize: '14px'
+          }}>
           ⭐️{place.rating}
         </Typography>
       </CardContent>

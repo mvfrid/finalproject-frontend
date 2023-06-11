@@ -7,8 +7,8 @@ import SingleCardPreviewExplore from '../SingleCardPreviewExplore/SingleCardPrev
 import { SingleCardModal } from '../SingleCardModal/SingleCardModal.js';
 import { Search } from '../Search/Search.js';
 import { Loading } from '../../Other/Loading.js';
-import './Explore.css';
 import { EmptyStateExplore } from '../EmptyStateExplore/EmptyStateExplore.js';
+import * as styles from './StyledExplore.js'
 
 export const Explore = () => {
   const dispatch = useDispatch();

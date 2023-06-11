@@ -1,0 +1,28 @@
+.card-preview-container-explore {
+    height: 150px;
+    width: 150px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.card-preview-img-explore {
+    height: 50%;
+    width: 100%;
+}
+
+.card-preview-name-explore {
+    font-size: 26px;
+}
+
+@media (min-width: 668px) {
+    .card-preview-container-explore {
+        height: 140px;
+        width: 140px;
+        margin-right: 20px;
+    }
+
+}
+
+@media (min-width: 1025px) {
+
+}
