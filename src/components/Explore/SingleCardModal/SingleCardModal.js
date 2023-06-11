@@ -11,18 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { patchTripWithNewCard } from 'reducers/trip';
 import { NewTripModal } from '../../Profile/NewTripModal/NewTripModal';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4
-};
+import * as styles from './StyledSingleCardModal'
 
 export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
   const tripList = useSelector((store) => store.trip.tripList);
@@ -67,16 +56,17 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={style}>
+        <Box
+          sx={styles.StyledBoxContainer}>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
+          </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {selectedPlace.name}
             <img src={selectedPlace.icon} alt="" className="place-icon" />
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           ⭐️ {selectedPlace.rating}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {selectedPlace.vicinity}

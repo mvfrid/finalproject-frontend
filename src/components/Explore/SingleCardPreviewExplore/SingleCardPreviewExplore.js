@@ -22,7 +22,9 @@ const SingleCardPreviewExplore = ({ place, onCardClick }) => {
       <CardMedia
         className="card-preview-img-explore"
         image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
-      <CardContent>
+      <CardContent
+        className="card-preview-content-explore"
+        sx={{ p: 0 }}>
         <Typography
           gutterBottom
           component="div"
