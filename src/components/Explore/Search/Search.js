@@ -79,8 +79,8 @@ export const Search = ({ onDataFetched, onLoadingChange }) => {
 
   return (
     <Box sx={{ display: 'flex',
-      flexDirection: isMobile ? 'column' : 'row',
-      fontSize: isMobile ? '32px' : '11px',
+      // flexDirection: 'row', for desktop
+      flexDirection: 'column',
       alignItems: 'stretch',
       justifyContent: 'space-between',
       backgroundColor: 'white',
@@ -90,7 +90,8 @@ export const Search = ({ onDataFetched, onLoadingChange }) => {
       mb: 2 }}>
       <Box sx={{ display: 'flex',
         alignItems: 'flex-end',
-        justifyContent: isMobile ? 'center' : 'space-between' }}>
+        // justifyContent: 'space-between' for desktop
+        justifyContent: 'center' }}>
         <LocationOnIcon sx={{ color: 'action.active', ml: 1, mr: 2, my: 2 }} />
         <TextField
           id="input-with-sx"

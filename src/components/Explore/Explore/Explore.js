@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_KEY, PLACES_URL } from 'utils/urls';
 import { EmptyState } from 'components/Reusable/EmptyState';
@@ -10,13 +11,17 @@ import { Search } from '../Search/Search.js';
 import { Loading } from '../../Other/Loading.js';
 import './Explore.css';
 
-export const Explore = () => {
+export const Explore = ({ onPageChange }) => {
   const dispatch = useDispatch();
   const [openCard, setOpenCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
 
   const [placesData, setPlacesData] = useState([]); // All 20 places fetched
   const [selectedPlace, setSelectedPlace] = useState(null); // One object
+
+  useEffect(() => {
+    onPageChange('explore'); // Invoke onPageChange with the current page information
+  }, []);
 
   const handleClose = () => {
     setOpenCard(false);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SingleTrip } from 'components/SingleTrip/SingleTrip.js';
@@ -13,19 +13,43 @@ import { Profile } from './components/Profile/Profile/Profile.js'
 
 export const App = () => {
   const accessToken = useSelector((state) => state.user.accessToken);
+  const [currentPage, setCurrentPage] = useState('');
+  let backgroundImageUrl; // Declare the backgroundImageUrl variable
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  console.log('currentPage', currentPage, 'backgroundImageUrl', backgroundImageUrl)
+
+  switch (currentPage) {
+    case 'about':
+      backgroundImageUrl = 'url(https://i.postimg.cc/mZzVFmd6/photo-1499063078284-f78f7d89616a-gradient-yellow3-short.png)';
+      break;
+    case 'explore':
+      backgroundImageUrl = 'url(https://i.postimg.cc/nLhGV2j2/jairph-1-XLyzi17-Z2-M-unsplash-gradient-yellow3-short.png)';
+      break;
+    case 'profile':
+      backgroundImageUrl = 'url(https://i.postimg.cc/3xfRgx67/justin-kauffman-Et-ORiy-Lq6s-unsplash-gradient-yellow3.png)';
+      break;
+    default:
+      // Default background image for other routes
+      backgroundImageUrl = 'url(https://i.postimg.cc/Y0GmTmWp/ian-dooley-hp-TH5b6mo2s-unsplash-gradient-yellow3-short.png';
+      break;
+  }
 
   return (
     <BrowserRouter>
       <div className="OuterWrapper">
         <div className="BackgroundUnderlay" />
-        <div className="InnerWrapper">
+        <div className="InnerWrapper" style={{ backgroundImage: backgroundImageUrl }}>
 
           <Header />
           <Routes>
-            <Route path="/" element={<StartPage />} />
+            <Route path="/" element={<StartPage onPageChange={handlePageChange} />} />
 
             {accessToken !== null ? (
-              <Route path="/explore" element={<Explore />} />
+              <Route path="/explore" element={<Explore onPageChange={handlePageChange} />} />
             ) : (
               <Route
                 path="/explore"
@@ -40,10 +64,10 @@ export const App = () => {
               path="/register"
               element={<LogInRegister mode="users/register" />} />
 
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About onPageChange={handlePageChange} />} />
 
             {accessToken !== null ? (
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<Profile onPageChange={handlePageChange} />} />
             ) : (
               <Route
                 path="/profile"
