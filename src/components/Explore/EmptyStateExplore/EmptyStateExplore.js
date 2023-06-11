@@ -7,7 +7,7 @@ export const EmptyStateExplore = () => {
     <div className="empty-container">
       <h3>Search to explore new places</h3>
       <Player
-        src="https://assets4.lottiefiles.com/datafiles/AtGF4p7zA8LpP2R/data.json"
+        src="https://assets10.lottiefiles.com/packages/lf20_Q6tgYJ.json"
         loop
         autoplay
         style={{
