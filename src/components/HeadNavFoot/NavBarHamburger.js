@@ -74,9 +74,9 @@ export const NavBarHamburger = () => {
           <button className="MenuBtn" type="button" onClick={onClickGoToStart}>Home</button>
           {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToLogin}>Log In</button>)}
           {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToRegister}>Register</button>)}
+          <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
           <button className="MenuBtn" type="button" onClick={onClickGoToExplore}>Explore</button>
           <button className="MenuBtn" type="button" onClick={onClickGoToAbout}>About Us</button>
-          <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
           {accessToken && (<button className="MenuBtn" type="button" onClick={handleLogOut}>Log out</button>)}
         </div>
       )}
