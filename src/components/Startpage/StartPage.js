@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './StartPage.css';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { Button } from '@mui/material';
 
 export const StartPage = ({ onPageChange }) => {
+  const accessToken = useSelector((state) => state.user.accessToken);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,31 +34,33 @@ export const StartPage = ({ onPageChange }) => {
             width: '300px'
           }} />
       </div>
-      <div className="button-container">
-        <Button
-          sx={{
-            backgroundColor: '#446173',
-            '&:hover': {
-              backgroundColor: '#345461' // Optional: You can also control the hover color here
-            }
-          }}
-          variant="contained"
-          type="button"
-          onClick={onClickGoToLogin}>
+      {!accessToken && (
+        <div className="button-container">
+          <Button
+            sx={{
+              backgroundColor: '#446173',
+              '&:hover': {
+                backgroundColor: '#345461' // Optional: You can also control the hover color here
+              }
+            }}
+            variant="contained"
+            type="button"
+            onClick={onClickGoToLogin}>
       Go to Log In
-        </Button>
-        <Button
-          sx={{
-            color: '#446173',
-            '&:hover': {
-              color: '#345461' // Optional: You can also control the hover color here
-            }
-          }}
-          type="button"
-          onClick={onClickGoToRegister}>
+          </Button>
+          <Button
+            sx={{
+              color: '#446173',
+              '&:hover': {
+                color: '#345461' // Optional: You can also control the hover color here
+              }
+            }}
+            type="button"
+            onClick={onClickGoToRegister}>
       Not a member yet? Go to register
-        </Button>
-      </div>
+          </Button>
+        </div>
+      )}
     </>
   )
 }
