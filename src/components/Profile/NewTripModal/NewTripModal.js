@@ -22,7 +22,12 @@ export const NewTripModal = ({ open, onClose }) => {
         bgcolor: green[700]
       }
     }
-    : {};
+    : {
+      bgcolor: '#446173',
+      '&:hover': {
+        bgcolor: '#2a3d47'
+      }
+    };
 
   const handleChange = (event) => {
     setValue(event.target.value);

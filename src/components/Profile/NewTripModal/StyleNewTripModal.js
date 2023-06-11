@@ -28,7 +28,8 @@ export const StyledTypo = {
 
 export const StyledBoxWrapper = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
+  justifyContent: 'center'
 };
 
 export const StyledBoxInnerWrapper = {
