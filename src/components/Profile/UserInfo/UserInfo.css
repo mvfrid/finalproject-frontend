@@ -1,10 +1,10 @@
 
   .profile-section {
-    background-color: #e5e7d68e;
+    background-color: rgb(243, 246, 240);
     margin: 10px auto;
     padding: 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
     justify-content: space-between;
     align-items: center;
@@ -13,33 +13,78 @@
   
   .profile-info {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 25px;
-  
+  }
+
+  .profile-user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .name-div {
+    align-items: center;
   }
   
   .profile-text {
+    display: flex;
+    flex-direction: column;
     padding: 2px;
+    align-items: center;
   }
-  
   
   .profilepic {
     max-width: 100px;
     max-height: 100px;
+    border-radius: 50%;
+    margin: 10px;
+    box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 2px 2px 5px 3px rgba(5, 55, 11, 0.19);
+    -moz-box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.19);
+    border: 2px solid #446173;
+  }
+
+  .profile-info h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #446173;
+
+  }
+
+  .profile-info h2 span {
+    font-family:'Courier New', Courier, monospace;
   }
   
   .profile-info p:first-child {
-    font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
     margin: 10px 0;
   }
   
   .profile-info p {
-    margin: 7px 0;
+    font-size: 18px;
+    padding: 2px;
+    text-align: center;
+    color: grey;
+  }
+
+  .profile-info p:third-child {
+    color: black;
+  }
+
+
+  .profile-text a {
+    margin-top: 10px;
   }
   
   p span {
-    color: blue;
+    color: black;
   }
-  
+
+  .profile-section > Button {
+    justify-content: flex-end;
+  }
+
+  .button-container {
+    align-self: flex-end;
+  }  

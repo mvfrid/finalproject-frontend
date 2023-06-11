@@ -1,9 +1,18 @@
-import React from 'react';
+import React from 'react'
+import { Player } from '@lottiefiles/react-lottie-player';
+import './EmptyState.css'
 
 export const EmptyState = () => {
   return (
-    <div className="placeholder">
-      <h1>Empty state</h1>
+    <div className="empty-container">
+      <h3>You have not created any trips yet!</h3>
+      <Player
+        src="https://assets6.lottiefiles.com/packages/lf20_Rfd6wq.json"
+        loop
+        autoplay
+        style={{
+          width: '300px'
+        }} />
     </div>
   )
 }

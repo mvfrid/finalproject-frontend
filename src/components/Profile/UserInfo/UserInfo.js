@@ -21,23 +21,34 @@ export const UserInfo = () => {
   return (
     <div className="profile-section">
       <div className="profile-info">
-        <img src={userInfo.profilePicture} alt="user profile" className="profilepic" />
-        <div className="profile-text">
-          <p>Welcome <span>{userInfo.username}</span></p>
-          <p>Name: {userInfo.profileName}</p>
-          <p>Description: {userInfo.profileText}</p>
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-            <InstagramIcon />
-          </a>
+        <h2>Hi <span>{userInfo.username}!</span></h2>
+        <div>
+          <div className="profile-user-info">
+            <img src={userInfo.profilePicture} alt="user profile" className="profilepic" />
+            <div className="name-div" />
+          </div>
+          <div className="profile-text">
+            <p>Name: <span>{userInfo.profileName}</span></p>
+            <p>About me:</p>
+            <p><span>{userInfo.profileText}</span></p>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+              <InstagramIcon sx={{ color: '#446173' }} />
+            </a>
+          </div>
         </div>
       </div>
-      <Button
-        variant="contained"
-        endIcon={<ManageAccountsIcon />}
-        onClick={handleOpen}>
-      Edit info
-      </Button>
-      <EditProfileModal open={open} onClose={handleClose} setUpdatedProfile={setUpdatedProfile} />
+      <div className="button-container">
+        <Button
+          sx={{ bgcolor: '#446173' }}
+          className="insta-button"
+          variant="contained"
+          size="small"
+          endIcon={<ManageAccountsIcon />}
+          onClick={handleOpen}>
+        Edit
+        </Button>
+        <EditProfileModal open={open} onClose={handleClose} setUpdatedProfile={setUpdatedProfile} />
+      </div>
     </div>
   )
 }
