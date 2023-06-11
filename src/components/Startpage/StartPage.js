@@ -1,11 +1,16 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StartPage.css';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { Button } from '@mui/material';
 
-export const StartPage = () => {
+export const StartPage = ({ onPageChange }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    onPageChange('start'); // Invoke onPageChange with the current page information
+  }, []);
 
   const onClickGoToLogin = () => {
     navigate('/login');

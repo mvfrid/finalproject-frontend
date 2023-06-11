@@ -1,10 +1,15 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { AboutCards } from './AboutCards';
 
-export const About = () => {
+export const About = ({ onPageChange }) => {
+  useEffect(() => {
+    onPageChange('about'); // Invoke onPageChange with the current page information
+  }, []);
+
   return (
     <div className="main">
       <Card sx={{ minWidth: 250 }}>
