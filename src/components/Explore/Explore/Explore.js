@@ -10,11 +10,13 @@ import { Search } from '../Search/Search.js';
 import { Loading } from '../../Other/Loading.js';
 import { EmptyStateExplore } from '../EmptyStateExplore/EmptyStateExplore.js';
 import * as styles from './StyledExplore.js'
+import './Explore.css'
 
 export const Explore = ({ onPageChange }) => {
   const dispatch = useDispatch();
   const [openCard, setOpenCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
+  const [locationNotFound, setLocationNotFound] = useState(false);
 
   const [placesData, setPlacesData] = useState([]); // All 20 places fetched
   const [selectedPlace, setSelectedPlace] = useState(null); // One object
@@ -56,10 +58,25 @@ export const Explore = ({ onPageChange }) => {
     // Additional logic here if needed
   };
 
+  const handleLocationNotFound = (value) => {
+    console.log('handleLocationNotFound value:', value)
+    setLocationNotFound(value);
+    if (locationNotFound) {
+      setPlacesData([])
+    }
+  };
+
+  console.log('Explore locationNotFound:', locationNotFound)
+  console.log('Explore isLoading:', isLoading)
+  console.log('Explore placesData:', placesData)
+
   return (
     <>
-      <Search onDataFetched={handleDataFetched} onLoadingChange={handleLoadingChange} />
-      <div className="main">
+      <Search
+        onDataFetched={handleDataFetched}
+        onLoadingChange={handleLoadingChange}
+        onLocationNotFound={handleLocationNotFound} />
+      <div className="main-flex">
         <div className="places">
           {isLoading && <Loading />}
           {!isLoading && placesData && placesData.length > 0 && (
@@ -70,7 +87,11 @@ export const Explore = ({ onPageChange }) => {
                 onCardClick={handleCardClick} />
             ))
           )}
-          {!isLoading && (!placesData || placesData.length === 0) && <EmptyStateExplore />}
+          {!isLoading && locationNotFound && (
+            <div className="location-not-found">
+              <p>No such location found. Are you sure you spelled it correctly?</p>
+            </div>
+          )}
         </div>
 
         {openCard ? (
@@ -85,3 +106,5 @@ export const Explore = ({ onPageChange }) => {
     </>
   );
 }
+
+//           {!isLoading && (!placesData || placesData.length === 0) && <EmptyStateExplore />}
