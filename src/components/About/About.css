@@ -1,0 +1,49 @@
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 50px;
+}
+
+.placeholder-circle {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(71, 143, 93);
+    margin: auto;
+    border-radius: 50%;
+    margin-top: 25px;
+}
+
+
+
+@media (min-width: 667px) {
+    /* Styles for tablet view */
+
+    .about-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+  }
+  
+  @media (min-width: 1025px) {
+    /* Styles for desktop view */
+    
+    .about-container {
+        flex-wrap: wrap;
+    }
+
+  }
+
+
+/*
+.about-container {
+    background-color: #e5e7d68e;
+    ffffffd1
+}
+*/
