@@ -4,17 +4,21 @@
   max-width: 100%;
   min-height: 100px;
   margin: auto;
-  padding: 0;
+  padding: 8px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
 .header h1 {
     color: white;
-    font-size: 52px;
+    font-size: 48px;
     font-weight: 900;
+  }
+
+  .header-link {
+    color: white;
   }
 
   .header-nav {
@@ -63,6 +67,10 @@
   
   .header {
     flex-direction: row;
+  }
+
+  .header h1 {
+    font-size: 52px;
   }
 
   .hamburger-open {

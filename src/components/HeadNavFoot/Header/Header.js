@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { NavBar } from '../NavBar'
@@ -24,7 +25,7 @@ export const Header = () => {
   return (
     <div className="header">
       <h1>
-        ODYSSEY
+        <a href="/" className="header-link">ODYSSEY</a>
       </h1>
       {isDesktop ? <NavBar /> : <NavBarHamburger />}
     </div>

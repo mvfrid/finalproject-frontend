@@ -15,7 +15,7 @@ export const UnAuthorized = () => {
   }
 
   return (
-    <div className="main">
+    <div className="unauth">
       <h2 className="unauth-h2">Oh no!</h2>
       <h3 className="unauth-h3">You need to be logged in the see this page</h3>
       <div className="button-container">

@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from 'reducers/trip';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ import { EmptyStateTripList } from '../EmptyStateTripList/EmptyStateTripList';
 export const TripList = () => {
   const tripList = useSelector((store) => store.trip.tripList);
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

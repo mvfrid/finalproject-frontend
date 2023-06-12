@@ -67,16 +67,16 @@ export const NavBarHamburger = () => {
   return (
     <div className="hamburger-menu">
       <div className="hamburger-close">
-        <MenuIcon sx={{ fontSize: '60px', color: 'white' }} onClick={toggleMenu} />
+        <MenuIcon sx={{ fontSize: '56px', mt: '8px', color: 'white' }} onClick={toggleMenu} />
       </div>
       {isOpen && (
         <div className="hamburger-open">
           <button className="MenuBtn" type="button" onClick={onClickGoToStart}>Home</button>
+          <button className="MenuBtn" type="button" onClick={onClickGoToExplore}>Explore</button>
+          <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
+          <button className="MenuBtn" type="button" onClick={onClickGoToAbout}>About Us</button>
           {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToLogin}>Log In</button>)}
           {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToRegister}>Register</button>)}
-          <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
-          <button className="MenuBtn" type="button" onClick={onClickGoToExplore}>Explore</button>
-          <button className="MenuBtn" type="button" onClick={onClickGoToAbout}>About Us</button>
           {accessToken && (<button className="MenuBtn" type="button" onClick={handleLogOut}>Log out</button>)}
         </div>
       )}
