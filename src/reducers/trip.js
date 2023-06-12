@@ -237,9 +237,10 @@ export const deleteTrip = (tripId) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          const responseData = response.response.data;
-          console.log('responseData:', responseData);
+          // const responseData = response.response.data;
+          // console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteTrip(tripId));
+          fetchTrips()
         } else {
           dispatch(trip.actions.setError(response));
         }
