@@ -12,7 +12,7 @@ import * as styles from './StyledEditSingleCardModal'
 export const EditSingleCardModal = ({ open, handleClose, card }) => {
   const { id } = useParams();
   const currentCommentValue = useSelector((store) => store.trip.cards.cardComment);
-  // const currentStarsValue = useSelector((store) => store.trip.cards.cardStars);
+  const currentStarsValue = useSelector((store) => store.trip.cards.cardStars);
   const cardId = card._id;
   console.log('cardId:', cardId)
   const [commentValue, setCommentValue] = useState('');
@@ -43,16 +43,16 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
     event.preventDefault();
     const updatedData = {};
 
-    if (commentValue.trim() !== '') {
+    if (commentValue.trim() !== '' && commentValue !== currentCommentValue) {
       updatedData.cardComment = commentValue.trim();
+    }
+
+    if (starsValue !== currentStarsValue) {
+      updatedData.cardStars = starsValue;
     }
 
     console.log('Dispatching update with data:', updatedData);
     dispatch(updateSingleCard(id, cardId, commentValue.trim(), starsValue));
-
-    console.log('Clearing form values');
-    setCommentValue('');
-    setStarsValue(0);
     handleClose();
   };
 
@@ -94,6 +94,7 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
                 name="simple-controlled"
                 value={starsValue}
                 size="large"
+                placeholder={currentStarsValue}
                 onChange={(event, newValue) => {
                   console.log(`New starsValue: ${newValue}`);
                   setStarsValue(newValue);
