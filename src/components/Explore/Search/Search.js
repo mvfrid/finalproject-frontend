@@ -13,11 +13,14 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
 import './Search.css';
 
-export const Search = ({ onDataFetched, onLoadingChange }) => {
-  const [inputLong, setInputLong] = useState(null);
-  const [inputLat, setInputLat] = useState(null);
+export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) => {
+  // const [inputLong, setInputLong] = useState(null);
+  // const [inputLat, setInputLat] = useState(null);
   const [input, setInput] = useState('');
   const [type, setType] = useState('tourist_attraction');
+  // const [notFound, setNotFound] = useState(false);
+
+  // console.log('notFound from Search:', notFound)
 
   const theme = useTheme();
   const isMobile = theme.breakpoints.down('sm'); // or 'xs' depending on your desired breakpoint
@@ -26,42 +29,51 @@ export const Search = ({ onDataFetched, onLoadingChange }) => {
 
   const fetchData = () => {
     onLoadingChange(true);
-    // set loading is true
     fetch(geoUrl)
       .then((response) => {
+        console.log('response from before if:', response)
         if (response.ok) {
+          console.log('response from inside if:', response)
           return response.json();
         } else {
+          console.log('response from inside else:', response)
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
       })
       .then((data) => {
-        const { lng, lat } = data.results[0].geometry.location;
-        setInputLong(lng);
-        setInputLat(lat);
-        console.log(data.results)
-
-        fetch(`${PLACES_URL}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ lng, lat, type })
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            console.log('json.results from google places fetch', json.results);
-            onDataFetched(json.results); // Call the callback function with the fetched data
-            // set loading is false
+        // console.log('data:', data)
+        console.log('data.results:', data.results)
+        console.log('data.results.length:', data.results.length)
+        if (data.results.length > 0) {
+          const { lng, lat } = data.results[0].geometry.location;
+          // setInputLong(lng);
+          // setInputLat(lat);
+          fetch(`${PLACES_URL}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ lng, lat, type })
           })
-          .finally(() => {
-            setTimeout(() => {
-              onLoadingChange(false);
-            }, 3500);
-          });
+            .then((response) => response.json())
+            .then((json) => {
+              console.log('json.results from google places fetch', json.results);
+              onDataFetched(json.results); // Call the callback function with the fetched data
+            })
+            .finally(() => {
+              setTimeout(() => {
+                onLoadingChange(false);
+              }, 3500);
+            });
+        } else {
+          onLocationNotFound(true);
+          setTimeout(() => {
+            onLoadingChange(false);
+          }, 2000);
+        }
       })
       .catch((error) => {
-        console.log(error);
+        console.log('error from fetchData', error);
       });
   };
 
@@ -73,9 +85,6 @@ export const Search = ({ onDataFetched, onLoadingChange }) => {
   const handleSelectChange = (event) => {
     setType(event.target.value);
   }
-
-  console.log('Selected Option:', type);
-  console.log('isMobile:', isMobile);
 
   return (
     <Box sx={{ display: 'flex',

@@ -17,7 +17,8 @@ export const Loading = () => {
         autoplay
         speed={1.5}
         style={{
-          width: '300px'
+          width: '300px',
+          margin: '75px'
         }} />
     </div>
   )
