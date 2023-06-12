@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable quote-props */
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Box, Button, TextField, Typography, Modal, Rating, IconButton } from '@mui/material';
 import { updateSingleCard, fetchTrips } from 'reducers/trip';
 import { useParams } from 'react-router-dom';
@@ -11,12 +11,16 @@ import * as styles from './StyledEditSingleCardModal'
 
 export const EditSingleCardModal = ({ open, handleClose, card }) => {
   const { id } = useParams();
-  const currentCommentValue = useSelector((store) => store.trip.cards.cardComment);
-  const currentStarsValue = useSelector((store) => store.trip.cards.cardStars);
+  const currentCommentValue = card.cardComment;
+  const currentStarsValue = card.cardStars;
+  console.log('currentCommentValue', currentCommentValue);
+  console.log('currentStarsValue', currentStarsValue);
+
   const cardId = card._id;
   console.log('cardId:', cardId)
-  const [commentValue, setCommentValue] = useState('');
-  const [starsValue, setStarsValue] = useState(0);
+
+  const [commentValue, setCommentValue] = useState(currentCommentValue || '');
+  const [starsValue, setStarsValue] = useState(currentStarsValue || 0);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,12 +36,6 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
     console.log(`New commentValue: ${newValue}`);
     setCommentValue(newValue);
   };
-
-  //   const handleStarsChange = (event) => {
-  //     const newValue = event.target.value;
-  //     console.log(`New starsValue: ${newValue}`);
-  //     setStarsValue(newValue);
-  //   };
 
   const patchCardUpdate = (event) => {
     event.preventDefault();
@@ -94,7 +92,6 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
                 name="simple-controlled"
                 value={starsValue}
                 size="large"
-                placeholder={currentStarsValue}
                 onChange={(event, newValue) => {
                   console.log(`New starsValue: ${newValue}`);
                   setStarsValue(newValue);
