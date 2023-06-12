@@ -36,6 +36,7 @@
   .hamburger-open {
     padding: 16px;
     width: 120px;
+    margin-right: 30px;
     background-color: rgb(40, 56, 83);
     display: flex;
     flex-direction: column;
@@ -45,7 +46,8 @@
     position: absolute;
     top: 100%;
     right: -50%;
-    border-radius: 8px;z-index: 999;
+    border-radius: 8px;
+    z-index: 999;
   }
 
 .MenuBtn {
@@ -60,9 +62,30 @@
     text-decoration: underline;
 }
 
+@media (max-width: 375px) {
+  /*Styles för small mobile*/
+
+  .header {
+    background-color: transparent;
+    max-width: 100%;
+    min-height: 100px;
+    margin: auto;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hamburger-open {
+    margin-right: 15px;
+  }
+  
+}
 
 
-@media (min-width: 667px) {
+
+@media (min-width: 668px) {
   /* Styles for tablet view */
   
   .header {
@@ -78,7 +101,8 @@
     width: 120px;
     align-items: flex-end;
     top: 100%;
-    right: 8px;
+    right: 0;
+    margin-right: 0;
   }
 
 }

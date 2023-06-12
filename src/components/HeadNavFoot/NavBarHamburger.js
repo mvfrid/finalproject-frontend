@@ -3,17 +3,20 @@
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
 import MenuIcon from '@mui/icons-material/Menu';
+import { ToggleButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 // import './Header.css';
 
 export const NavBarHamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navRef = useRef(null);
   const accessToken = useSelector((store) => store.user.accessToken);
 
   const onClickGoToStart = () => {
@@ -66,9 +69,12 @@ export const NavBarHamburger = () => {
 
   return (
     <div className="hamburger-menu">
-      <div className="hamburger-close">
-        <MenuIcon sx={{ fontSize: '56px', mt: '8px', color: 'white' }} onClick={toggleMenu} />
-      </div>
+      <ToggleButton onClick={() => setIsOpen(!isOpen)} sx={{ border: 'none' }}>
+        {isOpen ? <CloseIcon
+          sx={{ fontSize: '56px', mt: '8px', color: 'white' }}
+          onClick={toggleMenu} />
+          : <MenuIcon sx={{ fontSize: '56px', mt: '8px', color: 'white' }} onClick={toggleMenu} />}
+      </ToggleButton>
       {isOpen && (
         <div className="hamburger-open">
           <button className="MenuBtn" type="button" onClick={onClickGoToStart}>Home</button>

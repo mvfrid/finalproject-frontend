@@ -280,6 +280,7 @@ export const deleteSingleCard = (tripId, cardId) => {
           const responseData = response.response.data;
           console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteCardFromTrip(cardId));
+          dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }

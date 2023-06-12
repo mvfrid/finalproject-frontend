@@ -9,13 +9,16 @@ import { EditSingleCardModal } from '../EditSingleCardModal/EditSingleCardModal'
 import * as styles from './StyledSingleTripModal.js'
 
 export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
-  console.log('cardid from props', cardId)
+  console.log('cardID from props', cardId)
+  console.log('tripID from props', tripId)
+
   const dispatch = useDispatch();
   const [openEditModal, setOpenEditModal] = useState(false);
 
   const singleCard = useSelector((store) => {
     if (!cardId) return null;
     const singleTrip = store.trip.tripList.find((trip) => trip._id === tripId);
+    console.log('singletrip', singleTrip)
     return singleTrip.cards.find((card) => card._id === cardId);
   });
   console.log('singlecard', singleCard)
