@@ -1,9 +1,11 @@
 import React from 'react';
+import IconButton from '@mui/material/IconButton';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import Typography from '@mui/material/Typography';
 import './SingleCardPreviewExplore.css'
 import * as styles from './StyledSingleCardPreviewExplore'
@@ -47,3 +49,5 @@ const SingleCardPreviewExplore = ({ place, onCardClick }) => {
 };
 
 export default SingleCardPreviewExplore;
+
+//  <Button size="small" onClick={() => handleButtonClick(place)}>Read More</Button>
