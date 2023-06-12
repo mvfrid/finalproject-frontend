@@ -240,6 +240,7 @@ export const deleteTrip = (tripId) => {
           // const responseData = response.response.data;
           // console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteTrip(tripId));
+          dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }
@@ -252,7 +253,6 @@ export const deleteTrip = (tripId) => {
       })
       .finally(() => {
         dispatch(trip.actions.setLoadingPost(false));
-        fetchTrips()
       })
   };
 };
