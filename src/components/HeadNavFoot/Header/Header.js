@@ -12,8 +12,13 @@ export const Header = () => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth > 1025);
     };
+
+    // Set the initial state on component mount
+    setIsDesktop(window.matchMedia('(min-width: 1025px)').matches);
+
     // Attach the resize event listener
     window.addEventListener('resize', handleResize);
+
     // Clean up the listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
