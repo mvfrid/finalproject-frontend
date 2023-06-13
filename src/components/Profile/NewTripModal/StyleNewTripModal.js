@@ -9,7 +9,8 @@ export const StyledBoxContainer = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '85%',
-  maxWidth: '425px',
+  maxWidth: '400px',
+  minHeight: '250px',
   bgcolor: 'background.paper',
   border: '1px solid #000',
   boxShadow: 24,
@@ -18,11 +19,11 @@ export const StyledBoxContainer = {
   pb: 2,
 
   '@media (min-width: 668px)': {
-    maxWidth: '425px'
+    maxWidth: '400px'
   },
 
   '@media (min-width: 1025px)': {
-    maxWidth: '425px'
+    maxWidth: '400px'
   }
 };
 
