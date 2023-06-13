@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { green } from '@mui/material/colors';
 
 export const StyledCloseBtnBox = {
@@ -22,8 +23,9 @@ export const StyledBoxContainer = {
   border: '1px solid #ccc',
   borderRadius: '6px',
   boxShadow: 24,
-  px: 3,
-  pt: 1,
+  pr: 2,
+  pl: 3,
+  pt: 1.5,
   pb: 2,
 
   '@media (min-width: 668px)': {
@@ -92,4 +94,51 @@ export const StyledCircularProgress = {
   top: -6,
   left: -6,
   zIndex: 1
+};
+
+// From single trip
+
+export const StyledTypographyName = {
+  fontSize: '24px',
+  marginTop: '4px',
+
+  '@media (min-width:668px)': {
+    fontSize: '28px'
+  },
+
+  '@media (min-width:1025px)': {
+    fontSize: '28px'
+  }
+};
+
+export const StyledIcon = {
+  maxWidth: '50px'
+};
+
+export const StyledRating = {
+  minWidth: '50px',
+  fontSize: '20px'
+};
+
+export const StyledTypoVic = {
+  fontSize: '16px',
+  color: 'text.secondary',
+  mt: 0.5
+};
+
+export const StyledPlaceTextBox = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  fontSize: '16px',
+  gap: '6px',
+  justifyContent: 'space-between',
+  mt: 1
+};
+
+export const StyledPlaceTextIconBox = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: '12px'
 };

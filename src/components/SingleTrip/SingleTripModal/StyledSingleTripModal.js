@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export const StyledModal = {
 
   '@media (min-width:668px)': {

@@ -127,7 +127,7 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
         sx={{
           m: 0.5,
           backgroundColor: '#43B97F',
-          fontSize: '18px',
+          fontSize: '16px',
           '&:hover': {
             backgroundColor: '#2A8D5C'
           }

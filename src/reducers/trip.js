@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 /* eslint-disable no-undef */
 import { createSlice } from '@reduxjs/toolkit';

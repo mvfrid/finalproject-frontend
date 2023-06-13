@@ -7,19 +7,21 @@ export const StyledSearchBox = {
   alignItems: 'stretch',
   justifyContent: 'space-between',
   backgroundColor: 'white',
-  padding: '1px',
+  padding: '6px',
   borderRadius: '6px',
   marginTop: '36px',
   marginBottom: '2px',
+  mx: 'auto',
 
   '@media (min-width: 668px)': {
     flexDirection: 'row',
-    fontSize: '11px'
+    mx: '16px'
   },
 
   '@media (min-width: 1025px)': {
     flexDirection: 'row',
-    fontSize: '11px'
+    maxWidth: '835px',
+    mx: 'auto'
   }
 };
 
@@ -47,7 +49,7 @@ export const StyledInputField = {
   },
 
   '@media (min-width: 1025px)': {
-    minWidth: '500px'
+    minWidth: '400px'
   }
 };
 
