@@ -4,13 +4,23 @@ export const StyledBoxContainer = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '85%',
+  maxWidth: '425px',
   bgcolor: 'background.paper',
   border: '1px solid #000',
   boxShadow: 24,
-  p: 4,
+  py: 2,
+  px: 2,
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center'
+  alignItems: 'center',
+
+  '@media (min-width: 668px)': {
+    maxWidth: '425px'
+  },
+
+  '@media (min-width: 1025px)': {
+    maxWidth: '425px'
+  }
 };
 
 export const StyledFormContainer = {
@@ -20,8 +30,7 @@ export const StyledFormContainer = {
 };
 
 export const StyledCloseBtnBox = {
-  display: 'flex',
-  justifyContent: 'flex-end'
+  marginLeft: 'auto'
 };
 
 export const StyledCloseBtn = {
