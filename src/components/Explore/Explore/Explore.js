@@ -78,7 +78,7 @@ export const Explore = ({ onPageChange }) => {
         onDataFetched={handleDataFetched}
         onLoadingChange={handleLoadingChange}
         onLocationNotFound={handleLocationNotFound} />
-      <div className="main-flex">
+      <div className="main-explore">
         <div className="places">
           {isLoading ? (
             <Loading />
@@ -91,9 +91,9 @@ export const Explore = ({ onPageChange }) => {
             ))
           ) : !isLoading && locationNotFound ? (
             <div className="location-not-found">
-              <p>
-                No such location found. Are you sure you spelled it correctly?
-              </p>
+              <h3>Oh no!</h3>
+              <p>No such location found.</p>
+              <p>Are you sure you spelled it correctly?</p>
             </div>
           ) : (
             <EmptyStateExplore />

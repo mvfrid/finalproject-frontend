@@ -137,7 +137,7 @@ export const LogInRegister = ({ mode }) => {
   };
 
   return (
-    <div className="main">
+    <div className="main-loginregister">
       <Formik
         key={mode}
         initialValues={{

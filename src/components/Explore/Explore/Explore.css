@@ -1,4 +1,58 @@
 .location-not-found {
     margin: 50px auto;
     color: rgb(33, 28, 43);
+    background-color: #e5e7d6a6;
+    padding: 25px;
+    border-radius: 6px;
 }
+
+.location-not-found h3 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.location-not-found p {
+    font-size: 16px;
+    text-align: center;
+}
+
+.places {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .place-photo {
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: cover;
+  }
+  
+  .card {
+    background-color: #fff;
+  }
+
+  .main-explore {
+    margin: 30px auto;
+    border-radius: 6px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /*
+  .main-flex {
+    background-color: #e5e7d68e;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 6px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  */

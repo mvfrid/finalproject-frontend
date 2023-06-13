@@ -1,7 +1,9 @@
 .formbox h2 {
     text-align: center;
-    color: white;
+    color: #446173;
+    font-size: 28px;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .formbox {
@@ -14,3 +16,24 @@
     display: flex;
     
 }
+
+.main-loginregister {
+    background-color: #e5e7d6a6;
+    margin: 25px auto;
+    padding: 10px;
+    border-radius: 6px;
+    min-height: 350px;
+    width: 100%;
+    max-width: 450px;
+}
+
+
+/*
+.main {
+    background-color: #e5e7d68e;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 6px;
+    min-height: 200px;
+  }
+  */

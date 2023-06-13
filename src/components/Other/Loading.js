@@ -1,25 +1,11 @@
-import React from 'react'
-import { Player } from '@lottiefiles/react-lottie-player';
-
-// Flygplan loading animation
-// https://assets3.lottiefiles.com/packages/lf20_BsQxil31px.json
-
-// Jordglob snurrande
-// https://assets6.lottiefiles.com/datafiles/AtGF4p7zA8LpP2R/data.json
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Loading = () => {
   return (
-    <div className="empty-container">
-      {/* Add Lottie for explore loading (maybe startpage) */}
-      <Player
-        src="https://assets6.lottiefiles.com/datafiles/AtGF4p7zA8LpP2R/data.json"
-        loop
-        autoplay
-        speed={1.5}
-        style={{
-          width: '300px',
-          margin: '75px'
-        }} />
-    </div>
-  )
+    <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+      <CircularProgress size={60} sx={{ color: 'white' }} />
+    </Stack>
+  );
 }

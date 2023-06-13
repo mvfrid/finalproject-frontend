@@ -124,12 +124,13 @@ code {
 
 /*
 Old stuff:
-*/
+
 
 input {
   margin-right: 5px;
   padding: 8px;
 }
+*/
 
 .places {
   display: flex;
