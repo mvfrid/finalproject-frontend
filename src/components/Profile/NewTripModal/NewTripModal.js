@@ -77,6 +77,9 @@ export const NewTripModal = ({ open, onClose }) => {
             label="Name of trip"
             variant="outlined"
             disabled={loading}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') e.preventDefault();
+            }}
             required />
           <Box sx={styles.StyledBoxWrapper}>
             <Box sx={styles.StyledBoxInnerWrapper}>
