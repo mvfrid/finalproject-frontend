@@ -11,10 +11,13 @@ import { IconButton, Stack } from '@mui/material';
 import './AboutCards.css'
 import * as styles from './StyledAbout'
 
-export const AboutCards = ({ title, text, linkLinked, linkGit, linkPortfolio }) => {
+export const AboutCards = ({ title, text, image, linkLinked, linkGit, linkPortfolio }) => {
   return (
     <Card sx={styles.StyledAboutUsCards}>
-      <div className="placeholder-circle" />
+      <img
+        src={image}
+        className="photo-circle"
+        alt="about photos" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}

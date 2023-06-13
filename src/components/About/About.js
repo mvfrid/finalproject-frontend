@@ -28,7 +28,7 @@ export const About = ({ onPageChange }) => {
       <AboutCards
         title="Camilla"
         text="Camilla is lorem ipsum lorem ipsum lorem ipsum"
-        image=""
+        image="https://i.postimg.cc/J4xV4cHM/Mr-YF6d-Wa9-Ec-P7bqm17-Dr-Pw7m-Tgp5-Cx-250-kopia.png"
         linkLinked="https://www.linkedin.com/in/camilla-cronqvist/"
         linkGit="https://github.com/camcron"
         linkPortfolio="https://portfolio-camilla-cronqvist.netlify.app/" />
@@ -36,7 +36,7 @@ export const About = ({ onPageChange }) => {
       <AboutCards
         title="Matilda"
         text="Matilda is lorem ipsum lorem ipsum lorem ipsum"
-        image=""
+        image="https://i.postimg.cc/J4xV4cHM/Mr-YF6d-Wa9-Ec-P7bqm17-Dr-Pw7m-Tgp5-Cx-250-kopia.png"
         linkLinked="https://www.linkedin.com/in/matilda-frid-7923bb88/"
         linkGit="https://github.com/mvfrid"
         linkPortfolio="https://matilda-frid-portfolio.netlify.app/" />

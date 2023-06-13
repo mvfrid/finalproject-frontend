@@ -17,6 +17,10 @@ export const StyledAboutCards = {
 export const StyledAboutUsCards = {
   minWidth: 250,
   maxWidth: 400,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
   m: 0,
   backgroundColor: '#ffffffd1',
 
