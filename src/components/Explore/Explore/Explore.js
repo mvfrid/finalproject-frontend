@@ -92,7 +92,8 @@ export const Explore = ({ onPageChange }) => {
               <p>No such location found. Are you sure you spelled it correctly?</p>
             </div>
           )}
-          {!isLoading && (!placesData || placesData.length === 0) && <EmptyStateExplore />}
+          {!isLoading && !locationNotFound
+          && (!placesData || placesData.length === 0) && <EmptyStateExplore />}
         </div>
 
         {openCard ? (
