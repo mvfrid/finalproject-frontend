@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+
 export const StyledSearchBox = {
   display: 'flex',
   flexDirection: 'column',

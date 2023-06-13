@@ -1,9 +1,9 @@
 .formbox h2 {
     text-align: center;
     color: #446173;
-    font-size: 28px;
+    font-size: 40px;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .formbox {
@@ -18,22 +18,11 @@
 }
 
 .main-loginregister {
-    background-color: #e5e7d6a6;
-    margin: 25px auto;
+    background-color: #ffffffd1;
+    margin: 50px auto;
     padding: 10px;
     border-radius: 6px;
     min-height: 350px;
     width: 100%;
     max-width: 450px;
 }
-
-
-/*
-.main {
-    background-color: #e5e7d68e;
-    margin: 10px auto;
-    padding: 10px;
-    border-radius: 6px;
-    min-height: 200px;
-  }
-  */

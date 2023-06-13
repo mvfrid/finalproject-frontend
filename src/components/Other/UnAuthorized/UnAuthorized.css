@@ -9,20 +9,22 @@
 .unauth-h2 {
     text-align: center;
     font-size: 40px;
-    color: white;
+    color: #446173;
     margin: 0;
 }
 
 .unauth-h3 {
     text-align: center;
-    color: white;
-    margin-bottom: 40px;
+    color: #446173;
+    font-weight: 400;
+    margin-bottom: 20px;
     margin-top: 10px;
 }
 
   .main-unauth {
-    background-color: #e5e7d6a6;
-    margin: 25px auto;
+    /*background-color: #e5e7d6a6;*/
+    background-color: #ffffffd1;
+    margin: 50px auto;
     padding: 25px;
     border-radius: 6px;
     min-height: 300px;
