@@ -17,20 +17,21 @@ export const StyledBoxContainer = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '90%',
-  maxWidth: '450px',
+  maxWidth: '400px',
   bgcolor: 'background.paper',
-  border: '1px solid #000',
+  border: '1px solid #ccc',
+  borderRadius: '6px',
   boxShadow: 24,
-  px: 2,
+  px: 3,
   pt: 1,
   pb: 2,
 
   '@media (min-width: 668px)': {
-    maxWidth: '450px'
+    maxWidth: '425px'
   },
 
   '@media (min-width: 1025px)': {
-    maxWidth: '450px'
+    maxWidth: '425px'
   }
 };
 
@@ -47,17 +48,18 @@ export const StyledMediaBox = {
 export const StyledMediaTextBox = {
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'baseline',
+  alignItems: 'center',
   fontSize: '16px',
+  gap: '6px',
   justifyContent: 'space-between',
+  mt: 1
+};
 
-  '@media (min-width: 668px)': {
-    fontSize: '16px'
-  },
-
-  '@media (min-width: 1025px)': {
-    fontSize: '16px'
-  }
+export const StyledMediaTextIconBox = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: '6px'
 };
 
 export const StyledAddToTripBox = {

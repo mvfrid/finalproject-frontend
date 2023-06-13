@@ -97,7 +97,7 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
           variant="standard"
           value={input}
           onChange={(event) => setInput(event.target.value)}
-          sx={{ my: 1 }} />
+          sx={styles.StyledInputField} />
         <FormControl sx={{ m: 1, minWidth: '80px' }}>
           <InputLabel htmlFor="grouped-native-select">Type</InputLabel>
           <Select native defaultValue="" id="grouped-native-select" onChange={handleSelectChange} label="Type" variant="standard">

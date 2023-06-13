@@ -103,11 +103,15 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
               sx={styles.StyledModalImg} />
           </Box>
           <Box sx={styles.StyledMediaTextBox}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              <img src={selectedPlace.icon} alt="type of place" style={{ maxWidth: '30px', marginRight: '10px' }} />
-              {selectedPlace.name}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '20px' }}>
+            <Box sx={styles.StyledMediaTextIconBox}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                <img src={selectedPlace.icon} alt="type of place" style={{ maxWidth: '28px', marginRight: '6px' }} />
+              </Typography>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {selectedPlace.name}
+              </Typography>
+            </Box>
+            <Typography id="modal-modal-description" sx={{ fontSize: '16px', minWidth: '50px' }}>
             ⭐️ {selectedPlace.rating}
             </Typography>
           </Box>
