@@ -34,7 +34,7 @@ export const App = () => {
       break;
     default:
       // Default background image for other routes
-      backgroundImageUrl = 'url(https://i.postimg.cc/Y0GmTmWp/ian-dooley-hp-TH5b6mo2s-unsplash-gradient-yellow3-short.png';
+      backgroundImageUrl = 'url(https://i.postimg.cc/Y0GmTmWp/ian-dooley-hp-TH5b6mo2s-unsplash-gradient-yellow3-short.png)';
       break;
   }
 
