@@ -62,7 +62,7 @@
     text-decoration: underline;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 374px) {
   /*Styles för small mobile*/
 
   .header {
