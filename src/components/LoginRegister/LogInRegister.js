@@ -123,7 +123,6 @@ export const LogInRegister = ({ mode }) => {
           dispatch(user.actions.setUserInfo(data.response))
           dispatch(user.actions.setError(null));
           setTimeout(() => {
-            setLoading(false);
             setSuccess(true);
             setSubmitting(false);
           }, 3000);
@@ -139,13 +138,9 @@ export const LogInRegister = ({ mode }) => {
         }
       })
       .finally(() => {
-        // setTimeout(() => {
-        //   setLoading(false);
-        //   setSuccess(true);
-        //   setSubmitting(false);
-        // }, 2000);
-        // setTimeout(() => setLoading(false), 2000)
-        // setSubmitting(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
       })
   };
 
@@ -187,12 +182,7 @@ export const LogInRegister = ({ mode }) => {
                   sx={buttonSx}
                   variant="contained"
                   disabled={isSubmitting || !isValid}
-                  type="submit"
-                  onClick={() => {
-                    if (!isSubmitting) {
-                      setSuccess(false);
-                    }
-                  }}>
+                  type="submit">
                   {isSubmitting && !success ? 'Submitting...' : 'Submit'}
                 </Button>
 
