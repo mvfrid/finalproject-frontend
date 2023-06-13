@@ -1,31 +1,35 @@
-.unauth {
-    background-color: #e5e7d68e;
-    margin: 10px auto;
-    padding: 10px;
-    border-radius: 6px;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
-.unauth .button-container {
+
+.main-unauth .button-container {
     display: flex;
     flex-direction: column;
+
 }
 
 .unauth-h2 {
     text-align: center;
     font-size: 40px;
     color: white;
-    margin: 20px;
+    margin: 0;
 }
 
 .unauth-h3 {
     text-align: center;
     color: white;
     margin-bottom: 40px;
+    margin-top: 10px;
 }
 
-  
+  .main-unauth {
+    background-color: #e5e7d6a6;
+    margin: 25px auto;
+    padding: 25px;
+    border-radius: 6px;
+    min-height: 300px;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

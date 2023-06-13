@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
+/* eslint-disable linebreak-style */
 import React, { useState } from 'react';
 import { Select, useTheme } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
