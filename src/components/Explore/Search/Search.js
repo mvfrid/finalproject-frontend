@@ -15,13 +15,8 @@ import * as styles from './StyledSearch'
 import './Search.css';
 
 export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) => {
-  // const [inputLong, setInputLong] = useState(null);
-  // const [inputLat, setInputLat] = useState(null);
   const [input, setInput] = useState('');
   const [type, setType] = useState('tourist_attraction');
-  // const [notFound, setNotFound] = useState(false);
-
-  // console.log('notFound from Search:', notFound)
 
   const theme = useTheme();
   const isMobile = theme.breakpoints.down('sm'); // or 'xs' depending on your desired breakpoint
