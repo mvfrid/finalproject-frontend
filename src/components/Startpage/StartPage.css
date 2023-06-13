@@ -7,6 +7,10 @@
     gap: 2em;
 }
 
+.lottie-startpage {
+    width: 250px;
+}
+
 
 .startpage-text {
     max-width: 350px;
@@ -36,12 +40,53 @@
 @media (min-width: 667px) {
     /* Styles for tablet view */
     .startpage {
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+        margin: 60px 50px;
+        padding-top: 50px;
+    }
+
+    .lottie-startpage {
+        width: 450px;
+    }
+
+    .startpage-text {
+        max-width: 440px;
+    }
+
+    .startpage-text h2 {
+        font-size: 36px;
+    }
+    
+    .startpage-text h3 {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .start-button-container {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 25px;
+    }
+
+}
+  
+@media (min-width: 1024px) {
+    /* Styles for desktop view */
+  
+    .startpage {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
         gap: 10px;
         margin: 60px 50px;
+        padding-top: 100px;
+    }
+
+    .lottie-startpage {
+        width: 350px;
     }
 
     .startpage-text h2 {
@@ -60,12 +105,5 @@
         align-items: flex-start;
         margin-top: 25px;
     }
-
-}
-  
-@media (min-width: 1025px) {
-    /* Styles for desktop view */
-  
-
 }
   

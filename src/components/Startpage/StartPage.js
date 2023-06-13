@@ -33,9 +33,7 @@ export const StartPage = ({ onPageChange }) => {
           src="https://assets10.lottiefiles.com/packages/lf20_2w54jzgb.json"
           loop
           autoplay
-          style={{
-            width: '300px'
-          }} />
+          className="lottie-startpage" />
       </div>
       <div className="startpage-text">
         <h2>Your journey starts here</h2>
@@ -48,7 +46,7 @@ export const StartPage = ({ onPageChange }) => {
               sx={{
                 backgroundColor: '#446173',
                 '&:hover': {
-                  backgroundColor: '#345461' // Optional: You can also control the hover color here
+                  backgroundColor: '#345461'
                 }
               }}
               variant="contained"
@@ -60,7 +58,7 @@ export const StartPage = ({ onPageChange }) => {
               sx={{
                 color: '#446173',
                 '&:hover': {
-                  color: '#345461' // Optional: You can also control the hover color here
+                  color: '#345461'
                 }
               }}
               type="button"
@@ -75,7 +73,7 @@ export const StartPage = ({ onPageChange }) => {
               sx={{
                 backgroundColor: '#446173',
                 '&:hover': {
-                  backgroundColor: '#345461' // Optional: You can also control the hover color here
+                  backgroundColor: '#345461'
                 }
               }}
               variant="contained"
