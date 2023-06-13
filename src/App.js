@@ -30,7 +30,7 @@ export const App = () => {
       backgroundImageUrl = 'url(https://i.postimg.cc/bNW2jnZF/justin-kauffman-Et-ORiy-Lq6s-unsplash-grad-4b.png)';
       break;
     case 'about':
-      backgroundImageUrl = 'url(https://i.postimg.cc/65N7QKWB/photo-1498307833015-e7b400441eb8-gradient-yellow3.png)';
+      backgroundImageUrl = 'url(https://i.postimg.cc/jSNV8VVk/leio-mclaren-Fwd-ZYz0yc9g-unsplash-grad-4.png)';
       break;
     default:
       // Default background image for other routes

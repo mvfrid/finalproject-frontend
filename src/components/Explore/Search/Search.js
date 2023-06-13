@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import { API_KEY, PLACES_URL } from 'utils/urls';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
+import * as styles from './StyledSearch'
 import './Search.css';
 
 export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) => {
@@ -87,19 +88,8 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
   }
 
   return (
-    <Box sx={{ display: 'flex',
-      flexDirection: isMobile ? 'column' : 'row',
-      fontSize: isMobile ? '32px' : '11px',
-      alignItems: 'stretch',
-      justifyContent: 'space-between',
-      backgroundColor: 'white',
-      p: 1,
-      borderRadius: 2,
-      mt: 6,
-      mb: 2 }}>
-      <Box sx={{ display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: isMobile ? 'center' : 'space-between' }}>
+    <Box sx={styles.StyledSearchBox}>
+      <Box sx={styles.StyledInputBox}>
         <LocationOnIcon sx={{ color: 'action.active', ml: 1, mr: 2, my: 2 }} />
         <TextField
           id="input-with-sx"

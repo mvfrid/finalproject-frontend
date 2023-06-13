@@ -4,6 +4,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { AboutCards } from './AboutCards';
+import './About.css'
+import * as styles from './StyledAbout'
 
 export const About = ({ onPageChange }) => {
   useEffect(() => {
@@ -11,8 +13,8 @@ export const About = ({ onPageChange }) => {
   }, []);
 
   return (
-    <div className="main">
-      <Card sx={{ minWidth: 250 }}>
+    <div className="about-container">
+      <Card sx={styles.StyledAboutCards}>
         <CardContent>
           <Typography variant="h5" component="div">
           About Us
@@ -26,6 +28,7 @@ export const About = ({ onPageChange }) => {
       <AboutCards
         title="Camilla"
         text="Camilla is lorem ipsum lorem ipsum lorem ipsum"
+        image=""
         linkLinked="https://www.linkedin.com/in/camilla-cronqvist/"
         linkGit="https://github.com/camcron"
         linkPortfolio="https://portfolio-camilla-cronqvist.netlify.app/" />
@@ -33,11 +36,12 @@ export const About = ({ onPageChange }) => {
       <AboutCards
         title="Matilda"
         text="Matilda is lorem ipsum lorem ipsum lorem ipsum"
+        image=""
         linkLinked="https://www.linkedin.com/in/matilda-frid-7923bb88/"
         linkGit="https://github.com/mvfrid"
         linkPortfolio="https://matilda-frid-portfolio.netlify.app/" />
 
-      <Card sx={{ minWidth: 250 }}>
+      <Card sx={styles.StyledAboutCards}>
         <CardContent>
           <Typography variant="h5" component="div">
           Resources

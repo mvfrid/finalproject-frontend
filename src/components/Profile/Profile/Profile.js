@@ -9,9 +9,11 @@ export const Profile = ({ onPageChange }) => {
   }, []);
 
   return (
-    <div className="main">
+    <>
       <UserInfo />
-      <TripList />
-    </div>
+      <div className="main">
+        <TripList />
+      </div>
+    </>
   )
 }
