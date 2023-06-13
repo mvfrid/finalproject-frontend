@@ -16,7 +16,7 @@ export const NavBarHamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const navRef = useRef(null);
+  const hamburgerOpenRef = useRef(null);
   const accessToken = useSelector((store) => store.user.accessToken);
 
   const onClickGoToStart = () => {
@@ -67,6 +67,28 @@ export const NavBarHamburger = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (isOpen && hamburgerOpenRef.current && !hamburgerOpenRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isOpen]);
+
   return (
     <div className="hamburger-menu">
       <ToggleButton onClick={() => setIsOpen(!isOpen)} sx={{ border: 'none' }}>
@@ -76,7 +98,7 @@ export const NavBarHamburger = () => {
           : <MenuIcon sx={{ fontSize: '56px', mt: '8px', color: 'white' }} onClick={toggleMenu} />}
       </ToggleButton>
       {isOpen && (
-        <div className="hamburger-open">
+        <div className="hamburger-open" ref={hamburgerOpenRef}>
           <button className="MenuBtn" type="button" onClick={onClickGoToStart}>Home</button>
           <button className="MenuBtn" type="button" onClick={onClickGoToExplore}>Explore</button>
           <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
