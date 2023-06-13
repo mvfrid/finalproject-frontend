@@ -9,7 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { CardMedia, IconButton, CircularProgress, Fab } from '@mui/material';
+import { CardMedia, IconButton, CircularProgress, Fab, Divider } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { trip, patchTripWithNewCard } from 'reducers/trip';
 import { green } from '@mui/material/colors';
@@ -118,6 +118,7 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
           <Typography id="modal-modal-description" sx={{ mt: 1, mb: 4 }}>
             {selectedPlace.vicinity}
           </Typography>
+          <Divider sx={{ my: 1 }} />
           <Box sx={styles.StyledAddToTripBox}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Select Trip</InputLabel>

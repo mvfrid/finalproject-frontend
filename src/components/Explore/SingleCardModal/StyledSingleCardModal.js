@@ -36,8 +36,8 @@ export const StyledBoxContainer = {
 };
 
 export const StyledModalImg = {
-  maxHeight: '150px',
-  maxWidth: '150px'
+  maxHeight: '170px',
+  maxWidth: '170px'
 };
 
 export const StyledMediaBox = {
