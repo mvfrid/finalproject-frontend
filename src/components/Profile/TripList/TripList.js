@@ -19,6 +19,7 @@ export const TripList = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
+    console.log('is this being triggered???')
     dispatch(fetchTrips());
   }, []);
 
