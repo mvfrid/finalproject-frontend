@@ -109,7 +109,6 @@ export const fetchTrips = () => {
           const responseData = response.response.data; // Access the correct data
           console.log('responseData:', responseData);
           dispatch(trip.actions.setTripList(responseData)); // Dispatch the correct data
-          return dispatch(fetchTrips()); // Return a new promise for chaining
         } else {
           dispatch(trip.actions.setError(response.response));
         }
