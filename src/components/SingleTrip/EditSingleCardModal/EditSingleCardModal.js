@@ -2,9 +2,10 @@
 /* eslint-disable max-len */
 /* eslint-disable quote-props */
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Box, Button, TextField, Typography, Modal, Rating, IconButton } from '@mui/material';
-import { updateSingleCard, fetchTrips } from 'reducers/trip';
+import { useDispatch, useSelector } from 'react-redux';
+import { Box, Button, TextField, Typography, Modal, Rating, IconButton, CircularProgress } from '@mui/material';
+import { trip, updateSingleCard, fetchTrips } from 'reducers/trip';
+import { green } from '@mui/material/colors';
 import { useParams } from 'react-router-dom';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import * as styles from './StyledEditSingleCardModal'
@@ -22,6 +23,22 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
   const [commentValue, setCommentValue] = useState(currentCommentValue || '');
   const [starsValue, setStarsValue] = useState(currentStarsValue || 0);
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.trip.isLoadingPost);
+  const success = useSelector((state) => state.trip.isSuccessful);
+
+  const buttonSx = success
+    ? {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700]
+      }
+    }
+    : {
+      bgcolor: '#446173',
+      '&:hover': {
+        bgcolor: '#2a3d47'
+      }
+    };
 
   useEffect(() => {
     dispatch(fetchTrips());
@@ -51,7 +68,11 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
 
     console.log('Dispatching update with data:', updatedData);
     dispatch(updateSingleCard(id, cardId, commentValue.trim(), starsValue));
-    handleClose();
+
+    setTimeout(() => {
+      handleClose();
+      dispatch(trip.actions.setSuccess(false));
+    }, 3000);
   };
 
   return (
@@ -62,14 +83,12 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
       aria-describedby="modal-modal-description">
 
       <Box sx={styles.StyledBoxContainer}>
-        <Box sx={styles.StyledCloseBtnBox}>
-          <IconButton
-            type="button"
-            sx={styles.StyledCloseBtn}
-            onClick={closeModal}>
-            <CloseRoundedIcon />
-          </IconButton>
-        </Box>
+        <IconButton
+          type="button"
+          sx={styles.StyledCloseBtn}
+          onClick={closeModal}>
+          <CloseRoundedIcon />
+        </IconButton>
         <Box>
           <Typography
             sx={styles.StyledTypo}
@@ -98,12 +117,28 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
                 }} />
             </Box>
             <Box sx={styles.StyledBtnBox}>
-              <Button
-                sx={styles.StyledUpdBtn}
-                type="submit"
-                variant="contained">
-            Update
-              </Button>
+              <Box sx={{ m: 1, position: 'relative' }}>
+                <Button
+                  variant="contained"
+                  sx={buttonSx}
+                  disabled={loading}
+                  type="submit">
+                  Update
+                </Button>
+
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    sx={{
+                      color: green[500],
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: '-12px',
+                      marginLeft: '-12px'
+                    }} />
+                )}
+              </Box>
             </Box>
           </form>
         </Box>
@@ -111,3 +146,54 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
     </Modal>
   );
 };
+
+/*
+              <Box sx={{ m: 1, position: 'relative' }}>
+                <Button
+                  variant="contained"
+                  sx={buttonSx}
+                  disabled={loading}
+                  endIcon={<DeleteIcon />}
+                  onClick={handleClickDeleteCard}>
+                  Delete Card
+                </Button>
+
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    sx={{
+                      color: green[500],
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: '-12px',
+                      marginLeft: '-12px'
+                    }} />
+                )}
+              </Box>
+
+                          <Box sx={styles.StyledBtnBox}>
+              <Button
+                sx={styles.StyledUpdBtn}
+                type="submit"
+                variant="contained">
+            Update
+              </Button>
+
+                const patchCardUpdate = (event) => {
+    event.preventDefault();
+    const updatedData = {};
+
+    if (commentValue.trim() !== '' && commentValue !== currentCommentValue) {
+      updatedData.cardComment = commentValue.trim();
+    }
+
+    if (starsValue !== currentStarsValue) {
+      updatedData.cardStars = starsValue;
+    }
+
+    console.log('Dispatching update with data:', updatedData);
+    dispatch(updateSingleCard(id, cardId, commentValue.trim(), starsValue));
+    handleClose();
+  };
+*/

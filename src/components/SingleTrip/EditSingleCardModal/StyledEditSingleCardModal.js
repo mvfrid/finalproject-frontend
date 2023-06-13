@@ -2,25 +2,33 @@ export const StyledBoxContainer = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  gap: '12px',
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '85%',
+  maxWidth: '425px',
   bgcolor: 'background.paper',
-  border: '1px solid #000',
+  border: '1px solid #ccc',
+  borderRadius: '6px',
   boxShadow: 24,
-  px: 4,
-  py: 1
-};
+  px: 2,
+  pt: 1.5,
+  pb: 2,
 
-export const StyledCloseBtnBox = {
-  display: 'flex',
-  justifyContent: 'flex-end'
+  '@media (min-width: 668px)': {
+    maxWidth: '425px'
+  },
+
+  '@media (min-width: 1025px)': {
+    maxWidth: '425px'
+  }
 };
 
 export const StyledCloseBtn = {
-  p: 0
+  p: 0,
+  marginLeft: 'auto'
 };
 
 export const StyledTypo = {
@@ -46,5 +54,6 @@ export const StyledBtnBox = {
 };
 
 export const StyledUpdBtn = {
-  backgroundColor: '#446173'
+  backgroundColor: '#446173',
+  mt: 2
 };
