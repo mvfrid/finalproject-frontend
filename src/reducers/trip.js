@@ -256,7 +256,10 @@ export const deleteTrip = (tripId) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoadingPost(false));
+        setTimeout(() => {
+          dispatch(trip.actions.setLoadingPost(false));
+          dispatch(trip.actions.setSuccess(true));
+        }, 2000);
       })
   };
 };
@@ -284,7 +287,7 @@ export const deleteSingleCard = (tripId, cardId) => {
           const responseData = response.response.data;
           console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteCardFromTrip(cardId));
-          dispatch(fetchTrips());
+          // dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }
@@ -296,7 +299,13 @@ export const deleteSingleCard = (tripId, cardId) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoadingPost(false));
+        setTimeout(() => {
+          dispatch(trip.actions.setLoadingPost(false));
+          dispatch(trip.actions.setSuccess(true));
+        }, 2000);
+        setTimeout(() => {
+          dispatch(fetchTrips());
+        }, 2000);
       })
   };
 };
@@ -324,7 +333,7 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
           const responseData = response.response.data;
           console.log('responseData:', responseData);
           dispatch(trip.actions.setUpdateCardInTrip(responseData));
-          dispatch(fetchTrips());
+          // dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }
@@ -336,7 +345,13 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoadingPost(false));
+        setTimeout(() => {
+          dispatch(trip.actions.setLoadingPost(false));
+          dispatch(trip.actions.setSuccess(true));
+        }, 2000);
+        setTimeout(() => {
+          dispatch(fetchTrips());
+        }, 2000);
       })
   };
 };

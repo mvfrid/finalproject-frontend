@@ -15,18 +15,14 @@ export const StyledBoxContainer = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '90%',
-  maxWidth: '400px',
+  maxWidth: '450px',
   bgcolor: 'background.paper',
-  border: '1px solid #000',
+  border: '1px solid #ccc',
+  borderRadius: '6px',
   boxShadow: 24,
   px: 2,
-  py: 1,
-
-  '@media (min-width:668px)': {
-  },
-
-  '@media (min-width:1025px)': {
-  }
+  pt: 1.5,
+  pb: 2
 };
 
 export const StyledCloseBtnBox = {
@@ -45,41 +41,54 @@ export const StyledMediaBox = {
 
 export const StyledCardMediaImg = {
   padding: 2,
-  maxWidth: '200px'
+  width: '150px',
+  height: '120px',
+  objectFit: 'cover'
 };
 
 export const StyledTypographyName = {
-  fontSize: '26px',
+  fontSize: '24px',
   marginTop: '4px',
 
   '@media (min-width:668px)': {
-    fontSize: '32px'
+    fontSize: '28px'
   },
 
   '@media (min-width:1025px)': {
-    fontSize: '40px'
+    fontSize: '28px'
   }
 };
 
-export const StyledIconRat = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '30px'
+export const StyledIcon = {
+  maxWidth: '50px'
+};
+
+export const StyledRating = {
+  minWidth: '50px',
+  fontSize: '20px'
 };
 
 export const StyledTypoVic = {
   fontSize: '16px',
-  color: 'text.secondary'
+  color: 'text.secondary',
+  mt: 0.5
 };
 
 export const StyledReviewBox = {
   display: 'flex',
   flexDirection: 'column',
-  mt: '5px'
+  my: '10px'
+};
+
+export const StyledTypoReviewTitle = {
+  fontSize: '16px',
+  fontWeight: '700'
 };
 
 export const StyledTypoReview = {
-  fontSize: '18px'
+  fontSize: '16px',
+  fontWeight: '400',
+  mb: 1
 };
 
 export const StyledBtnBox = {
@@ -95,30 +104,19 @@ export const StyledBottomBtns = {
   borderColor: '#446173'
 };
 
-export const StyledModalImg = {
-  maxHeight: '150px',
-  maxWidth: '150px'
-};
-/*
-export const StyledMediaBox = {
+export const StyledPlaceTextBox = {
   display: 'flex',
-  justifyContent: 'center'
-};
-
-export const StyledMediaTextBox = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
   fontSize: '16px',
   gap: '6px',
   justifyContent: 'space-between',
   mt: 1
 };
 
-export const StyledMediaTextIconBox = {
+export const StyledPlaceTextIconBox = {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  gap: '6px'
+  gap: '12px'
 };
-*/

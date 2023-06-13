@@ -4,7 +4,11 @@ import { Box, Button, Typography, Modal, Rating, CardMedia, IconButton } from '@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteSingleCard } from 'reducers/trip';
+// import { trip, deleteSingleCard } from 'reducers/trip';
+// import CircularProgress from '@mui/material/CircularProgress';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import Divider from '@mui/material/Divider';
+// import { green } from '@mui/material/colors';
 import { EditSingleCardModal } from '../EditSingleCardModal/EditSingleCardModal';
 import * as styles from './StyledSingleTripModal.js'
 
@@ -14,10 +18,28 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
 
   const dispatch = useDispatch();
   const [openEditModal, setOpenEditModal] = useState(false);
+  // const loading = useSelector((state) => state.trip.isLoadingPost);
+  // const success = useSelector((state) => state.trip.isSuccessful);
+
+  /*
+  const buttonSx = success
+    ? {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700]
+      }
+    }
+    : {
+      bgcolor: '#446173',
+      '&:hover': {
+        bgcolor: '#2a3d47'
+      }
+    };
+    */
 
   const singleCard = useSelector((store) => {
     if (!cardId) return null;
-    const singleTrip = store.trip.tripList.find((trip) => trip._id === tripId);
+    const singleTrip = store.trip.tripList.find((tripItem) => tripItem._id === tripId);
     console.log('singletrip', singleTrip)
     return singleTrip.cards.find((card) => card._id === cardId);
   });
@@ -35,6 +57,17 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
     dispatch(deleteSingleCard(tripId, singleCard._id));
   };
 
+  /*
+  const handleClickDeleteCard = () => {
+    dispatch(deleteSingleCard(tripId, singleCard._id));
+
+    setTimeout(() => {
+      handleClose();
+      dispatch(trip.actions.setSuccess(false));
+    }, 3000);
+  };
+      */
+
   const handleEditModalClose = () => {
     setOpenEditModal(false);
   };
@@ -48,8 +81,7 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
-      <Box
-        sx={styles.StyledBoxContainer}>
+      <Box sx={styles.StyledBoxContainer}>
         {cardDataAvailable ? (
           <>
             <Box sx={styles.StyledCloseBtnBox}>
@@ -60,33 +92,45 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
                 <CloseRoundedIcon />
               </IconButton>
             </Box>
+
             <Box sx={styles.StyledMediaBox}>
               <CardMedia
                 sx={styles.StyledCardMediaImg}
                 image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
             </Box>
-            <Typography
-              sx={styles.StyledTypographyName}
-              id="modal-modal-title">
-              {singleCard.cardName}
-            </Typography>
 
-            <Typography
-              sx={styles.StyledIconRat}>
-              <img src={singleCard.cardIcon} alt="card icon" className="card-icon" />
-              ⭐️ {singleCard.cardRating}
-            </Typography>
+            <Box sx={styles.StyledPlaceTextBox}>
+              <Typography
+                sx={styles.StyledTypographyName}
+                id="modal-modal-title">
+                {singleCard.cardName}
+              </Typography>
 
-            <Typography
-              sx={styles.StyledTypoVic}>
+              <Box sx={styles.StyledPlaceTextIconBox}>
+                <Typography sx={styles.StyledIcon}>
+                  <img
+                    src={singleCard.cardIcon}
+                    alt="card icon"
+                    style={{ maxWidth: '40px', maxHeight: '35px' }} />
+                </Typography>
+
+                <Typography sx={styles.StyledRating}>
+                  ⭐️ {singleCard.cardRating}
+                </Typography>
+              </Box>
+            </Box>
+
+            <Typography sx={styles.StyledTypoVic}>
               {singleCard.cardVicinity}
             </Typography>
+
+            <Divider sx={{ my: 2 }} />
 
             <Box sx={styles.StyledReviewBox}>
               <Typography
                 id="modal-modal-description"
-                sx={styles.StyledTypoReview}>
-              My review:
+                sx={styles.StyledTypoReviewTitle}>
+                My review:
               </Typography>
 
               <Typography
@@ -126,6 +170,33 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
                 onClick={handleClickDeleteCard}>
                 Delete Card
               </Button>
+
+              {/*
+              <Box sx={{ m: 1, position: 'relative' }}>
+                <Button
+                  variant="contained"
+                  sx={buttonSx}
+                  disabled={loading}
+                  endIcon={<DeleteIcon />}
+                  onClick={handleClickDeleteCard}>
+                  Delete Card
+                </Button>
+
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    sx={{
+                      color: green[500],
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: '-12px',
+                      marginLeft: '-12px'
+                    }} />
+                )}
+              </Box>
+              */}
+
             </Box>
           </>
         ) : (
