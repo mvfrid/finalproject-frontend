@@ -7,7 +7,7 @@ export const StyledSearchBox = {
   backgroundColor: 'white',
   padding: '1px',
   borderRadius: '6px',
-  marginTop: '6px',
+  marginTop: '36px',
   marginBottom: '2px',
 
   '@media (min-width: 668px)': {
