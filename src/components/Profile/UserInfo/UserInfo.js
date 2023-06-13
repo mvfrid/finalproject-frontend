@@ -22,15 +22,20 @@ export const UserInfo = () => {
     <div className="profile-section">
       <div className="profile-info">
         <h2>Hi <span>{userInfo.username}!</span></h2>
-        <div>
+        <div className="user-container">
           <div className="profile-user-info">
             <img src={userInfo.profilePicture} alt="user profile" className="profilepic" />
             <div className="name-div" />
           </div>
           <div className="profile-text">
-            <p>Name: <span>{userInfo.profileName}</span></p>
-            <p>About me:</p>
-            <p><span>{userInfo.profileText}</span></p>
+            <div className="profile-name">
+              <p>Name:</p>
+              <p><span>{userInfo.profileName}</span></p>
+            </div>
+            <div className="profile-aboutme">
+              <p>About me:</p>
+              <p><span>{userInfo.profileText}</span></p>
+            </div>
             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
               <InstagramIcon sx={{ color: '#446173' }} />
             </a>
