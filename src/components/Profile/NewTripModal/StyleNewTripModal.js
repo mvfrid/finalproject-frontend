@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { green } from '@mui/material/colors';
 
 export const StyledBoxContainer = {

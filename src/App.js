@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -24,12 +25,10 @@ export const App = () => {
 
   switch (currentPage) {
     case 'profile':
-      backgroundImageUrl = 'url(https://i.postimg.cc/9MfJdGzG/pietro-de-grandi-T7-K4a-EPo-GGk-unsplash-grad-final.png)';
+      backgroundImageUrl = 'url(https://i.postimg.cc/zB9KyWhD/humphrey-muleba-Tej-Fa7-VW5e4-unsplash-grad-final.png)';
       break;
     case 'explore':
-      backgroundImageUrl = 'url(https://i.postimg.cc/FRj3JzVj/kit-suman-5mcnze-SHFv-E-unsplash-grad-final.png)';
-      // backgroundImageUrl = 'url(https://i.postimg.cc/FR11Nqd2/ian-dooley-Du-BNA1-QMp-PA-unsplash-grad-final.png)'; - ballonger, fin!
-      // backgroundImageUrl = 'url(https://i.postimg.cc/bNW2jnZF/justin-kauffman-Et-ORiy-Lq6s-unsplash-grad-4b.png)'; - nuvarande
+      backgroundImageUrl = 'url(https://i.postimg.cc/FR11Nqd2/ian-dooley-Du-BNA1-QMp-PA-unsplash-grad-final.png)';
       break;
     case 'about':
       backgroundImageUrl = 'url(https://i.postimg.cc/0Q3d7FTs/dorian-mongel-g-Vw-Fedcc1r-Y-unsplash-grad-final.png)';

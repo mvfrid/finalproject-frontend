@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react'
 import { Player } from '@lottiefiles/react-lottie-player';
 import './EmptyStateSingleTrip.css'
