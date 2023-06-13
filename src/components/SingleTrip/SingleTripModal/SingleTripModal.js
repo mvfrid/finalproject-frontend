@@ -22,6 +22,7 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
     return singleTrip.cards.find((card) => card._id === cardId);
   });
   console.log('singlecard', singleCard)
+
   const handleOpen = () => {
     setOpenEditModal(true);
   }
