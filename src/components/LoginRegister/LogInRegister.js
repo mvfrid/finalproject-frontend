@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
 import { useNavigate } from 'react-router-dom';
@@ -12,14 +12,11 @@ import { TextField } from 'formik-mui';
 import { green } from '@mui/material/colors';
 
 export const LogInRegister = ({ mode }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const timer = useRef();
-  const [success, setSuccess] = useState(false);
-
-  console.log('mode:', mode, loading)
 
   useEffect(() => {
     if (accessToken) {
@@ -51,11 +48,13 @@ export const LogInRegister = ({ mode }) => {
       }
     };
 
+  /*
   useEffect(() => {
     return () => {
       clearTimeout(timer.current);
     };
   }, []);
+  */
 
   const validateValues = (values) => {
     const errors = {};
@@ -94,6 +93,9 @@ export const LogInRegister = ({ mode }) => {
   };
 
   const onFormSubmit = (values, { setSubmitting, setFieldError }) => {
+    setLoading(true);
+    setSuccess(false);
+
     const options = {
       method: 'POST',
       headers: {
@@ -120,8 +122,14 @@ export const LogInRegister = ({ mode }) => {
           dispatch(user.actions.setUserId(data.response.id));
           dispatch(user.actions.setUserInfo(data.response))
           dispatch(user.actions.setError(null));
+          setTimeout(() => {
+            setLoading(false);
+            setSuccess(true);
+            setSubmitting(false);
+          }, 3000);
         } else {
           clearUserInfo(data.response);
+          setSuccess(false)
           if (mode === 'users/register' && data.response.message === 'Username is already taken') {
             setFieldError('username', 'Username is already taken');
           } else if (mode === 'users/login') {
@@ -131,8 +139,13 @@ export const LogInRegister = ({ mode }) => {
         }
       })
       .finally(() => {
-        setTimeout(() => setLoading(false), 2000)
-        setSubmitting(false);
+        // setTimeout(() => {
+        //   setLoading(false);
+        //   setSuccess(true);
+        //   setSubmitting(false);
+        // }, 2000);
+        // setTimeout(() => setLoading(false), 2000)
+        // setSubmitting(false);
       })
   };
 
@@ -169,34 +182,33 @@ export const LogInRegister = ({ mode }) => {
             <Box
               margin={1}
               sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Button
-                sx={buttonSx}
-                variant="contained"
-                disabled={isSubmitting || !isValid}
-                type="submit"
-                onClick={() => {
-                  if (!isSubmitting) {
-                    setSuccess(false);
-                    timer.current = window.setTimeout(() => {
-                      setSuccess(true);
-                    }, 2000);
-                  }
-                }}>
-                {isSubmitting && !success ? 'Submitting...' : 'Submit'}
-              </Button>
+              <Box sx={{ m: 1, position: 'relative' }}>
+                <Button
+                  sx={buttonSx}
+                  variant="contained"
+                  disabled={isSubmitting || !isValid}
+                  type="submit"
+                  onClick={() => {
+                    if (!isSubmitting) {
+                      setSuccess(false);
+                    }
+                  }}>
+                  {isSubmitting && !success ? 'Submitting...' : 'Submit'}
+                </Button>
 
-              {isSubmitting && (
-                <CircularProgress
-                  size={24}
-                  sx={{
-                    color: green[500],
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    marginTop: '-12px',
-                    marginLeft: '-12px'
-                  }} />
-              )}
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    sx={{
+                      color: green[500],
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: '-12px',
+                      marginLeft: '-12px'
+                    }} />
+                )}
+              </Box>
               <Box margin={1}>
                 {mode === 'users/register' ? <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToLogin(resetForm, values)}>Already a member? Login here</Button> : <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToRegister(resetForm, values)}>Not a member yet? Register here</Button>}
               </Box>
@@ -209,8 +221,46 @@ export const LogInRegister = ({ mode }) => {
   )
 }
 
-// eslint-disable-next-line no-lone-blocks
-{ /* <div className="main">
+/*
+<Box
+margin={1}
+sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+<Button
+  sx={buttonSx}
+  variant="contained"
+  disabled={isSubmitting || !isValid}
+  type="submit"
+  onClick={() => {
+    if (!isSubmitting) {
+      setSuccess(false);
+      timer.current = window.setTimeout(() => {
+        setSuccess(true);
+      }, 2000);
+    }
+  }}>
+  {isSubmitting && !success ? 'Submitting...' : 'Submit'}
+</Button>
+
+{isSubmitting && (
+  <CircularProgress
+    size={24}
+    sx={{
+      color: green[500],
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: '-12px',
+      marginLeft: '-12px'
+    }} />
+)}
+<Box margin={1}>
+  {mode === 'users/register' ? <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToLogin(resetForm, values)}>Already a member? Login here</Button> : <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToRegister(resetForm, values)}>Not a member yet? Register here</Button>}
+</Box>
+
+</Box>
+
+eslint-disable-next-line no-lone-blocks
+<div className="main">
       {mode === '/users/register' ? <h2>Register</h2> : <h2>Login</h2>}
       <form onSubmit={onFormSubmit}>
         <input
@@ -227,7 +277,7 @@ export const LogInRegister = ({ mode }) => {
       </form>
       // eslint-disable-next-line max-len
       {mode === '/users/register' ? <button type="button" onClick={onClickGoToLogin}>Log in instead</button> : <button type="button" onClick={onClickGoToRegister}>Register instead</button>}
-    </div> */ }
+    </div>
 
 // else if (mode === '/users/register' && data.response.message === 'Username is already taken') {
 //   dispatch(user.actions.setAccessToken(null));
@@ -243,3 +293,4 @@ export const LogInRegister = ({ mode }) => {
 //   dispatch(user.actions.setUserInfo(null));
 //   // setErrorMsgLogin('Credentials do not match')
 // }
+*/

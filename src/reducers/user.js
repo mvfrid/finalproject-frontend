@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+
 import { createSlice } from '@reduxjs/toolkit';
 
 export const user = createSlice({
