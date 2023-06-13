@@ -1,11 +1,10 @@
-
   .profile-section {
     background-color: rgb(243, 246, 240);
     margin: 10px auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
     border-radius: 6px;
@@ -46,35 +45,28 @@
   }
 
   .profile-info h2 {
-    font-size: 26px;
+    font-size: 28px;
     margin-bottom: 10px;
     color: #446173;
-
   }
 
   .profile-info h2 span {
     font-family:'Courier New', Courier, monospace;
   }
   
-  .profile-info p:first-child {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
   .profile-info p {
-    font-size: 18px;
+    font-size: 20px;
     padding: 2px;
     text-align: center;
     color: grey;
   }
 
-  .profile-info p:third-child {
-    color: black;
-  }
-
-
   .profile-text a {
     margin-top: 10px;
+  }
+
+  .profile-name {
+    margin-bottom: 10px;
   }
   
   p span {
@@ -88,3 +80,75 @@
   .profile-section .button-container {
     align-self: flex-end;
   }  
+
+  @media (min-width: 550px) {
+    .profile-section {
+      background-color: rgb(243, 246, 240);
+      margin: 10px auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 6px;
+      width: 85%;
+      max-width: 650px;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-info h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #446173;
+      margin-top: 20px;
+    }
+
+    .profile-user-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+    }
+
+    .user-container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: row;
+      margin-top: 20px;
+    }
+
+    .profilepic {
+      max-width: 120px;
+      max-height: 120px;
+      border-radius: 50%;
+      margin: 10px;
+      box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.19);
+      -webkit-box-shadow: 2px 2px 5px 3px rgba(5, 55, 11, 0.19);
+      -moz-box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.19);
+      border: 3px solid #446173;
+      margin-right: 10%;
+    }
+
+    .profile-text {
+      align-items: flex-start;
+      margin-left: 23%;
+    }
+
+    .profile-name p {
+      text-align: left;
+      font-size: 20px;
+    }
+
+    .profile-aboutme p {
+      text-align: left;
+      font-size: 20px;
+    }
+  
+  }

@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
 import MenuIcon from '@mui/icons-material/Menu';
-import { ToggleButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { ToggleButton } from '@mui/material';
 // import './Header.css';
 
 export const NavBarHamburger = () => {
@@ -91,7 +91,7 @@ export const NavBarHamburger = () => {
 
   return (
     <div className="hamburger-menu">
-      <ToggleButton onClick={() => setIsOpen(!isOpen)} sx={{ border: 'none' }}>
+      <ToggleButton value="" onClick={() => setIsOpen(!isOpen)} sx={{ border: 'none' }}>
         {isOpen ? <CloseIcon
           sx={{ fontSize: '56px', mt: '8px', color: 'white' }}
           onClick={toggleMenu} />
