@@ -175,6 +175,7 @@ export const patchTripWithNewCard = (tripId, place) => {
   // const { cardIcon, cardName, cardPhotoRef, cardPlaceId, cardRating, cardVicinity } = req.body;
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoadingPost(true))
+    dispatch(trip.actions.setSuccess(false))
 
     const options = {
       method: 'PATCH',
@@ -212,7 +213,10 @@ export const patchTripWithNewCard = (tripId, place) => {
         console.log('error', error)
       })
       .finally(() => {
-        dispatch(trip.actions.setLoadingPost(false));
+        setTimeout(() => {
+          dispatch(trip.actions.setLoadingPost(false));
+          dispatch(trip.actions.setSuccess(true));
+        }, 2000);
       })
   };
 };
