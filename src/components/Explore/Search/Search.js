@@ -88,6 +88,56 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
   }
 
   return (
+<<<<<<< HEAD
+    <form onSubmit={handleFormSubmit}>
+      <Box sx={styles.StyledSearchBox}>
+        <Box sx={styles.StyledInputBox}>
+          <LocationOnIcon sx={{ color: 'action.active', ml: 1, mr: 2, my: 2 }} />
+          <TextField
+            id="input-with-sx"
+            label="Destination"
+            variant="standard"
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+            sx={{ my: 1 }} />
+          <FormControl sx={{ m: 1, minWidth: '80px' }}>
+            <InputLabel htmlFor="grouped-native-select">Type</InputLabel>
+            <Select native defaultValue="" id="grouped-native-select" onChange={handleSelectChange} label="Type" variant="standard">
+              <option aria-label="None" value="" />
+              <optgroup label="Accomodation">
+                <option value="establishment">Establishment</option>
+                <option value="campground">Campground</option>
+                <option value="lodging">Lodging</option>
+              </optgroup>
+              <optgroup label="Food & drink">
+                <option value="restaurant">Restaurant</option>
+                <option value="cafe">Cafe</option>
+                <option value="bar">Bar</option>
+                <option value="bakery">Bakery</option>
+              </optgroup>
+              <optgroup label="Entertainment">
+                <option value="tourist_attraction">Tourist attraction</option>
+                <option value="museum">Museum</option>
+                <option value="amusement_park">Amusement park</option>
+                <option value="park">Park</option>
+                <option value="zoo">Zoo</option>
+              </optgroup>
+            </Select>
+          </FormControl>
+        </Box>
+        <Button
+          variant="contained"
+          endIcon={<SearchIcon />}
+          onClick={handleFormSubmit}
+          sx={{
+            m: 0.5,
+            backgroundColor: '#43B97F',
+            fontSize: '18px',
+            '&:hover': {
+              backgroundColor: '#2A8D5C'
+            }
+          }}>
+=======
     <Box sx={styles.StyledSearchBox}>
       <Box sx={styles.StyledInputBox}>
         <LocationOnIcon sx={{ color: 'action.active', ml: 1, mr: 2, my: 2 }} />
@@ -135,9 +185,11 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
             backgroundColor: '#2A8D5C'
           }
         }}>
+>>>>>>> 0dbdbd3f416caa75ec3e1059f32e6676bbcb9467
           Explore now
-      </Button>
-    </Box>
+        </Button>
+      </Box>
+    </form>
   )
 }
 
