@@ -9,11 +9,21 @@ export const StyledBoxContainer = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '85%',
+  maxWidth: '425px',
   bgcolor: 'background.paper',
   border: '1px solid #000',
   boxShadow: 24,
-  px: 4,
-  py: 1
+  px: 2,
+  pt: 1,
+  pb: 2,
+
+  '@media (min-width: 668px)': {
+    maxWidth: '425px'
+  },
+
+  '@media (min-width: 1025px)': {
+    maxWidth: '425px'
+  }
 };
 
 export const StyledTypoTitle = {
@@ -47,8 +57,7 @@ export const StyledCircularProgress = {
 };
 
 export const StyledCloseBtnBox = {
-  display: 'flex',
-  justifyContent: 'flex-end'
+  marginLeft: 'auto'
 };
 
 export const StyledCloseBtn = {
