@@ -10,6 +10,7 @@ import { UnAuthorized } from './components/Other/UnAuthorized/UnAuthorized.js'
 import { NotFound } from './components/Other/NotFound'
 import { About } from './components/About/About.js'
 import { Profile } from './components/Profile/Profile/Profile.js'
+import { StateProvider, ThemeProvider } from './Providers'
 
 export const App = () => {
   const accessToken = useSelector((state) => state.user.accessToken);
@@ -43,48 +44,51 @@ export const App = () => {
       <div className="OuterWrapper">
         <div className="BackgroundUnderlay" />
         <div className="InnerWrapper" style={{ backgroundImage: backgroundImageUrl }}>
+          <ThemeProvider value="dark">
+            <StateProvider>
+              <Header />
+              <Routes>
+                <Route path="/" element={<StartPage onPageChange={handlePageChange} />} />
 
-          <Header />
-          <Routes>
-            <Route path="/" element={<StartPage onPageChange={handlePageChange} />} />
+                {accessToken !== null ? (
+                  <Route path="/explore" element={<Explore onPageChange={handlePageChange} />} />
+                ) : (
+                  <Route
+                    path="/explore"
+                    element={<Navigate to="/unauthorized" replace />} />
+                )}
 
-            {accessToken !== null ? (
-              <Route path="/explore" element={<Explore onPageChange={handlePageChange} />} />
-            ) : (
-              <Route
-                path="/explore"
-                element={<Navigate to="/unauthorized" replace />} />
-            )}
+                <Route
+                  path="/login"
+                  element={<LogInRegister mode="users/login" />} />
 
-            <Route
-              path="/login"
-              element={<LogInRegister mode="users/login" />} />
+                <Route
+                  path="/register"
+                  element={<LogInRegister mode="users/register" />} />
 
-            <Route
-              path="/register"
-              element={<LogInRegister mode="users/register" />} />
+                <Route path="/about" element={<About onPageChange={handlePageChange} />} />
 
-            <Route path="/about" element={<About onPageChange={handlePageChange} />} />
+                {accessToken !== null ? (
+                  <Route path="/profile" element={<Profile onPageChange={handlePageChange} />} />
+                ) : (
+                  <Route
+                    path="/profile"
+                    element={<Navigate to="/unauthorized" replace />} />
+                )}
 
-            {accessToken !== null ? (
-              <Route path="/profile" element={<Profile onPageChange={handlePageChange} />} />
-            ) : (
-              <Route
-                path="/profile"
-                element={<Navigate to="/unauthorized" replace />} />
-            )}
+                {accessToken !== null ? (
+                  <Route path="/trips/:id" element={<SingleTrip />} />
+                ) : (
+                  <Route
+                    path="/trips/:id"
+                    element={<Navigate to="/unauthorized" replace />} />
+                )}
 
-            {accessToken !== null ? (
-              <Route path="/trips/:id" element={<SingleTrip />} />
-            ) : (
-              <Route
-                path="/trips/:id"
-                element={<Navigate to="/unauthorized" replace />} />
-            )}
-
-            <Route path="/unauthorized" element={<UnAuthorized />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+                <Route path="/unauthorized" element={<UnAuthorized />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </StateProvider>
+          </ThemeProvider>
         </div>
       </div>
     </BrowserRouter>

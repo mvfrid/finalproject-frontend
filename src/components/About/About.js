@@ -6,10 +6,14 @@ import Typography from '@mui/material/Typography';
 import { AboutCards } from './AboutCards';
 import './About.css'
 import * as styles from './StyledAbout'
+import { useTheme } from '../../Providers'
 
 export const About = ({ onPageChange }) => {
+  const theme = useTheme()
+
   useEffect(() => {
     onPageChange('about'); // Invoke onPageChange with the current page information
+    console.log({ theme })
   }, []);
 
   return (
