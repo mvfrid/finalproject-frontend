@@ -9,13 +9,13 @@ import { SingleCardModal } from '../SingleCardModal/SingleCardModal.js';
 import { Search } from '../Search/Search.js';
 import { Loading } from '../../Other/Loading.js';
 import { EmptyStateExplore } from '../EmptyStateExplore/EmptyStateExplore.js';
-import * as styles from './StyledExplore.js'
-import './Explore.css'
+import * as styles from './StyledExplore.js';
+import './Explore.css';
 
 export const Explore = ({ onPageChange }) => {
   const dispatch = useDispatch();
   const [openCard, setOpenCard] = useState(false);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [locationNotFound, setLocationNotFound] = useState(false);
 
   const [placesData, setPlacesData] = useState([]); // All 20 places fetched
@@ -38,7 +38,7 @@ export const Explore = ({ onPageChange }) => {
     // We get a selected object back from SingleCardPreviewExplore
     // We store it in selectedPlace, to use later
     // Then we launch the handleOpen function to open Modal
-    console.log('handleCardClick place selected:', place)
+    console.log('handleCardClick place selected:', place);
     setSelectedPlace(place);
     handleOpen();
   };
@@ -54,21 +54,21 @@ export const Explore = ({ onPageChange }) => {
     // Handle the loading state change in the parent component
     // You can perform any necessary actions based on the loading state
     console.log('Loading state changed:', loading);
-    setIsLoading(loading)
+    setIsLoading(loading);
     // Additional logic here if needed
   };
 
   const handleLocationNotFound = (value) => {
-    console.log('handleLocationNotFound value:', value)
+    console.log('handleLocationNotFound value:', value);
     setLocationNotFound(value);
     if (locationNotFound) {
-      setPlacesData([])
+      setPlacesData([]);
     }
   };
 
-  console.log('Explore locationNotFound:', locationNotFound)
-  console.log('Explore isLoading:', isLoading)
-  console.log('Explore placesData:', placesData)
+  console.log('Explore locationNotFound:', locationNotFound);
+  console.log('Explore isLoading:', isLoading);
+  console.log('Explore placesData:', placesData);
 
   return (
     <>
@@ -79,33 +79,61 @@ export const Explore = ({ onPageChange }) => {
       <div className="main-flex">
         <div className="places">
           {isLoading && <Loading />}
-          {!isLoading && placesData && placesData.length > 0 && (
-            placesData.map((place) => (
-              <SingleCardPreviewExplore
-                place={place}
-                key={place.place_id}
-                onCardClick={handleCardClick} />
-            ))
+          {!isLoading && (
+            <div>
+              {placesData.length > 0 ? (
+                placesData.map((place) => (
+                  <SingleCardPreviewExplore
+                    place={place}
+                    key={place.place_id}
+                    onCardClick={handleCardClick} />
+                ))
+              ) : (
+                <EmptyStateExplore />
+              )}
+            </div>
           )}
           {!isLoading && locationNotFound && (
             <div className="location-not-found">
-              <p>No such location found. Are you sure you spelled it correctly?</p>
+              <p>
+                No such location found. Are you sure you spelled it correctly?
+              </p>
             </div>
           )}
-          {!isLoading && (!placesData || placesData.length === 0) && <EmptyStateExplore />}
         </div>
 
-        {openCard ? (
+        {placesData.length > 0 || (!isLoading && locationNotFound) ? (
+          placesData.map((place) => (
+            <SingleCardPreviewExplore
+              place={place}
+              key={place.place_id}
+              onCardClick={handleCardClick} />
+          ))
+        ) : (
+          <div>
+            {!isLoading && locationNotFound ? (
+              <div className="location-not-found">
+                <p>
+                  No such location found. Are you sure you spelled it correctly?
+                </p>
+              </div>
+            ) : (
+              <EmptyStateExplore />
+            )}
+          </div>
+        )}
+
+        {openCard && (
           <div className="card">
             <SingleCardModal
               selectedPlace={selectedPlace}
               open={openCard}
               handleClose={handleClose} />
           </div>
-        ) : null}
+        )}
       </div>
     </>
   );
-}
+};
 
 //           {!isLoading && (!placesData || placesData.length === 0) && <EmptyStateExplore />}
