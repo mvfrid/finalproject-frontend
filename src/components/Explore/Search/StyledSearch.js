@@ -6,7 +6,7 @@ export const StyledSearchBox = {
   justifyContent: 'space-between',
   backgroundColor: 'white',
   padding: '1px',
-  borderRadius: '2px',
+  borderRadius: '6px',
   marginTop: '6px',
   marginBottom: '2px',
 
@@ -25,6 +25,7 @@ export const StyledInputBox = {
   display: 'flex',
   alignItems: 'flex-end',
   justifyContent: 'center',
+  borderRadius: '6px',
 
   '@media (min-width: 668px)': {
     justifyContent: 'space-between'
@@ -32,6 +33,19 @@ export const StyledInputBox = {
 
   '@media (min-width: 1025px)': {
     justifyContent: 'space-between'
+  }
+};
+
+export const StyledInputField = {
+  my: 1,
+  minWidth: '100px',
+
+  '@media (min-width: 668px)': {
+    minWidth: '200px'
+  },
+
+  '@media (min-width: 1025px)': {
+    minWidth: '500px'
   }
 };
 
