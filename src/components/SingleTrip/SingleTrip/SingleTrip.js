@@ -14,7 +14,9 @@ import { EmptyStateSingleTrip } from '../EmptyStateSingleTrip/EmptyStateSingleTr
 export const SingleTrip = () => {
   const { id } = useParams();
   const tripList = useSelector((store) => store.trip.tripList);
+  const accessToken = useSelector((store) => store.user.accessToken)
   console.log('data from singletrip', tripList)
+  console.log('accesstoken singletrip', accessToken)
 
   const trip = tripList.find((singleTrip) => singleTrip._id === id);
   console.log('data from trip', trip)
@@ -25,12 +27,12 @@ export const SingleTrip = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [selectedCardId, setSelectedCardId] = useState(null);
+  console.log('selected card id', selectedCardId)
 
   const handleClickDelete = (event) => {
     event.preventDefault();
     dispatch(deleteTrip(id));
     navigate('/profile')
-    // NEEDS AN IF ELSE SUCCESS???
   };
 
   const handleClickBack = () => {
@@ -41,6 +43,10 @@ export const SingleTrip = () => {
     setSelectedCardId(card._id);
     handleOpen();
   };
+
+  const handleCardNull = (data) => {
+    setSelectedCardId(data)
+  }
 
   return (
     <>
@@ -61,7 +67,8 @@ export const SingleTrip = () => {
         open={open}
         handleClose={handleClose}
         cardId={selectedCardId}
-        tripId={id} />
+        tripId={id}
+        onCardNull={handleCardNull} />
 
       <Box sx={styles.StyledBtnBox}>
         <Button

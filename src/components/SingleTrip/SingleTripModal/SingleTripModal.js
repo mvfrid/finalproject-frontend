@@ -54,7 +54,9 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
   };
 
   const handleClickDeleteCard = () => {
-    dispatch(deleteSingleCard(tripId, singleCard._id));
+    dispatch(deleteSingleCard(tripId, singleCard._id))
+    handleClose();
+    // dispatch(fetchTrips(tripId));
   };
 
   /*

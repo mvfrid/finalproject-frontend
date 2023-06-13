@@ -80,6 +80,9 @@ export const trip = createSlice({
     },
     setUpdateCardInTrip: (store, action) => {
       store.updateCardInTrip = action.payload;
+    },
+    setSingleTrip: (store, action) => {
+      store.singleTrip = action.payload;
     }
   }
 });
@@ -88,6 +91,7 @@ export const trip = createSlice({
 export const fetchTrips = () => {
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoadingGet(true))
+    console.log('running fetch trips')
 
     const options = {
       method: 'GET',
@@ -166,6 +170,55 @@ export const postNewTrip = (value) => {
         setTimeout(() => {
           dispatch(fetchTrips());
         }, 2000);
+      })
+  };
+};
+
+// Thunk making a GET-request to fetch a single trip from the backend
+export const getSingleTrip = (tripId) => {
+  return (dispatch, getState) => {
+    dispatch(trip.actions.setLoadingPost(true))
+    dispatch(trip.actions.setSuccess(false))
+    console.log(tripId)
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // eslint-disable-next-line quote-props
+        'Authorization': getState().user.accessToken
+      }
+      // body: JSON.stringify({ tripId })
+    };
+
+    fetch(MONGO_DB_URL(`trips/${tripId}`), options)
+      // postNewTrip
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.success) {
+          dispatch(trip.actions.setError(null));
+          const responseData = response.response.data; // this is expected to be a single trip
+          console.log('responseData:', responseData);
+          dispatch(trip.actions.setSingleTrip(responseData));
+        } else {
+          dispatch(trip.actions.setSingleTrip(null));
+          dispatch(trip.actions.setError(response));
+        }
+        console.log('response:', response)
+      })
+      .catch((error) => {
+        dispatch(trip.actions.setError(error))
+        console.log('error', error)
+      })
+      .finally(() => {
+        // dispatch(trip.actions.setLoading(false));
+        setTimeout(() => {
+          dispatch(trip.actions.setLoadingPost(false));
+          dispatch(trip.actions.setSuccess(true));
+        }, 2000);
+        // setTimeout(() => {
+        //   dispatch(fetchTrips());
+        // }, 2000);
       })
   };
 };
@@ -284,7 +337,7 @@ export const deleteSingleCard = (tripId, cardId) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          const responseData = response.response.data;
+          const responseData = response.response;
           console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteCardFromTrip(cardId));
           // dispatch(fetchTrips());
@@ -303,9 +356,9 @@ export const deleteSingleCard = (tripId, cardId) => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
         }, 2000);
-        setTimeout(() => {
-          dispatch(fetchTrips());
-        }, 2000);
+        // setTimeout(() => {
+        //   dispatch(fetchTrips());
+        // }, 2000);
       })
   };
 };
