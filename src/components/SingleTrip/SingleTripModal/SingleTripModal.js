@@ -105,6 +105,144 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
 
   const cardDataAvailable = singleCard !== null;
 
+  if (singleCard) {
+    return (
+      <Modal
+        sx={styles.StyledModal}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={styles.StyledBoxContainer}>
+          {cardDataAvailable ? (
+            <>
+              <Box sx={styles.StyledCloseBtnBox}>
+                <IconButton
+                  type="button"
+                  sx={styles.StyledCloseBtn}
+                  onClick={closeModal}>
+                  <CloseRoundedIcon />
+                </IconButton>
+              </Box>
+
+              <Box sx={styles.StyledMediaBox}>
+                <CardMedia
+                  sx={styles.StyledCardMediaImg}
+                  image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
+              </Box>
+
+              <Box sx={styles.StyledPlaceTextBox}>
+                <Typography
+                  sx={styles.StyledTypographyName}
+                  id="modal-modal-title">
+                  {singleCard.cardName}
+                </Typography>
+
+                <Box sx={styles.StyledPlaceTextIconBox}>
+                  <Typography sx={styles.StyledIcon}>
+                    <img
+                      src={singleCard.cardIcon}
+                      alt="card icon"
+                      style={{ maxWidth: '40px', maxHeight: '35px' }} />
+                  </Typography>
+
+                  <Typography sx={styles.StyledRating}>
+                    ⭐️ {singleCard.cardRating}
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Typography sx={styles.StyledTypoVic}>
+                {singleCard.cardVicinity}
+              </Typography>
+
+              <Divider sx={{ my: 2 }} />
+
+              <Box sx={styles.StyledReviewBox}>
+                <Typography
+                  id="modal-modal-description"
+                  sx={styles.StyledTypoReviewTitle}>
+                  My review:
+                </Typography>
+
+                <Typography
+                  id="modal-modal-description"
+                  sx={styles.StyledTypoReview}>
+                  {singleCard.cardComment}
+                </Typography>
+
+                <Rating
+                  name="read-only"
+                  size="large"
+                  value={singleCard.cardStars}
+                  readOnly />
+              </Box>
+
+              <Box sx={styles.StyledBtnBox}>
+                <Button
+                  sx={styles.StyledBottomBtns}
+                  type="button"
+                  size="small"
+                  variant="outlined"
+                  onClick={handleOpen}>
+                  Update review
+                </Button>
+
+                <EditSingleCardModal
+                  open={openEditModal}
+                  handleClose={handleEditModalClose}
+                  card={singleCard} />
+
+                <Button
+                  sx={styles.StyledBottomBtns}
+                  type="submit"
+                  size="small"
+                  variant="outlined"
+                  endIcon={<DeleteIcon />}
+                  onClick={handleClickDeleteCard}>
+                  Delete Card
+                </Button>
+
+                {/*
+                <Box sx={{ m: 1, position: 'relative' }}>
+                  <Button
+                    variant="contained"
+                    sx={buttonSx}
+                    disabled={loading}
+                    endIcon={<DeleteIcon />}
+                    onClick={handleClickDeleteCard}>
+                    Delete Card
+                  </Button>
+
+                  {loading && (
+                    <CircularProgress
+                      size={24}
+                      sx={{
+                        color: green[500],
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        marginTop: '-12px',
+                        marginLeft: '-12px'
+                      }} />
+                  )}
+                </Box>
+                */}
+
+              </Box>
+            </>
+          ) : (
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              No card selected
+            </Typography>
+          )}
+        </Box>
+      </Modal>
+    );
+  } else { return (null) }
+}
+
+/*
   return (
     <Modal
       sx={styles.StyledModal}
@@ -226,7 +364,6 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
                     }} />
                 )}
               </Box>
-              */}
 
             </Box>
           </>
@@ -239,3 +376,5 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
     </Modal>
   );
 }
+
+*/
