@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export const StyledTypoName = {
   display: 'block',
   fontSize: '12px',

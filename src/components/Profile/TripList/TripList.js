@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import './TripList.css'
 import { Button } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+// import AddIcon from '@mui/icons-material/Add';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { NewTripModal } from '../NewTripModal/NewTripModal';
 import { TripListCardPreview } from '../TripListCardPreview/TripListCardPreview';
 import { EmptyStateTripList } from '../EmptyStateTripList/EmptyStateTripList';
@@ -24,29 +27,45 @@ export const TripList = () => {
     dispatch(fetchTrips());
   }, []);
 
+  console.log('tripList in Trip List component:', tripList)
+
   return (
     <div className="trip-section">
-      <h2>Trip collections</h2>
-      <Button
-        variant="outlined"
-        sx={{ color: '#446173', borderColor: '#446173', my: '20px', width: '150px' }}
-        size="small"
-        onClick={handleOpen}
-        endIcon={<AddPhotoAlternateIcon />}>
+      <div className="trip-header">
+        <h2>Trip collections</h2>
+        <Button
+          variant="contained"
+          sx={{ color: 'white', backgroundColor: '#446173', my: '20px', width: '150px' }}
+          size="small"
+          onClick={handleOpen}
+          endIcon={<AddPhotoAlternateIcon />}>
         Add new trip
-      </Button>
-      <NewTripModal open={open} onClose={handleClose} />
+        </Button>
+        <NewTripModal open={open} onClose={handleClose} />
+      </div>
 
       {tripList.length > 0 ? (
         <div className="trip-wrapper">
           {tripList.map((singleTrip) => (
             <div className="trip" key={singleTrip._id}>
               <Link to={`/trips/${singleTrip._id}`}>
-                <h3>{singleTrip.tripName}</h3>
-                <div className="mini-card-row">
-                  {singleTrip.cards.slice(0, 3).map((card) => (
-                    <TripListCardPreview card={card} showButton={false} key={card._id} />
-                  ))}
+                <div className="singletrip-header">
+                  <h3>{singleTrip.tripName}</h3>
+                  <p>{singleTrip.cards.length} items</p>
+                  <hr className="divider-dark" />
+                </div>
+                <div className="trip-preview-section">
+                  <div className="mini-card-row">
+                    {singleTrip.cards.slice(0, 3).map((card) => (
+                      <TripListCardPreview card={card} showButton={false} key={card._id} />
+                    ))}
+                  </div>
+                  {singleTrip.cards.length > 3 && (<MoreHorizIcon fontSize="large" sx={{ color: '#3e57679f' }} />)}
+                  {singleTrip.cards.length === 0 && (
+                    <div className="emptytrip">
+                      <TravelExploreIcon fontSize="large" sx={{ color: '#3e5767', m: 1 }} />
+                      <p>Nothing added yet</p>
+                    </div>)}
                 </div>
               </Link>
             </div>

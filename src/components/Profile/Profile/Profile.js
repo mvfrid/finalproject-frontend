@@ -11,7 +11,7 @@ export const Profile = ({ onPageChange }) => {
   return (
     <>
       <UserInfo />
-      <div className="main">
+      <div className="main-triplist">
         <TripList />
       </div>
     </>

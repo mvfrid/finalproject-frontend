@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable camelcase */
 import React from 'react';
 import Card from '@mui/material/Card';
