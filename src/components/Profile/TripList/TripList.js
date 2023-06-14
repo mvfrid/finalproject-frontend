@@ -29,7 +29,7 @@ export const TripList = () => {
       <h2>Trip collections</h2>
       <Button
         variant="outlined"
-        sx={{ color: '#446173', borderColor: '#446173', my: '20px' }}
+        sx={{ color: '#446173', borderColor: '#446173', my: '20px', width: '150px' }}
         size="small"
         onClick={handleOpen}
         endIcon={<AddPhotoAlternateIcon />}>
