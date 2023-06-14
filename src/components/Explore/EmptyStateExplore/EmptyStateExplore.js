@@ -10,6 +10,7 @@ export const EmptyStateExplore = () => {
         src="https://assets10.lottiefiles.com/packages/lf20_Q6tgYJ.json"
         loop
         autoplay
+        speed={0.7}
         style={{
           width: '300px'
         }} />

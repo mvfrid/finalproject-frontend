@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +34,7 @@ export const StartPage = ({ onPageChange }) => {
           src="https://assets10.lottiefiles.com/packages/lf20_2w54jzgb.json"
           loop
           autoplay
+          speed={0.8}
           className="lottie-startpage" />
       </div>
       <div className="startpage-text">
