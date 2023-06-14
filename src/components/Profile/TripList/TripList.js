@@ -51,7 +51,7 @@ export const TripList = () => {
               <Link to={`/trips/${singleTrip._id}`}>
                 <div className="singletrip-header">
                   <h3>{singleTrip.tripName}</h3>
-                  <p>{singleTrip.cards.length} items</p>
+                  <p>{singleTrip.cards.length} {singleTrip.cards.length === 1 ? 'item' : 'items'}</p>
                   <hr className="divider-dark" />
                 </div>
                 <div className="trip-preview-section">

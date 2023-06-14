@@ -20,8 +20,23 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
   const [input, setInput] = useState('');
   const [type, setType] = useState('tourist_attraction');
 
-  const theme = useTheme();
-  const isMobile = theme.breakpoints.down('sm'); // or 'xs' depending on your desired breakpoint
+  // const theme = useTheme();
+  // const isMobile = theme.breakpoints.down('sm'); // or 'xs' depending on your desired breakpoint
+
+  /*
+  https://github.com/mvfrid/finalproject-frontend/commit/793576ce04d2755d1d7d7d711e9f3e11ef08f1a9
+
+              const urls = json.results.map((result) => {
+              if (result.photos && result.photos.length > 0) {
+                const photoReference = result.photos[0].photo_reference;
+                const photoWidth = 800;
+                return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`;
+              } else {
+                return null;
+              }
+            });
+            setPhotoUrl(urls);
+            */
 
   const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=${API_KEY}`;
 

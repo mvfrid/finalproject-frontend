@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export const StyledPreviewContainerExplore = {
   height: '185px',
   width: '135px',

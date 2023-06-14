@@ -121,7 +121,7 @@ export const fetchTrips = () => {
       .finally(() => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingGet(false));
-        }, 2000);
+        }, 1500);
       })
   };
 };
@@ -167,10 +167,10 @@ export const postNewTrip = (value) => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
-        }, 2000);
+        }, 1500);
         setTimeout(() => {
           dispatch(fetchTrips());
-        }, 2000);
+        }, 1500);
       })
   };
 };
@@ -216,7 +216,7 @@ export const getSingleTrip = (tripId) => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
-        }, 2000);
+        }, 1500);
         // setTimeout(() => {
         //   dispatch(fetchTrips());
         // }, 2000);
@@ -270,7 +270,7 @@ export const patchTripWithNewCard = (tripId, place) => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
-        }, 2000);
+        }, 1500);
       })
   };
 };
@@ -313,7 +313,7 @@ export const deleteTrip = (tripId) => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
-        }, 2000);
+        }, 1500);
       })
   };
 };
@@ -356,7 +356,7 @@ export const deleteSingleCard = (tripId, cardId) => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
-        }, 2000);
+        }, 1500);
         // setTimeout(() => {
         //   dispatch(fetchTrips());
         // }, 2000);
@@ -402,37 +402,10 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
-        }, 2000);
+        }, 1500);
         setTimeout(() => {
           dispatch(fetchTrips());
-        }, 2000);
+        }, 1500);
       })
   };
 };
-
-/*
-const fetchTrips = () => {
-  return (dispatch, getState) => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: getState().accessToken
-      }
-    };
-
-    dispatch(trip.actions.setError(null));
-
-    fetch(MONGO_DB_URL('trips'), options)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.success) {
-          console.log('response:', response);
-          dispatch(trip.actions.set(response.response.data));
-        } else {
-          dispatch(trip.actions.setError(response.response));
-        }
-      });
-  };
-};
-*/
