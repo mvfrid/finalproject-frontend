@@ -22,7 +22,7 @@
     flex-direction: row;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;  
   }
   
   .place-photo {
@@ -33,6 +33,7 @@
   
   .card {
     background-color: #fff;
+    align-self: center;
   }
 
   .main-explore {
@@ -42,8 +43,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 10px;
+  }
+
+  @media (min-width: 550px) {      
+    .main-explore {
+      max-width: 750px;
+    }
   }
   
+  @media (min-width: 750px) {
+    .main-explore {
+      margin: 30px auto;
+      border-radius: 6px;
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 800px;
+    }
+  
+  }
+
   /*
   .main-flex {
     background-color: #e5e7d68e;

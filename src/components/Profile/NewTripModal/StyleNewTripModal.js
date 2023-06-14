@@ -18,6 +18,7 @@ export const StyledBoxContainer = {
   px: 2,
   pt: 1,
   pb: 2,
+  borderRadius: '5px',
 
   '@media (min-width: 668px)': {
     maxWidth: '400px'

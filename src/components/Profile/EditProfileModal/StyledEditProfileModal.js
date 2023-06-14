@@ -13,6 +13,7 @@ export const StyledBoxContainer = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  borderRadius: '5px',
 
   '@media (min-width: 668px)': {
     maxWidth: '425px'

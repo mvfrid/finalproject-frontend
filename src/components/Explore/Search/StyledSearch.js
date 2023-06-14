@@ -11,23 +11,23 @@ export const StyledSearchBox = {
   borderRadius: '6px',
   marginTop: '36px',
   marginBottom: '2px',
-  mx: 'auto',
+  mx: '10px',
 
-  '@media (min-width: 668px)': {
+  '@media (min-width: 650px)': {
     flexDirection: 'row',
     mx: '16px'
   },
 
-  '@media (min-width: 1025px)': {
+  '@media (min-width: 750px)': {
     flexDirection: 'row',
-    maxWidth: '835px',
+    maxWidth: '800px',
     mx: 'auto'
   }
 };
 
 export const StyledInputBox = {
   display: 'flex',
-  alignItems: 'flex-end',
+  alignItems: 'baseline', // changed from flex-end to baseline
   justifyContent: 'center',
   borderRadius: '6px',
 
@@ -43,13 +43,14 @@ export const StyledInputBox = {
 export const StyledInputField = {
   my: 1,
   minWidth: '100px',
+  width: '80%',
 
   '@media (min-width: 668px)': {
     minWidth: '200px'
   },
 
   '@media (min-width: 1025px)': {
-    minWidth: '400px'
+    minWidth: '350px'
   }
 };
 
