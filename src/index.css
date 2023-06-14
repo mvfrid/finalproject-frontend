@@ -165,7 +165,7 @@ code {
     border-radius: 6px;
     min-height: 200px;
     width: 85%;
-    max-width: 650px;
+    max-width: 720px;
     margin: 10px auto;
     padding: 10px;
     gap: 10px;
@@ -183,6 +183,14 @@ code {
   .BackgroundUnderlay {
     width: 100%; /* Change width to 100% to fill the available width within the max-width */
     padding: 0 32px;
+  }
+
+  .main {
+    width: 85%;
+    max-width: 720px;
+    margin: 10px auto;
+    padding: 10px;
+    gap: 10px;
   }
 }
 

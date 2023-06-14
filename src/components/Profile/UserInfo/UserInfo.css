@@ -94,7 +94,7 @@
       align-items: center;
       border-radius: 6px;
       width: 85%;
-      max-width: 650px;
+      max-width: 720px;
     }
 
     .profile-info {
@@ -126,15 +126,15 @@
     }
 
     .profilepic {
-      max-width: 120px;
-      max-height: 120px;
+      max-width: 130px;
+      max-height: 130px;
       border-radius: 50%;
       margin: 10px;
       box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.19);
       -webkit-box-shadow: 2px 2px 5px 3px rgba(5, 55, 11, 0.19);
       -moz-box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.19);
       border: 3px solid #446173;
-      margin-right: 10%;
+      margin-right: 8%;
     }
 
     .profile-text {

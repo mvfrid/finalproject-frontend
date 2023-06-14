@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './TripListCardPreview.css'
+import * as styles from './StyledTripListCardPreview'
 
 export const TripListCardPreview = ({ card, showButton, onCardClick }) => {
   const handleOpenModal = () => {
@@ -22,25 +23,13 @@ export const TripListCardPreview = ({ card, showButton, onCardClick }) => {
         <Typography
           gutterBottom
           component="div"
-          className="card-preview-name"
-          style={{
-            fontSize: '12px',
-            padding: 2,
-            margin: 0,
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxWidth: '100%',
-            display: 'block'
-          }}>
+          sx={styles.StyledTypoName}>
           {card.cardName}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
-          style={{
-            fontSize: '12px'
-          }}>
+          sx={styles.StyledTypoRate}>
           ⭐️{card.cardRating}
         </Typography>
       </CardContent>
