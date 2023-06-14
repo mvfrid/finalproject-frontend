@@ -70,7 +70,7 @@ code {
   position: relative;
   top: 0;
   width: 100%;
-  max-width: 1000px; /* Added max-width */
+  max-width: 1000px;
   margin: 0 auto;
   height: 100vh;
   padding: 0 8px;
@@ -93,7 +93,57 @@ code {
   z-index: 1;
 }
 
-@media (min-width: 667px) {
+.places {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.single-place {
+  border: 1px solid hotpink;
+  padding: 20px;
+  margin: 10px;
+  max-width: 250px;
+}
+
+.place-photo {
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: cover;
+}
+
+.card {
+  background-color: #fff;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e5e7d68e;
+  border-radius: 6px;
+  min-height: 200px;
+  max-width: 420px;
+  padding: 10px;
+  gap: 10px;
+  margin: 15px;
+}
+
+.main-flex {
+  background-color: #e5e7d68e;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 6px;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 550px) {
   /* Styles for tablet view */
   
   .InnerWrapper {
@@ -104,6 +154,21 @@ code {
   .BackgroundUnderlay {
     padding: 0 16px;
     /*width: 80%;*/
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5e7d68e;
+    border-radius: 6px;
+    min-height: 200px;
+    width: 85%;
+    max-width: 650px;
+    margin: 10px auto;
+    padding: 10px;
+    gap: 10px;
   }
 }
 
@@ -131,48 +196,3 @@ input {
   padding: 8px;
 }
 */
-
-.places {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.single-place {
-  border: 1px solid hotpink;
-  padding: 20px;
-  margin: 10px;
-  max-width: 250px;
-}
-
-.place-photo {
-  max-width: 120px;
-  max-height: 120px;
-  object-fit: cover;
-}
-
-.card {
-  background-color: #fff;
-}
-
-
-.main {
-  background-color: #e5e7d68e;
-  margin: 10px auto;
-  padding: 10px;
-  border-radius: 6px;
-  min-height: 200px;
-}
-
-.main-flex {
-  background-color: #e5e7d68e;
-  margin: 10px auto;
-  padding: 10px;
-  border-radius: 6px;
-  min-height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

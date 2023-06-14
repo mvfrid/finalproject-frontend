@@ -1,6 +1,19 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5e7d68e;
+    border-radius: 6px;
+    min-height: 200px;
+    margin: 10px auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
 .trip-section {
     margin: auto;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .trip-wrapper {
@@ -38,23 +51,15 @@ a {
   margin: 0;
 }
 
-@media (min-width: 668px) {
-    .main {
-        width: 85%;
-    }
-
+@media (min-width: 550px) {
     .trip {
-        width: 80%;
+        width: 95%;
         height: 180px;
         padding: 10px;
+        margin: 0;
     }
-
 }
 
 @media (min-width: 1025px) {
-.trip {
-    width: 70%;
-    height: 180px;
-    padding: 10px;
-}
+
 }
