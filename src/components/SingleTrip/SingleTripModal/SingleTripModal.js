@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Box, Button, Typography, Modal, Rating, CardMedia, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteSingleCard } from 'reducers/trip';
+import { deleteSingleCard, trip } from 'reducers/trip';
 // import { trip, deleteSingleCard } from 'reducers/trip';
 // import CircularProgress from '@mui/material/CircularProgress';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -19,6 +19,9 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
 
   const dispatch = useDispatch();
   const [openEditModal, setOpenEditModal] = useState(false);
+  const tripList = useSelector((state) => state.trip.tripList);
+
+  console.log('tripList från SingleTripModal från Redux on mount:', tripList)
   // const loading = useSelector((state) => state.trip.isLoadingPost);
   // const success = useSelector((state) => state.trip.isSuccessful);
 
@@ -54,13 +57,38 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
     handleClose();
   };
 
+  const updateTripList = () => {
+    const updatedTripListAfterDelete = tripList.map((oneTrip) => {
+      console.log('oneTrip inside updateTripList function', oneTrip)
+      if (oneTrip._id === tripId) {
+        return {
+          ...oneTrip,
+          cards: oneTrip.cards.filter((card) => card._id !== cardId)
+        };
+      }
+      return oneTrip;
+    });
+
+    console.log('updatedTripListAfterDelete:', updatedTripListAfterDelete)
+
+    // dispatch(trip.setTripList(updatedTripListAfterDelete));
+    // dispatch(trip.action.setTripList(updatedTripListAfterDelete));
+    dispatch(trip.actions.setTripList(updatedTripListAfterDelete));
+    handleClose();
+  };
+
+  const handleClickDeleteCard = () => {
+    dispatch(deleteSingleCard(tripId, singleCard._id))
+    updateTripList();
+  };
+
+  /*
   const handleClickDeleteCard = () => {
     dispatch(deleteSingleCard(tripId, singleCard._id))
     handleClose();
     // dispatch(fetchTrips(tripId));
   };
 
-  /*
   const handleClickDeleteCard = () => {
     dispatch(deleteSingleCard(tripId, singleCard._id));
 
