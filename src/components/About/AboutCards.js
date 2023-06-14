@@ -11,7 +11,7 @@ import { IconButton, Stack } from '@mui/material';
 import './AboutCards.css'
 import * as styles from './StyledAbout'
 
-export const AboutCards = ({ title, text, image, linkLinked, linkGit, linkPortfolio }) => {
+export const AboutCards = ({ title, image, linkLinked, linkGit, linkPortfolio }) => {
   return (
     <Card sx={styles.StyledAboutUsCards}>
       <img
@@ -21,9 +21,6 @@ export const AboutCards = ({ title, text, image, linkLinked, linkGit, linkPortfo
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {text}
         </Typography>
       </CardContent>
 

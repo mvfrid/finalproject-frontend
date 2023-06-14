@@ -1,11 +1,11 @@
 export const StyledPreviewContainerExplore = {
   height: '185px',
   width: '135px',
-  mt: '5px',
+  mt: '15px',
 
   '@media (min-width: 375px)': {
-    height: '210px',
-    width: '160px'
+    height: '270px',
+    width: '300px'
   },
 
   '@media (min-width: 450px)': {
