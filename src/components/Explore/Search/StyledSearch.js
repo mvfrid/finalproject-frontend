@@ -27,7 +27,7 @@ export const StyledSearchBox = {
 
 export const StyledInputBox = {
   display: 'flex',
-  alignItems: 'baseline', // changed from flex-end to baseline
+  alignItems: 'center', // changed from flex-end to baseline
   justifyContent: 'center',
   borderRadius: '6px',
 

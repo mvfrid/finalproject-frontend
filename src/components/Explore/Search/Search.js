@@ -95,8 +95,8 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
           value={input}
           onChange={(event) => setInput(event.target.value)}
           sx={styles.StyledInputField} />
-        <FormControl sx={{ m: 1, minWidth: '80px', width: '80%' }}>
-          <InputLabel style={{ marginTop: '8px' }} htmlFor="grouped-native-select">Type</InputLabel>
+        <FormControl sx={{ my: 0, mx: 1, minWidth: '80px', width: '80%' }}>
+          <InputLabel sx={{ mt: 0 }} htmlFor="grouped-native-select">Type</InputLabel>
           <Select native defaultValue="" id="grouped-native-select" onChange={handleSelectChange} label="Type" variant="standard">
             <option aria-label="None" value="" />
             <optgroup label="Accomodation">

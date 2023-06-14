@@ -32,6 +32,7 @@
     flex-direction: column;
     padding: 2px;
     align-items: center;
+    width: 320px;
   }
   
   .profilepic {
@@ -134,12 +135,11 @@
       -webkit-box-shadow: 2px 2px 5px 3px rgba(5, 55, 11, 0.19);
       -moz-box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.19);
       border: 3px solid #446173;
-      margin-right: 8%;
     }
 
     .profile-text {
       align-items: flex-start;
-      margin-left: 23%;
+      margin-left: 16%;
     }
 
     .profile-name p {
