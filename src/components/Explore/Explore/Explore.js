@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchTrips } from 'reducers/trip';
-import { API_KEY, PLACES_URL } from 'utils/urls';
+import { API_KEY } from 'utils/urls';
 import SingleCardPreviewExplore from '../SingleCardPreviewExplore/SingleCardPreviewExplore.js';
 import { SingleCardModal } from '../SingleCardModal/SingleCardModal.js';
 import { Search } from '../Search/Search.js';
@@ -82,6 +82,11 @@ export const Explore = ({ onPageChange }) => {
     setPhotoUrl(urls);
   };
 
+  const findPhotoUrlByPlaceId = (placeId) => {
+    const foundUrl = photoUrl.find((index) => placesData[index].place_id === placeId);
+    return foundUrl || null;
+  };
+
   console.log('Explore placesData:', placesData);
   // console.log('Explore photoUrl:', photoUrl); // Vi får här 20 url:er
 
@@ -115,10 +120,11 @@ export const Explore = ({ onPageChange }) => {
           )}
         </div>
 
-        {openCard && (
+        {openCard && selectedPlace && (
           <div className="card">
             <SingleCardModal
               selectedPlace={selectedPlace}
+              photoUrl="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
               open={openCard}
               handleClose={handleClose} />
           </div>

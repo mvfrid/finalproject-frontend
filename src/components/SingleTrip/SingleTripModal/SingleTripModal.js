@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Typography, Modal, Rating, CardMedia, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { API_KEY } from 'utils/urls';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteSingleCard, trip } from 'reducers/trip';
 // import { trip, deleteSingleCard } from 'reducers/trip';
@@ -48,6 +49,17 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
     return singleTrip.cards.find((card) => card._id === cardId);
   });
   console.log('singlecard', singleCard)
+
+  const photoWidth = 500;
+  const photoReference = singleCard?.cardPhotoRef;
+  const placeholderUrl = 'https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg'
+  const photoUrl = singleCard ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}` : placeholderUrl;
+
+  /*
+  const photoWidth = 500;
+  const photoReference = singleCard.cardPhotoRef
+  const photourl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
+*/
 
   const handleOpen = () => {
     setOpenEditModal(true);
@@ -128,7 +140,8 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
               <Box sx={styles.StyledMediaBox}>
                 <CardMedia
                   sx={styles.StyledCardMediaImg}
-                  image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
+                  // image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
+                  image={photoUrl} />
               </Box>
 
               <Box sx={styles.StyledPlaceTextBox}>

@@ -42,8 +42,8 @@ export const StyledMediaBox = {
 
 export const StyledCardMediaImg = {
   padding: 2,
-  width: '150px',
-  height: '120px',
+  width: '280px',
+  height: '200px',
   objectFit: 'cover'
 };
 

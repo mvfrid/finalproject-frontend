@@ -38,8 +38,15 @@ export const StyledBoxContainer = {
 };
 
 export const StyledModalImg = {
-  maxHeight: '170px',
-  maxWidth: '170px'
+  height: '170px',
+  width: '220px',
+  objectFit: 'cover',
+
+  '@media (min-width: 668px)': {
+    height: '200px',
+    width: '300px'
+  }
+
 };
 
 export const StyledMediaBox = {

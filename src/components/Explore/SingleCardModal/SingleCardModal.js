@@ -1,9 +1,11 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
+import { API_KEY } from 'utils/urls';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import InputLabel from '@mui/material/InputLabel';
@@ -19,7 +21,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { NewTripModal } from '../../Profile/NewTripModal/NewTripModal';
 import * as styles from './StyledSingleCardModal'
 
-export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
+export const SingleCardModal = ({ selectedPlace, open, handleClose, photoUrl }) => {
   const [chosenTrip, setChosenTrip] = useState('');
   const [openAdd, setOpenAdd] = useState(false);
   const dispatch = useDispatch();
@@ -27,6 +29,12 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
   const tripList = useSelector((store) => store.trip.tripList);
   const loading = useSelector((state) => state.trip.isLoadingPost);
   const success = useSelector((state) => state.trip.isSuccessful);
+
+  const photoWidth = 500;
+  const photoReference = selectedPlace.photos[0].photo_reference
+  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
+
+  console.log('selectedPlace:', selectedPlace)
 
   const handleOpenAdd = () => {
     setOpenAdd(true);
@@ -96,10 +104,11 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
               <CloseRoundedIcon />
             </IconButton>
           </Box>
+
           <Box sx={styles.StyledMediaBox}>
             <CardMedia
               component="img"
-              image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
+              image={url}
               sx={styles.StyledModalImg} />
           </Box>
 
@@ -180,6 +189,7 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
 }
 
 /*
+<img src={url} alt="" />
             <Button
               sx={{ ml: 2 }}
               variant="contained"
