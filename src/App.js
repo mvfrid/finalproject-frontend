@@ -84,7 +84,7 @@ export const App = () => {
             )}
 
             <Route path="/unauthorized" element={<UnAuthorized />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>
       </div>

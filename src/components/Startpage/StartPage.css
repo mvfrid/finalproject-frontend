@@ -19,6 +19,7 @@
 .startpage-text h2 {
     color: #446173;
     text-align: center;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.295);
 }
 
 .startpage-text h3 {
