@@ -25,7 +25,7 @@ export const Header = () => {
     };
   }, []);
 
-  console.log('window.innerWidth', window.innerWidth, 'isDesktop:', isDesktop)
+  // console.log('window.innerWidth', window.innerWidth, 'isDesktop:', isDesktop)
 
   return (
     <div className="header">

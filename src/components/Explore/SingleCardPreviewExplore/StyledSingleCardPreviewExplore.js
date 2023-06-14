@@ -10,7 +10,7 @@ export const StyledPreviewContainerExplore = {
   },
 
   '@media (min-width: 450px)': {
-    height: '220px',
+    height: '240px',
     width: '170px',
     mt: '10px'
   },

@@ -2,14 +2,14 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+// import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 // import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import Typography from '@mui/material/Typography';
 import './SingleCardPreviewExplore.css'
 import * as styles from './StyledSingleCardPreviewExplore'
 
-const SingleCardPreviewExplore = ({ place, onCardClick }) => {
+const SingleCardPreviewExplore = ({ place, photoUrl, onCardClick }) => {
   // console.log('props/place from explore:', place);
 
   const handleButtonClick = (clickedPlace) => {
@@ -21,9 +21,11 @@ const SingleCardPreviewExplore = ({ place, onCardClick }) => {
 
   return (
     <Card sx={styles.StyledPreviewContainerExplore}>
-      <CardMedia
-        sx={styles.StyledCardPreviewImgExplore}
-        image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
+      {photoUrl ? (
+        <img src={photoUrl} alt="" className="place-photo" />
+      ) : (
+        <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
+      )}
       <CardContent
         sx={styles.StyledPreviewContentExplore}>
         <Typography
@@ -50,3 +52,17 @@ const SingleCardPreviewExplore = ({ place, onCardClick }) => {
 export default SingleCardPreviewExplore;
 
 //  <Button size="small" onClick={() => handleButtonClick(place)}>Read More</Button>
+// {photoUrl && <img src={photoUrl} alt="Place" />}
+
+/*
+<Card sx={styles.StyledPreviewContainerExplore}>
+      <CardMedia
+        sx={styles.StyledCardPreviewImgExplore}
+        image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
+
+      {photoUrl ? (
+        <img src={photoUrl} alt="" className="place-photo" />
+      ) : (
+        <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
+      )}
+      */

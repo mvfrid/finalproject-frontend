@@ -1,12 +1,13 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable max-len */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { fetchTrips } from 'reducers/trip';
 import { API_KEY, PLACES_URL } from 'utils/urls';
-import { fetchTrips, patchTripWithNewCard } from 'reducers/trip';
 import SingleCardPreviewExplore from '../SingleCardPreviewExplore/SingleCardPreviewExplore.js';
 import { SingleCardModal } from '../SingleCardModal/SingleCardModal.js';
 import { Search } from '../Search/Search.js';
@@ -23,6 +24,7 @@ export const Explore = ({ onPageChange }) => {
 
   const [placesData, setPlacesData] = useState([]); // All 20 places fetched
   const [selectedPlace, setSelectedPlace] = useState(null); // One object
+  const [photoUrl, setPhotoUrl] = useState([]); // For storing image URLs
 
   useEffect(() => {
     onPageChange('explore'); // Invoke onPageChange with the current page information
@@ -41,37 +43,47 @@ export const Explore = ({ onPageChange }) => {
     // We get a selected object back from SingleCardPreviewExplore
     // We store it in selectedPlace, to use later
     // Then we launch the handleOpen function to open Modal
-    console.log('handleCardClick place selected:', place);
+    // console.log('handleCardClick place selected:', place);
     setSelectedPlace(place);
     handleOpen();
-  };
-
-  const handleDataFetched = (data) => {
-    // Handle the fetched data here, from search component
-    // We store the array with data in placesData
-    // console.log('handleDataFetched data:', data);
-    setPlacesData(data);
   };
 
   const handleLoadingChange = (loading) => {
     // Handle the loading state change in the parent component
     // You can perform any necessary actions based on the loading state
-    console.log('Loading state changed:', loading);
+    // console.log('Loading state changed:', loading);
     setIsLoading(loading);
     // Additional logic here if needed
   };
 
   const handleLocationNotFound = (value) => {
-    console.log('handleLocationNotFound value:', value);
+    // console.log('handleLocationNotFound value:', value);
     setLocationNotFound(value);
     if (locationNotFound) {
       setPlacesData([]);
     }
   };
 
-  console.log('Explore locationNotFound:', locationNotFound);
-  console.log('Explore isLoading:', isLoading);
+  const handleDataFetched = (data) => {
+    setPlacesData(data);
+
+    console.log('handleDataFetched data:', data)
+
+    const urls = data.map((result) => {
+      if (result.photos && result.photos.length > 0) {
+        const photoReference = result.photos[0].photo_reference;
+        // console.log('photoreference from handleDataFetched', photoReference);
+        const photoWidth = 400;
+        return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`;
+      } else {
+        return null;
+      }
+    });
+    setPhotoUrl(urls);
+  };
+
   console.log('Explore placesData:', placesData);
+  // console.log('Explore photoUrl:', photoUrl); // Vi får här 20 url:er
 
   return (
     <>
@@ -84,9 +96,11 @@ export const Explore = ({ onPageChange }) => {
           {isLoading ? (
             <Loading />
           ) : placesData.length > 0 ? (
-            placesData.map((place) => (
+            placesData.map((place, index) => (
               <SingleCardPreviewExplore
                 place={place}
+                photoUrl={photoUrl[index]}
+                // photoUrl={photoUrl[place.place_id]} // Access the correct photo URL using place_id as the index
                 key={place.place_id}
                 onCardClick={handleCardClick} />
             ))
@@ -113,3 +127,39 @@ export const Explore = ({ onPageChange }) => {
     </>
   );
 };
+
+/*
+    const photosPromises = data.map(async (place) => {
+      if (place.photos && place.photos.length > 0) {
+        const thephotoUrl = await fetchPlacePhotos(place.photos[0].photo_reference);
+        return { placeId: place.place_id, thephotoUrl };
+      }
+      return null;
+    });
+
+    const photos = await Promise.all(photosPromises);
+    const photosMap = photos.reduce((map, photo) => {
+      if (photo) {
+        map[photo.placeId] = photo.thephotoUrl;
+      }
+      return map;
+    }, {});
+
+    setPhotoUrl(photosMap);
+    */
+/*
+  const fetchPlacePhotos = async (photoreference) => {
+    const photoWidth = 400;
+    console.log('photoreference from fetchPlacePhotos', photoreference)
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}photoreference=${photoreference}&key=${API_KEY}`
+      );
+      const data = await response.blob();
+      return URL.createObjectURL(data);
+    } catch (error) {
+      console.error('Error fetching place photo:', error);
+      return null;
+    }
+  };
+  */

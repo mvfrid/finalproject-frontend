@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
@@ -20,7 +21,7 @@ export const LogInRegister = ({ mode }) => {
   const timer = useRef();
   const [success, setSuccess] = useState(false);
 
-  console.log('mode:', mode, loading)
+  // console.log('mode:', mode, loading)
 
   useEffect(() => {
     if (accessToken) {

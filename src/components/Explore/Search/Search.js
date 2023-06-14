@@ -44,19 +44,19 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
     onLoadingChange(true);
     fetch(geoUrl)
       .then((response) => {
-        console.log('response from before if:', response)
+        // console.log('response from before if:', response)
         if (response.ok) {
-          console.log('response from inside if:', response)
+          // console.log('response from inside if:', response)
           return response.json();
         } else {
-          console.log('response from inside else:', response)
+          // console.log('response from inside else:', response)
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
       })
       .then((data) => {
         // console.log('data:', data)
-        console.log('data.results:', data.results)
-        console.log('data.results.length:', data.results.length)
+        // console.log('data.results:', data.results)
+        // console.log('data.results.length:', data.results.length)
         if (data.results.length > 0) {
           const { lng, lat } = data.results[0].geometry.location;
           // setInputLong(lng);

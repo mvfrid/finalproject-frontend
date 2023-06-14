@@ -21,7 +21,7 @@ export const App = () => {
     setCurrentPage(page);
   };
 
-  console.log('currentPage', currentPage, 'backgroundImageUrl', backgroundImageUrl)
+  // console.log('currentPage', currentPage, 'backgroundImageUrl', backgroundImageUrl)
 
   switch (currentPage) {
     case 'profile':
