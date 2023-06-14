@@ -7,19 +7,11 @@ export const StyledTypoName = {
 
 export const StyledBtnBox = {
   display: 'flex',
-  justifyContent: 'space-between'
+  justifyContent: 'space-around'
 };
 
-export const StyledDltBtn = {
-  width: '37%',
-  mt: '10px',
-  mx: '3%',
-  mb: '5%',
-  backgroundColor: '#446173'
-};
-
-export const StyledBackBtn = {
-  width: '37%',
+export const StyledBtn = {
+  width: '150px',
   mt: '10px',
   mx: '3%',
   mb: '5%',

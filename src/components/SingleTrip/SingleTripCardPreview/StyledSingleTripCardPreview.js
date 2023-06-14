@@ -1,6 +1,8 @@
 export const StyledPreviewContainer = {
   height: '200px',
-  width: '150px'
+  width: '150px',
+  mb: '15px',
+  borderRadius: '5px'
 };
 
 export const StyledCardPreviewImg = {

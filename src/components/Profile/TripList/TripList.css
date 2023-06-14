@@ -14,13 +14,17 @@
 .trip-section {
     margin: auto;
     padding: 10px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .trip-wrapper {
     display: flex;
-    gap: 25px;
+    gap: 4px;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    max-width: 765px;
+    margin: 0 auto;
 }
   
 .trip {

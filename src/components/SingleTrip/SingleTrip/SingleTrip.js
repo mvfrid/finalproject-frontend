@@ -72,7 +72,7 @@ export const SingleTrip = () => {
 
       <Box sx={styles.StyledBtnBox}>
         <Button
-          sx={styles.StyledBackBtn}
+          sx={styles.StyledBtn}
           type="submit"
           variant="contained"
           size="small"
@@ -81,7 +81,7 @@ export const SingleTrip = () => {
         Go Back
         </Button>
         <Button
-          sx={styles.StyledDltBtn}
+          sx={styles.StyledBtn}
           type="submit"
           variant="contained"
           size="small"
