@@ -170,34 +170,36 @@ export const LogInRegister = ({ mode }) => {
             <Box
               margin={1}
               sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Button
-                sx={buttonSx}
-                variant="contained"
-                disabled={isSubmitting || !isValid}
-                type="submit"
-                onClick={() => {
-                  if (!isSubmitting) {
-                    setSuccess(false);
-                    timer.current = window.setTimeout(() => {
-                      setSuccess(true);
-                    }, 2000);
-                  }
-                }}>
-                {isSubmitting && !success ? 'Submitting...' : 'Submit'}
-              </Button>
+              <Box sx={{ m: 1, position: 'relative' }}>
+                <Button
+                  sx={buttonSx}
+                  variant="contained"
+                  disabled={isSubmitting || !isValid}
+                  type="submit"
+                  onClick={() => {
+                    if (!isSubmitting) {
+                      setSuccess(false);
+                      timer.current = window.setTimeout(() => {
+                        setSuccess(true);
+                      }, 2000);
+                    }
+                  }}>
+                  {isSubmitting && !success ? 'Submitting...' : 'Submit'}
+                </Button>
 
-              {isSubmitting && (
-                <CircularProgress
-                  size={24}
-                  sx={{
-                    color: green[500],
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    marginTop: '-12px',
-                    marginLeft: '-12px'
-                  }} />
-              )}
+                {isSubmitting && (
+                  <CircularProgress
+                    size={24}
+                    sx={{
+                      color: green[500],
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: '-12px',
+                      marginLeft: '-12px'
+                    }} />
+                )}
+              </Box>
               <Box margin={1}>
                 {mode === 'users/register' ? <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToLogin(resetForm, values)}>Already a member? Login here</Button> : <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToRegister(resetForm, values)}>Not a member yet? Register here</Button>}
               </Box>
