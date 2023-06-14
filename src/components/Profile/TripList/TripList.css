@@ -59,15 +59,15 @@
     color: #446173;
 }
 
-/*
-.trip-wrapper {
+/*trip-wrapper-singletrip*/
+.trip-wrapper-singletrip {
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-width: 765px;
     margin: 0 auto;
-}*/
+}
 
 .trip-wrapper {
     display: flex;

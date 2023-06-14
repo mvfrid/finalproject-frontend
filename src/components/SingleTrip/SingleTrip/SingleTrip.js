@@ -55,7 +55,7 @@ export const SingleTrip = () => {
         sx={styles.StyledTypoName}>
         {trip.tripName}
       </Typography>
-      <div className="trip-wrapper">
+      <div className="trip-wrapper-singletrip">
         {trip.cards.map((card) => (
           <SingleTripCardPreview
             card={card}
