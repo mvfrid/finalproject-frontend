@@ -4,7 +4,7 @@ import './EmptyStateExplore.css';
 
 export const EmptyStateExplore = () => {
   return (
-    <div className="empty-container">
+    <div className="empty-container-explore">
       <h3>Search to explore new places</h3>
       <Player
         src="https://assets10.lottiefiles.com/packages/lf20_Q6tgYJ.json"
@@ -12,7 +12,8 @@ export const EmptyStateExplore = () => {
         autoplay
         speed={0.7}
         style={{
-          width: '300px'
+          width: '300px',
+          m: 0
         }} />
     </div>
   )
