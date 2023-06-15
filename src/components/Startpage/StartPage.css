@@ -9,13 +9,15 @@
 
 
 .startpage-text {
-    max-width: 350px;
+    max-width: 400px;
+    margin-right: 0;
 }
 
 .startpage-text h2 {
     color: #446173;
     text-align: center;
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.295);
+    
+    /*text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.295);*/
 }
 
 .startpage-text h3 {
@@ -45,6 +47,12 @@
         margin: 60px 50px;
     }
 
+    
+.startpage-text {
+    max-width: 400px;
+    margin-right: 35px;
+}
+
     .startpage-text h2 {
         text-align: left;
         color: white;
@@ -66,7 +74,8 @@
   
 @media (min-width: 1025px) {
     /* Styles for desktop view */
-  
+
+
 
 }
   

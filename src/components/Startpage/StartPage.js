@@ -35,6 +35,10 @@ export const StartPage = ({ onPageChange }) => {
           loop
           autoplay
           speed={0.8}
+          style={{
+            maxWidth: '400px',
+            minWidth: '250px'
+          }}
           className="lottie-startpage" />
       </div>
       <div className="startpage-text">
