@@ -1,12 +1,12 @@
 /* eslint-disable linebreak-style */
 export const StyledPreviewContainerExplore = {
-  height: '185px',
+  height: '210px',
   width: '135px',
   mt: '15px',
 
   '@media (min-width: 375px)': {
-    height: '270px',
-    width: '300px'
+    height: '230px',
+    width: '160px'
   },
 
   '@media (min-width: 450px)': {
@@ -31,7 +31,7 @@ export const StyledPreviewContentExplore = {
 }
 
 export const StyledCardNameExp = {
-  fontSize: '18px',
+  fontSize: '16px',
   px: '6px',
   m: 0,
   ml: '2px',
@@ -43,7 +43,8 @@ export const StyledCardNameExp = {
   display: 'block',
 
   '@media (min-width: 375px)': {
-    mt: '6px'
+    mt: '6px',
+    fontSize: '18px'
   },
 
   '@media (min-width: 450px)': {
@@ -54,11 +55,11 @@ export const StyledCardNameExp = {
 export const StyledCardRatExp = {
   fontSize: '14px',
   pl: '6px',
-  py: '6px',
   ml: '2px',
 
   '@media (min-width: 375px)': {
-    mt: '2px'
+    mt: '2px',
+    py: '4px'
   },
 
   '@media (min-width: 450px)': {
