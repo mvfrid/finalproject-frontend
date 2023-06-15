@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export const StyledBoxContainer = {
   position: 'absolute',
   top: '50%',
