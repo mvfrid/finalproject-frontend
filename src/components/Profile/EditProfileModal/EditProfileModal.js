@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
