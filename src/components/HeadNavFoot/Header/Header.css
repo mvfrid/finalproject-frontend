@@ -19,6 +19,7 @@
 
   .header-link {
     color: white;
+    font-family: 'Abril Fatface', cursive;
   }
 
   .header-nav {
@@ -27,6 +28,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
+    
   }
 
   .hamburger-menu {
@@ -56,6 +58,7 @@
     color: white;
     background-color: transparent;
     font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .MenuBtn:hover {

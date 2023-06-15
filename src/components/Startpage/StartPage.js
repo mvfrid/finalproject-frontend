@@ -40,7 +40,7 @@ export const StartPage = ({ onPageChange }) => {
       <div className="startpage-text">
         <h2>Your journey starts here</h2>
         <h3>Discover, plan, and save your next adventure. Find inspiration, explore destinations,
-        and create personalized travel boards with Odyssey
+        and create personalized travel boards with Odyssey.
         </h3>
         {!accessToken && (
           <div className="start-button-container">
