@@ -89,7 +89,8 @@ export const StyledTypoReviewTitle = {
 export const StyledTypoReview = {
   fontSize: '16px',
   fontWeight: '400',
-  mb: 1
+  mb: 1,
+  wordBreak: 'break-all'
 };
 
 export const StyledBtnBox = {

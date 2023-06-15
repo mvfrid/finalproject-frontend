@@ -29,6 +29,7 @@
 
 .singletrip-header {
     margin-bottom: 10px;
+    word-break: break-all;
 }
 
 .singletrip-header h3 {
