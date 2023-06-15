@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrips } from 'reducers/trip';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './TripList.css'
 import { Button } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
@@ -18,6 +18,7 @@ import { EmptyStateTripList } from '../EmptyStateTripList/EmptyStateTripList';
 export const TripList = () => {
   const tripList = useSelector((store) => store.trip.tripList);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -26,6 +27,10 @@ export const TripList = () => {
     console.log('is this being triggered???')
     dispatch(fetchTrips());
   }, []);
+
+  const onClickGoToExplore = () => {
+    navigate('/explore');
+  }
 
   console.log('tripList in Trip List component:', tripList)
 
@@ -42,6 +47,7 @@ export const TripList = () => {
         Add new trip
         </Button>
         <NewTripModal open={open} onClose={handleClose} />
+        <Button type="button" size="small" sx={{ color: '#446173' }} onClick={() => onClickGoToExplore()}>Looking for inspiration? Go to Explore</Button>
       </div>
 
       {tripList.length > 0 ? (
