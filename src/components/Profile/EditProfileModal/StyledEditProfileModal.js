@@ -31,6 +31,9 @@ export const StyledFormContainer = {
   alignItems: 'center'
 };
 
+export const StyledTextField = {
+};
+
 export const StyledCloseBtnBox = {
   marginLeft: 'auto'
 };
