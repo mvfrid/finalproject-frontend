@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useState } from 'react';
-import { Select, useTheme } from '@mui/material';
+import { ListSubheader, MenuItem, Select, useTheme } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
@@ -110,28 +110,95 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
           value={input}
           onChange={(event) => setInput(event.target.value)}
           sx={styles.StyledInputField} />
-        <FormControl sx={{ my: 0, mx: 1, minWidth: '80px', width: '80%' }}>
-          <InputLabel sx={{ mt: 0 }} htmlFor="grouped-native-select">Type</InputLabel>
-          <Select native defaultValue="" id="grouped-native-select" onChange={handleSelectChange} label="Type" variant="standard">
-            <option aria-label="None" value="" />
-            <optgroup label="Accomodation">
-              <option value="establishment">Establishment</option>
-              <option value="campground">Campground</option>
-              <option value="lodging">Lodging</option>
-            </optgroup>
-            <optgroup label="Food & drink">
-              <option value="restaurant">Restaurant</option>
-              <option value="cafe">Cafe</option>
-              <option value="bar">Bar</option>
-              <option value="bakery">Bakery</option>
-            </optgroup>
-            <optgroup label="Entertainment">
-              <option value="tourist_attraction">Tourist attraction</option>
-              <option value="museum">Museum</option>
-              <option value="amusement_park">Amusement park</option>
-              <option value="park">Park</option>
-              <option value="zoo">Zoo</option>
-            </optgroup>
+        <FormControl sx={styles.StyledFormControl}>
+          <InputLabel sx={{ mt: 1 }} htmlFor="grouped-native-select">Type</InputLabel>
+          <Select
+            defaultValue=""
+            id="grouped-native-select"
+            onChange={handleSelectChange}
+            label="Type"
+            variant="standard">
+            <MenuItem
+              value=""
+              sx={styles.StyledMenuItem}>
+              <em>None</em>
+            </MenuItem>
+
+            <ListSubheader
+              sx={styles.StyledListSubheader}>
+              Food & Drink
+            </ListSubheader>
+            <MenuItem
+              value="restaurant"
+              sx={styles.StyledMenuItem}>
+              Restaurant
+            </MenuItem>
+            <MenuItem
+              value="cafe"
+              sx={styles.StyledMenuItem}>
+              Cafe
+            </MenuItem>
+            <MenuItem
+              value="bar"
+              sx={styles.StyledMenuItem}>
+              Bar
+            </MenuItem>
+            <MenuItem
+              value="bakery"
+              sx={styles.StyledMenuItem}>
+              Bakery
+            </MenuItem>
+
+            <ListSubheader
+              sx={styles.StyledListSubheader}>
+              Accomodation
+            </ListSubheader>
+            <MenuItem
+              value="establishment"
+              sx={styles.StyledMenuItem}>
+              Establishment
+            </MenuItem>
+            <MenuItem
+              value="campground"
+              sx={styles.StyledMenuItem}>
+              Campground
+            </MenuItem>
+            <MenuItem
+              value="lodging"
+              sx={styles.StyledMenuItem}>
+              Lodging
+            </MenuItem>
+
+            <ListSubheader
+              sx={styles.StyledListSubheader}>
+              Entertainment
+            </ListSubheader>
+            <MenuItem
+              value="tourist_attraction"
+              sx={styles.StyledMenuItem}>
+              Tourist attraction
+            </MenuItem>
+            <MenuItem
+              value="museum"
+              sx={styles.StyledMenuItem}>
+              Museum
+            </MenuItem>
+            <MenuItem
+              value="amusement_park"
+              sx={styles.StyledMenuItem}>
+              Amusement park
+            </MenuItem>
+            <MenuItem
+              value="park"
+              sx={styles.StyledMenuItem}>
+              Park
+            </MenuItem>
+            <MenuItem
+              value="zoo"
+              sx={styles.StyledMenuItem}>
+              Zoo
+            </MenuItem>
+
           </Select>
         </FormControl>
       </Box>

@@ -54,6 +54,51 @@ export const StyledInputField = {
   }
 };
 
+export const StyledFormControl = {
+  mx: 1,
+  minWidth: '100px',
+  width: 'auto',
+
+  '@media (min-width: 550px)': {
+    minWidth: '150px'
+  },
+
+  '@media (min-width: 750px)': {
+    minWidth: '200px'
+  }
+};
+
+export const StyledListSubheader = {
+  display: 'flex',
+  alignItems: 'center',
+  mb: 0,
+  mt: '10px',
+  py: 0,
+  lineHeight: 1,
+  minHeight: '30px',
+
+  '@media (min-width: 550px)': {
+    minHeight: '40px'
+  },
+
+  '@media (min-width: 750px)': {
+  }
+};
+
+export const StyledMenuItem = {
+  my: 0,
+  py: 0,
+  lineHeight: 1,
+  minHeight: '30px',
+
+  '@media (min-width: 550px)': {
+    minHeight: '35px'
+  },
+
+  '@media (min-width: 750px)': {
+  }
+};
+
 /*
 export const StyledSearchBox = {
   display: 'flex',
