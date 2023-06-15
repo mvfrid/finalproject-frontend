@@ -65,6 +65,7 @@
     padding: 2px;
     text-align: center;
     color: grey;
+    word-break: break-all;
   }
 
   .profile-text a {
@@ -149,6 +150,7 @@
       align-items: center;
       width: 320px;
     }
+
     .profile-name p {
       text-align: center;
       font-size: 20px;

@@ -3,7 +3,7 @@
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, TextField, Typography, Modal, CircularProgress, Fab, IconButton } from '@mui/material';
+import { Box, TextField, Typography, Modal, CircularProgress, Fab, IconButton, FormHelperText } from '@mui/material';
 import { green } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
 import SaveIcon from '@mui/icons-material/Save';
@@ -96,6 +96,7 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
         }, 2000);
 
         setTimeout(() => {
+          setSuccess(false);
           onClose();
         }, 3000);
       })
@@ -139,14 +140,25 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
               label="Name"
               variant="outlined"
               placeholder={currentNameValue}
-              style={{ marginBottom: '10px' }} />
+              inputProps={{ maxLength: 30 }}
+              sx={styles.StyledTextField} />
+            <FormHelperText
+              sx={{ textAlign: 'right', marginLeft: 'auto', mb: '10px' }}>
+              {`${nameValue.length}/30`}
+            </FormHelperText>
+
             <TextField
               value={textValue}
               onChange={handleTextChange}
               label="About text"
               variant="outlined"
               placeholder={currentTextValue}
-              style={{ marginBottom: '10px' }} />
+              inputProps={{ maxLength: 100 }}
+              sx={styles.StyledTextField} />
+            <FormHelperText
+              sx={{ textAlign: 'right', marginLeft: 'auto', mb: '10px' }}>
+              {`${textValue.length}/100`}
+            </FormHelperText>
             <TextField
               value={instaValue}
               onChange={handleInstaChange}
