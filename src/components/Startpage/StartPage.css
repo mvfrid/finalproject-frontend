@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     gap: 2em;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 
@@ -16,6 +17,8 @@
 .startpage-text h2 {
     color: #446173;
     text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
     
     /*text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.295);*/
 }
@@ -44,23 +47,25 @@
         justify-content: space-around;
         align-items: center;
         gap: 10px;
-        margin: 60px 50px;
+        margin: 150px 50px;
     }
 
     
-.startpage-text {
-    max-width: 400px;
-    margin-right: 35px;
-}
+    .startpage-text {
+        max-width: 400px;
+        margin-right: 35px;
+    }
 
     .startpage-text h2 {
         text-align: left;
         color: white;
+        font-size: 36px;
     }
     
     .startpage-text h3 {
         text-align: left;
         color: white;
+        font-size: 22px;
     }
 
     .start-button-container {

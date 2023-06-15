@@ -23,7 +23,7 @@ export const UserInfo = () => {
   return (
     <div className="profile-section">
       <div className="profile-info">
-        <h2>Hi <span>{userInfo.username}!</span></h2>
+        <h2>Hi {userInfo.username}!</h2>
         <div className="user-container">
           <div className="profile-user-info">
             <img src={userInfo.profilePicture} alt="user profile" className="profilepic" />

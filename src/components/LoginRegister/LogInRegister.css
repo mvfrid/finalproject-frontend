@@ -1,9 +1,11 @@
 .formbox h2 {
     text-align: center;
     color: #446173;
-    font-size: 40px;
+    font-size: 44px;
     margin-bottom: 20px;
     margin-top: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+
 }
 
 .formbox {

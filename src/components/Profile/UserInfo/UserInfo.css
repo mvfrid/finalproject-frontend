@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 6px;
+    font-family: 'Josefin Sans', sans-serif;
   }
 
   .user-container {
@@ -54,10 +55,6 @@
     font-size: 28px;
     margin-bottom: 10px;
     color: #446173;
-  }
-
-  .profile-info h2 span {
-    font-family:'Courier New', Courier, monospace;
   }
   
   .profile-info p {
