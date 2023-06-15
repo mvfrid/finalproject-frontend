@@ -1,5 +1,7 @@
-.empty-container h3 {
-    margin-top: 30px;
+.empty-container-trip h3 {
+    margin: 40px 25px 0 25px;
     text-align: center;
-    color: #1b2932;
+    color: white;
+    font-weight: 400;
+    /*color: #1b2932;*/
 }
