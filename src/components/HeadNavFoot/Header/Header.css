@@ -11,14 +11,15 @@
   align-items: center;
 }
 
-  .header img {
-    width: 260px;
-    margin-top: 15px;
-  }
+.header-link {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
 
-  .header-link {
-    color: white;
-  }
+ .header img {
+   width: 260px;
+   margin-top: 15px;
+ }
 
   .header-nav {
     display: flex;
@@ -54,7 +55,8 @@
     border: none;
     color: white;
     background-color: transparent;
-    font-weight: 700;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .MenuBtn:hover {
