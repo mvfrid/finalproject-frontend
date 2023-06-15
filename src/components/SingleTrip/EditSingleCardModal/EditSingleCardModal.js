@@ -3,7 +3,7 @@
 /* eslint-disable quote-props */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, TextField, Typography, Modal, Rating, IconButton, CircularProgress } from '@mui/material';
+import { Box, Button, TextField, Typography, Modal, Rating, IconButton, CircularProgress, FormHelperText } from '@mui/material';
 import { trip, updateSingleCard, fetchTrips } from 'reducers/trip';
 import { green } from '@mui/material/colors';
 import { useParams } from 'react-router-dom';
@@ -105,7 +105,12 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
                 onChange={handleCommentChange}
                 label="Comment"
                 variant="outlined"
-                placeholder={currentCommentValue} />
+                placeholder={currentCommentValue}
+                inputProps={{ maxLength: 100 }} />
+              <FormHelperText
+                sx={{ textAlign: 'right', marginLeft: 'auto', mb: '10px' }}>
+                {`${commentValue.length}/100`}
+              </FormHelperText>
 
               <Rating
                 name="simple-controlled"

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, TextField, Typography, Modal, CircularProgress, Fab, IconButton } from '@mui/material';
+import { Box, TextField, Typography, Modal, CircularProgress, Fab, IconButton, FormHelperText } from '@mui/material';
 import { green } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -80,7 +80,12 @@ export const NewTripModal = ({ open, onClose }) => {
             onKeyPress={(e) => {
               if (e.key === 'Enter') e.preventDefault();
             }}
-            required />
+            required
+            inputProps={{ maxLength: 25 }} />
+          <FormHelperText
+            sx={{ textAlign: 'right', marginLeft: 'auto', mb: '10px' }}>
+            {`${value.length}/25`}
+          </FormHelperText>
           <Box sx={styles.StyledBoxWrapper}>
             <Box sx={styles.StyledBoxInnerWrapper}>
               <Fab
