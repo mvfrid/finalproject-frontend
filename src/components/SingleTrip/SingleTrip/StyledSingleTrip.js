@@ -1,7 +1,8 @@
 /* eslint-disable linebreak-style */
 export const StyledTypoName = {
-  fontSize: '38px',
+  fontSize: '32px',
   fontWeight: 'bold',
+  mt: 4,
   mx: '3%',
   color: 'white',
   mb: '20px',

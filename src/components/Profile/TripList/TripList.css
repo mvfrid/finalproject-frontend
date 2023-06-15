@@ -146,7 +146,7 @@ a {
         min-height: 200px;
         width: 85%;
         max-width: 720px;
-        margin: 10px auto;
+        margin: 20px auto;
         padding: 10px;
         gap: 10px;
       }
@@ -175,7 +175,7 @@ a {
     .main-triplist {
         width: 85%;
         max-width: 720px;
-        margin: 10px auto;
+        margin: 20px auto;
         padding: 10px;
         gap: 10px;
       }
