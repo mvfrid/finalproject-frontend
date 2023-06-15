@@ -8,7 +8,7 @@ export const StyledAboutCards = {
   backgroundColor: '#ffffffd1',
 
   '@media (min-width: 668px)': {
-    maxWidth: 590
+    maxWidth: 600
   },
 
   '@media (min-width: 1025px)': {

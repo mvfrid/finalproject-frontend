@@ -21,8 +21,6 @@ export const App = () => {
     setCurrentPage(page);
   };
 
-  // console.log('currentPage', currentPage, 'backgroundImageUrl', backgroundImageUrl)
-
   switch (currentPage) {
     case 'profile':
       backgroundImageUrl = 'url(https://i.postimg.cc/zB9KyWhD/humphrey-muleba-Tej-Fa7-VW5e4-unsplash-grad-final.png)';
@@ -91,30 +89,3 @@ export const App = () => {
     </BrowserRouter>
   );
 };
-
-/*
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<StartPage />} />
-        {accessToken !== null ? (
-          <Route path="/explore" element={<Explore />} />
-        ) : (
-          <Route
-            path="/explore"
-            element={<Navigate to="/login" replace />} />
-        )}
-        <Route path="/login" element={<LogInRegister mode="/users/login" />} />
-        <Route path="/register" element={<LogInRegister mode="/users/register" />} />
-        <Route path="/about" element={<About />} />
-        {accessToken !== null ? (
-          <Route path="/profile" element={<Profile />} />
-        ) : (
-          <Route
-            path="/profile"
-            element={<Navigate to="/login" replace />} />
-        )}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-    */
