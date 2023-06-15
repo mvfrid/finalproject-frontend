@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable camelcase */
 import React from 'react';
+import { API_KEY } from 'utils/urls';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -15,11 +16,16 @@ export const TripListCardPreview = ({ card, showButton, onCardClick }) => {
     onCardClick(card);
   }
 
+  const photoWidth = 500;
+  const photoReference = card.cardPhotoRef
+  const photourl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
+
   return (
     <Card key={card.place_id} className="card-preview-container">
       <CardMedia
         className="card-preview-img"
-        image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
+        // image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
+        image={photourl} />
       <CardContent style={{ padding: 0 }}>
         <Typography
           gutterBottom

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { TripList } from '../TripList/TripList';
