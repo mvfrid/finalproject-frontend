@@ -64,7 +64,6 @@
     color: #446173;
 }
 
-/*trip-wrapper-singletrip*/
 .trip-wrapper-singletrip {
     display: flex;
     gap: 4px;
@@ -91,11 +90,6 @@
     width: 100%;
     min-height: 130px;
     padding: 10px 15px 10px 15px;
-    /*
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    */
 }
 
 a {

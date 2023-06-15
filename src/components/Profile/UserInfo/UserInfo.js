@@ -14,8 +14,6 @@ export const UserInfo = () => {
   const handleClose = () => setOpen(false);
   const userInfo = useSelector((store) => store.user.userInfo);
 
-  console.log('userInfo from store', userInfo)
-
   const setUpdatedProfile = (updatedText) => {
     console.log('logging the updatedText:', updatedText)
   };

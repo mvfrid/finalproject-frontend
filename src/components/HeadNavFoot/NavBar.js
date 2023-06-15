@@ -1,12 +1,9 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-undef */
-/* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable linebreak-style */
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
-// import './Header.css';
 
 export const NavBar = () => {
   const navigate = useNavigate();

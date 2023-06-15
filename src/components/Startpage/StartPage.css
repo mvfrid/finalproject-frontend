@@ -19,8 +19,6 @@
     text-align: center;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 30px;
-    
-    /*text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.295);*/
 }
 
 .startpage-text h3 {
@@ -79,8 +77,6 @@
   
 @media (min-width: 1025px) {
     /* Styles for desktop view */
-
-
 
 }
   

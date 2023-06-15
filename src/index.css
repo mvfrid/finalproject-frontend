@@ -1,37 +1,4 @@
-/*
-Bakgrundbilder med gradienter:
 
-https://i.postimg.cc/kghzJDXR/photo-1498307833015-e7b400441eb8-gradient2.png
-background-color: #76B19A;
-
-background-color: #fcf8a2;
-Ballonger:
-https://i.postimg.cc/Y0GmTmWp/ian-dooley-hp-TH5b6mo2s-unsplash-gradient-yellow3-short.png
-Positano:
-https://i.postimg.cc/9fBR6n5c/justin-kauffman-Et-ORiy-Lq6s-unsplash-grad-4.png
-Vatten med båtar:
-https://i.postimg.cc/bNW2jnZF/justin-kauffman-Et-ORiy-Lq6s-unsplash-grad-4b.png
-Bilväg:
-https://i.postimg.cc/Wzq419KF/jairph-1-XLyzi17-Z2-M-unsplash-grad-4.png
-Venedig:
-https://i.postimg.cc/hjMR99FD/photo-1498307833015-e7b400441eb8-grad-4.png
-https://i.postimg.cc/65N7QKWB/photo-1498307833015-e7b400441eb8-gradient-yellow3.png
-Plan bland moln:
-https://i.postimg.cc/jSNV8VVk/leio-mclaren-Fwd-ZYz0yc9g-unsplash-grad-4.png
-
-
-Landskapsformat ballonger:
-https://i.postimg.cc/FR11Nqd2/ian-dooley-Du-BNA1-QMp-PA-unsplash-grad-final.png
-Stad Italien
-https://i.postimg.cc/0Q3d7FTs/dorian-mongel-g-Vw-Fedcc1r-Y-unsplash-grad-final.png
-Grekland:
-https://i.postimg.cc/8CXhVxP6/orva-studio-y-B6-WFHbk-X40-unsplash-grad-final.png
-Strand
-https://i.postimg.cc/zB9KyWhD/humphrey-muleba-Tej-Fa7-VW5e4-unsplash-grad-final.png
-Färglad kanal
-https://i.postimg.cc/FRj3JzVj/kit-suman-5mcnze-SHFv-E-unsplash-grad-final.png
-
-*/
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;1,300;1,400&display=swap');
 
@@ -46,22 +13,9 @@ body {
   margin: 0;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 18px;
-
-  /*
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-    */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/*
-code {
-  font-family: 'Josefin Sans', sans-serif;
-}
-*/
-
 
 .OuterWrapper {
   position: relative;
@@ -93,7 +47,7 @@ code {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 1000px; /* Added max-width */
+  max-width: 1000px;
   height: 100%;
   padding: 0 8px;
   background-color: #fcf8a2;
@@ -155,12 +109,10 @@ code {
   
   .InnerWrapper {
     padding: 0 16px;
-    /*width: 80%;*/
   }
 
   .BackgroundUnderlay {
     padding: 0 16px;
-    /*width: 80%;*/
   }
 
   .main {
@@ -183,12 +135,12 @@ code {
   /* Styles for desktop view */
 
   .InnerWrapper {
-    width: 100%; /* Change width to 100% to fill the available width within the max-width */
+    width: 100%;
     padding: 0 32px;
   }
 
   .BackgroundUnderlay {
-    width: 100%; /* Change width to 100% to fill the available width within the max-width */
+    width: 100%;
     padding: 0 32px;
   }
 
@@ -201,13 +153,3 @@ code {
   }
 }
 
-
-/*
-Old stuff:
-
-
-input {
-  margin-right: 5px;
-  padding: 8px;
-}
-*/

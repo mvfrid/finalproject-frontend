@@ -9,7 +9,6 @@ import './TripList.css'
 import { Button } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
-// import AddIcon from '@mui/icons-material/Add';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { NewTripModal } from '../NewTripModal/NewTripModal';
 import { TripListCardPreview } from '../TripListCardPreview/TripListCardPreview';
@@ -24,15 +23,12 @@ export const TripList = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    console.log('is this being triggered???')
     dispatch(fetchTrips());
   }, []);
 
   const onClickGoToExplore = () => {
     navigate('/explore');
   }
-
-  console.log('tripList in Trip List component:', tripList)
 
   return (
     <div className="trip-section">

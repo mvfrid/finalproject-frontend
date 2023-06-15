@@ -1,17 +1,16 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { user } from 'reducers/user';
 import { trip } from 'reducers/trip';
-import { card } from 'reducers/card';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { App } from './App';
 
 const reducer = combineReducers({
   user: user.reducer,
-  trip: trip.reducer,
-  card: card.reducer
+  trip: trip.reducer
 });
 
 const store = configureStore({ reducer })

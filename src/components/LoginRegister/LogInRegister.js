@@ -21,8 +21,6 @@ export const LogInRegister = ({ mode }) => {
   const timer = useRef();
   const [success, setSuccess] = useState(false);
 
-  // console.log('mode:', mode, loading)
-
   useEffect(() => {
     if (accessToken) {
       navigate('/explore');
@@ -212,38 +210,3 @@ export const LogInRegister = ({ mode }) => {
     </div>
   )
 }
-
-// eslint-disable-next-line no-lone-blocks
-{ /* <div className="main">
-      {mode === '/users/register' ? <h2>Register</h2> : <h2>Login</h2>}
-      <form onSubmit={onFormSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)} />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} />
-        <button type="button" onClick={onFormSubmit}>Submit</button>
-      </form>
-      // eslint-disable-next-line max-len
-      {mode === '/users/register' ? <button type="button" onClick={onClickGoToLogin}>Log in instead</button> : <button type="button" onClick={onClickGoToRegister}>Register instead</button>}
-    </div> */ }
-
-// else if (mode === '/users/register' && data.response.message === 'Username is already taken') {
-//   dispatch(user.actions.setAccessToken(null));
-//   dispatch(user.actions.setUsername(null));
-//   dispatch(user.actions.setUserId(null));
-//   dispatch(user.actions.setUserInfo(null));
-//   dispatch(user.actions.setError(data.response));
-// setErrorMsgRegister('Username is already taken');
-// } else if (mode === '/users/login') {
-//   dispatch(user.actions.setAccessToken(null));
-//   dispatch(user.actions.setUsername(null));
-//   dispatch(user.actions.setUserId(null));
-//   dispatch(user.actions.setUserInfo(null));
-//   // setErrorMsgLogin('Credentials do not match')
-// }

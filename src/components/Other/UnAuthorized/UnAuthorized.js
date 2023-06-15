@@ -38,7 +38,7 @@ export const UnAuthorized = () => {
           sx={{
             color: '#446173',
             '&:hover': {
-              color: '#345461' // Optional: You can also control the hover color here
+              color: '#345461'
             }
           }}
           type="button"

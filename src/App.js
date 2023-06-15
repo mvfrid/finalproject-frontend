@@ -15,7 +15,7 @@ import { Profile } from './components/Profile/Profile/Profile.js'
 export const App = () => {
   const accessToken = useSelector((state) => state.user.accessToken);
   const [currentPage, setCurrentPage] = useState('');
-  let backgroundImageUrl; // Declare the backgroundImageUrl variable
+  let backgroundImageUrl;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

@@ -27,7 +27,7 @@ export const StyledSearchBox = {
 
 export const StyledInputBox = {
   display: 'flex',
-  alignItems: 'center', // changed from flex-end to baseline
+  alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '6px',
 
@@ -98,42 +98,3 @@ export const StyledMenuItem = {
   '@media (min-width: 750px)': {
   }
 };
-
-/*
-export const StyledSearchBox = {
-  display: 'flex',
-  flexDirection: 'column',
-  fontSize: '32px',
-  alignItems: 'stretch',
-  justifyContent: 'space-between',
-  backgroundColor: 'white',
-  p: 1,
-  borderRadius: 2,
-  mt: 6,
-  mb: 2,
-
-  '@media (min-width:668px)': {
-    flexDirection: 'row',
-    fontSize: '11px'
-},
-
-'@media (min-width:1025px)': {
-    flexDirection: 'row',
-    fontSize: '11px',
-}
-};
-
-export const StyledCardPreviewImgExplore = {
-  height: '50%',
-  width: '100%'
-}
-
-export const StyledModal = {
-
-  '@media (min-width:668px)': {
-  },
-
-  '@media (min-width:1025px)': {
-  }
-};
-*/
