@@ -96,7 +96,7 @@ export const NavBarHamburger = () => {
         {isOpen ? <CloseIcon
           sx={{ fontSize: '56px', mt: '8px', color: 'white' }}
           onClick={toggleMenu} />
-          : <MenuIcon sx={{ fontSize: '56px', mt: '8px', color: 'white' }} onClick={toggleMenu} />}
+          : <MenuIcon sx={{ fontSize: '56px', color: 'white' }} onClick={toggleMenu} />}
       </ToggleButton>
       {isOpen && (
         <div className="hamburger-open" ref={hamburgerOpenRef}>

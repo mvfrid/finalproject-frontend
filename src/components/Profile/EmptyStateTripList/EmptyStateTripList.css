@@ -3,4 +3,18 @@
     margin-bottom: 0;
     color: #3e5767;
     font-weight: 400;
+    font-size: 16px;
+    text-align: center;
 }
+
+@media (min-width: 375px) {
+    .empty-container h3 {
+        font-size: 20px;
+    }
+  }
+
+@media (min-width: 550px) {
+    .empty-container h3 {
+        font-size: 24px;
+    }
+  }

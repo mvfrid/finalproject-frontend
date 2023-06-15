@@ -16,11 +16,10 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.header h1 {
-    color: white;
-    font-size: 48px;
-    font-weight: 900;
-  }
+ .header img {
+   width: 260px;
+   margin-top: 15px;
+ }
 
   .header-nav {
     display: flex;
@@ -87,15 +86,15 @@
 
 
 
-@media (min-width: 668px) {
+@media (min-width: 550px) {
   /* Styles for tablet view */
   
   .header {
     flex-direction: row;
   }
 
-  .header h1 {
-    font-size: 52px;
+  .header img {
+    width: 400px;
   }
 
   .hamburger-open {
@@ -107,6 +106,12 @@
     margin-right: 0;
   }
 
+}
+
+@media (min-width: 750px) {
+  .header img {
+    width: 400px;
+  }
 }
 
 @media (min-width: 1025px) {
