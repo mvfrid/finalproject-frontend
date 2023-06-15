@@ -18,12 +18,16 @@ export const About = ({ onPageChange }) => {
     <div className="about-container">
       <Card sx={styles.StyledAboutCards}>
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography sx={{ mb: 1 }} variant="h5" component="div" color="#446173">
           About
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          <Typography sx={{ mb: 1.5 }} variant="body2" color="#446173">
           This fullstack application, created for Technigo&apos;s Spring 2023 Web Development Bootcamp, enables users to utilize a Google API to search and curate lists of destinations for various trips.
+          </Typography>
+          <Typography sx={{ mb: 1.5, mt: 1 }} variant="body2" color="#446173">
           Users are also able to save their favorite locations within these lists, further personalizing their trip planning process.
+          </Typography>
+          <Typography sx={{ mb: 0, mt: 1 }} variant="body2" color="#446173">
           An added review feature allows users to record and revisit their experiences at these saved destinations, enriching their engagement with the platform.
           </Typography>
         </CardContent>
@@ -45,10 +49,10 @@ export const About = ({ onPageChange }) => {
 
       <Card sx={styles.StyledAboutCards}>
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography sx={{ mb: 1 }} variant="h5" component="div" color="#446173">
           Resources & Tech Stack
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          <Typography sx={{ mb: 0 }} variant="body2" color="#446173">
           Google Place API °
           Google Geocode API °
           Google Cloud °

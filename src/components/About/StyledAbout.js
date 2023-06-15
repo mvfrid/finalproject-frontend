@@ -3,11 +3,12 @@ export const StyledAboutCards = {
   minWidth: 250,
   maxWidth: 343,
   width: '100%',
+  p: 1,
   m: 0,
   backgroundColor: '#ffffffd1',
 
   '@media (min-width: 668px)': {
-    maxWidth: 620
+    maxWidth: 590
   },
 
   '@media (min-width: 1025px)': {
@@ -21,7 +22,7 @@ export const StyledAboutUsCards = {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  m: 0,
+  m: 0.5,
   backgroundColor: '#ffffffd1',
 
   '@media (min-width: 668px)': {

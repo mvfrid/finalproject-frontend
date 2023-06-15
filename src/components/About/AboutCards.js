@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -19,7 +20,7 @@ export const AboutCards = ({ title, image, linkLinked, linkGit, linkPortfolio })
         className="photo-circle"
         alt="about photos" />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" color="#446173" component="div">
           {title}
         </Typography>
       </CardContent>
