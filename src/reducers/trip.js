@@ -1,20 +1,12 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable max-len */
 /* eslint-disable no-undef */
+/* eslint-disable quote-props */
 import { createSlice } from '@reduxjs/toolkit';
 import { MONGO_DB_URL } from '../utils/urls';
 
 export const trip = createSlice({
   name: 'trip',
   initialState: {
-    tripName: null,
-    tripPrevious: false,
-    tripBucketlist: false,
-    tripUpcoming: false,
-    tripActiveUser: null,
-    tripId: null,
-    createdAt: null,
-    cards: [],
     error: null,
     isLoadingPost: false,
     isLoadingGet: false,
@@ -26,30 +18,6 @@ export const trip = createSlice({
     updateCardInTrip: null
   },
   reducers: {
-    setTripName: (store, action) => {
-      store.tripName = action.payload
-    },
-    setTripPrevious: (store, action) => {
-      store.tripPrevious = action.payload
-    },
-    setTripBucketlist: (store, action) => {
-      store.tripBucketlist = action.payload
-    },
-    setTripUpcoming: (store, action) => {
-      store.tripUpcoming = action.payload
-    },
-    setTripActiveUser: (store, action) => {
-      store.tripActiveUser = action.payload
-    },
-    setTripId: (store, action) => {
-      store.tripId = action.payload
-    },
-    setCreatedAt: (store, action) => {
-      store.createdAt = action.payload
-    },
-    setCards: (store, action) => {
-      store.cards = action.payload
-    },
     setError: (store, action) => {
       store.error = action.payload
     },
@@ -63,7 +31,6 @@ export const trip = createSlice({
       store.isSuccessful = action.payload
     },
     setTripList: (store, action) => {
-      console.log('Setting tripList:', action.payload);
       if (!Array.isArray(action.payload)) {
         console.error('setTripList was called with a non-array value:', action.payload);
       }
@@ -91,7 +58,6 @@ export const trip = createSlice({
 export const fetchTrips = () => {
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoadingGet(true))
-    console.log('running fetch trips')
 
     const options = {
       method: 'GET',
@@ -103,12 +69,10 @@ export const fetchTrips = () => {
     fetch(MONGO_DB_URL('trips'), options)
       .then((response) => response.json())
       .then((response) => {
-        console.log('API response:', response); // Log the entire response object
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          const responseData = response.response.data; // Access the correct data
-          console.log('responseData:', responseData);
-          dispatch(trip.actions.setTripList(responseData)); // Dispatch the correct data
+          const responseData = response.response.data;
+          dispatch(trip.actions.setTripList(responseData));
         } else {
           dispatch(trip.actions.setError(response.response));
         }
@@ -135,26 +99,22 @@ export const postNewTrip = (value) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
         'Authorization': getState().user.accessToken
       },
       body: JSON.stringify({ tripName: value })
     };
 
     fetch(MONGO_DB_URL('trips'), options)
-      // postNewTrip
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
           const responseData = response.response.data; // this is expected to be a single trip
-          console.log('responseData:', responseData);
           dispatch(trip.actions.setNewTrip(responseData));
         } else {
           dispatch(trip.actions.setTripList([]));
           dispatch(trip.actions.setError(response));
         }
-        console.log('response:', response)
       })
 
       .catch((error) => {
@@ -162,7 +122,6 @@ export const postNewTrip = (value) => {
         console.log('error', error)
       })
       .finally(() => {
-        // dispatch(trip.actions.setLoading(false));
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
@@ -179,53 +138,42 @@ export const getSingleTrip = (tripId) => {
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoadingPost(true))
     dispatch(trip.actions.setSuccess(false))
-    console.log(tripId)
 
     const options = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
         'Authorization': getState().user.accessToken
       }
-      // body: JSON.stringify({ tripId })
     };
 
     fetch(MONGO_DB_URL(`trips/${tripId}`), options)
-      // postNewTrip
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
           const responseData = response.response.data; // this is expected to be a single trip
-          console.log('responseData:', responseData);
           dispatch(trip.actions.setSingleTrip(responseData));
         } else {
           dispatch(trip.actions.setSingleTrip(null));
           dispatch(trip.actions.setError(response));
         }
-        console.log('response:', response)
       })
       .catch((error) => {
         dispatch(trip.actions.setError(error))
         console.log('error', error)
       })
       .finally(() => {
-        // dispatch(trip.actions.setLoading(false));
         setTimeout(() => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
         }, 1500);
-        // setTimeout(() => {
-        //   dispatch(fetchTrips());
-        // }, 2000);
       })
   };
 };
 
 // Thunk making a PATCH-request to add a new card to the card array in a trip in the database
 export const patchTripWithNewCard = (tripId, place) => {
-  // const { cardIcon, cardName, cardPhotoRef, cardPlaceId, cardRating, cardVicinity } = req.body;
   return (dispatch, getState) => {
     dispatch(trip.actions.setLoadingPost(true))
     dispatch(trip.actions.setSuccess(false))
@@ -234,7 +182,6 @@ export const patchTripWithNewCard = (tripId, place) => {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
         'Authorization': getState().user.accessToken
       },
       body: JSON.stringify({
@@ -251,13 +198,8 @@ export const patchTripWithNewCard = (tripId, place) => {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          // eslint-disable-next-line no-underscore-dangle
           dispatch(trip.actions.setError(null));
-          // const responseData = response.response.data; // Access the correct data
-          console.log('response from patch request:', response);
-          // dispatch(trip.actions.setTripList(responseData));
         } else {
-          // dispatch(trip.actions.setTripList([]));
           dispatch(trip.actions.setError(response));
         }
       })
@@ -283,7 +225,6 @@ export const deleteTrip = (tripId) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
         'Authorization': getState().user.accessToken
       },
       body: JSON.stringify({ tripId })
@@ -294,14 +235,11 @@ export const deleteTrip = (tripId) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          // const responseData = response.response.data;
-          // console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteTrip(tripId));
           dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }
-        console.log('response:', response)
       })
 
       .catch((error) => {
@@ -326,7 +264,6 @@ export const deleteSingleCard = (tripId, cardId) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
         'Authorization': getState().user.accessToken
       },
       body: JSON.stringify({ tripId, cardId })
@@ -337,10 +274,7 @@ export const deleteSingleCard = (tripId, cardId) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          const responseData = response.response;
-          console.log('responseData:', responseData);
           dispatch(trip.actions.setDeleteCardFromTrip(cardId));
-          // dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }
@@ -356,9 +290,6 @@ export const deleteSingleCard = (tripId, cardId) => {
           dispatch(trip.actions.setLoadingPost(false));
           dispatch(trip.actions.setSuccess(true));
         }, 1500);
-        // setTimeout(() => {
-        //   dispatch(fetchTrips());
-        // }, 2000);
       })
   };
 };
@@ -372,7 +303,6 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
         'Authorization': getState().user.accessToken
       },
       body: JSON.stringify({ cardComment, cardStars })
@@ -384,13 +314,10 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
           const responseData = response.response.data;
-          console.log('responseData:', responseData);
           dispatch(trip.actions.setUpdateCardInTrip(responseData));
-          // dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
         }
-        console.log('response:', response)
       })
 
       .catch((error) => {

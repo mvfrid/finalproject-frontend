@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable linebreak-style */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
