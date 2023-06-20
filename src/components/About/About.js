@@ -80,7 +80,8 @@ export const About = ({ onPageChange }) => {
           Express °
           MongoDB °
           Material UI °
-          Formik
+          Formik °
+          Unsplash
           </Typography>
         </CardContent>
       </Card>
