@@ -8,7 +8,7 @@ import { Explore } from './components/Explore/Explore/Explore.js'
 import { StartPage } from './components/Startpage/StartPage.js'
 import { LogInRegister } from './components/LoginRegister/LogInRegister'
 import { UnAuthorized } from './components/Other/UnAuthorized/UnAuthorized.js'
-import { NotFound } from './components/Other/NotFound'
+import { NotFound } from './components/Other/NotFound/NotFound.js'
 import { About } from './components/About/About.js'
 import { Profile } from './components/Profile/Profile/Profile.js'
 
