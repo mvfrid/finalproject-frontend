@@ -1,7 +1,6 @@
 .main-unauth .button-container {
     display: flex;
     flex-direction: column;
-
 }
 
 .unauth-h2 {
@@ -19,16 +18,16 @@
     margin-top: 10px;
 }
 
-  .main-unauth {
-    background-color: #ffffffd1;
-    margin: 50px auto;
-    padding: 25px;
-    border-radius: 6px;
-    min-height: 300px;
-    width: 100%;
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.main-unauth {
+  background-color: #ffffffd1;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 6px;
+  min-height: 300px;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

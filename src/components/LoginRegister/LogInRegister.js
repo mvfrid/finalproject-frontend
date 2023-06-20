@@ -15,11 +15,12 @@ import { green } from '@mui/material/colors';
 
 export const LogInRegister = ({ mode }) => {
   const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState(false);
+
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const timer = useRef();
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (accessToken) {
@@ -155,15 +156,16 @@ export const LogInRegister = ({ mode }) => {
                 component={TextField}
                 name="username"
                 type="text"
-                label="Username" />
+                label="Username"
+                aria-label="Username" />
             </Box>
             <Box margin={1}>
               <Field
                 component={TextField}
                 type="password"
                 label="Password"
-                name="password" />
-              {/* {isSubmitting && <LinearProgress />} */}
+                name="password"
+                aria-label="Password" />
             </Box>
 
             <Box
@@ -182,7 +184,8 @@ export const LogInRegister = ({ mode }) => {
                         setSuccess(true);
                       }, 2000);
                     }
-                  }}>
+                  }}
+                  aria-live="polite">
                   {isSubmitting && !success ? 'Submitting...' : 'Submit'}
                 </Button>
 
@@ -196,11 +199,14 @@ export const LogInRegister = ({ mode }) => {
                       left: '50%',
                       marginTop: '-12px',
                       marginLeft: '-12px'
-                    }} />
+                    }}
+                    aria-label="Loading" />
                 )}
               </Box>
               <Box margin={1}>
-                {mode === 'users/register' ? <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToLogin(resetForm, values)}>Already a member? Login here</Button> : <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToRegister(resetForm, values)}>Not a member yet? Register here</Button>}
+                {mode === 'users/register'
+                  ? <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToLogin(resetForm, values)} aria-label="Go to Login">Already a member? Login here</Button>
+                  : <Button type="button" sx={{ color: '#446173' }} onClick={() => onClickGoToRegister(resetForm, values)} aria-label="Go to Register">Not a member yet? Register here</Button>}
               </Box>
 
             </Box>

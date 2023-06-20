@@ -1,4 +1,3 @@
-
 .about-container {
     display: flex;
     flex-direction: column;
@@ -19,12 +18,9 @@
 }
 
 
-
+/* Styles for tablet */
 @media (min-width: 667px) {
-    /* Styles for tablet view */
-
     .about-container {
-        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 20px;
@@ -32,13 +28,3 @@
     }
 
   }
-  
-  @media (min-width: 1025px) {
-    /* Styles for desktop view */
-    
-    .about-container {
-        flex-wrap: wrap;
-    }
-
-  }
-

@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import React, { useEffect, useState } from 'react';
-import { NavBar } from '../NavBar'
-import { NavBarHamburger } from '../NavBarHamburger'
+import { NavBar } from '../NavBar/NavBar'
+import { NavBarHamburger } from '../NavBarHamburger/NavBarHamburger'
 import './Header.css';
 
 export const Header = () => {
@@ -19,13 +19,15 @@ export const Header = () => {
   }, []);
 
   return (
-    <div className="header">
+    <header className="header">
       <h1>
         <a href="/" className="header-link">
-          <img src="https://i.postimg.cc/rwCLvnxZ/Namnlo-s-500-200-px-500-150-px-800-200-px-1.png" alt="" />
+          <img
+            src="https://i.postimg.cc/rwCLvnxZ/Namnlo-s-500-200-px-500-150-px-800-200-px-1.png"
+            alt="Logo Link to Home page" />
         </a>
       </h1>
       {isDesktop ? <NavBar /> : <NavBarHamburger />}
-    </div>
+    </header>
   )
 }

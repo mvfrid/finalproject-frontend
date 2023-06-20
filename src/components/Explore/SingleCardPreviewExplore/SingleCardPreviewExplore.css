@@ -12,6 +12,7 @@
     object-fit: cover;
 }
 
+/* Styles ofr tablet */
 @media (min-width: 668px) {
 
     .place-photo {
@@ -22,6 +23,7 @@
     }
 }
 
+/* Styles for desktop*/
 @media (min-width: 1025px) {
 
     .place-photo {

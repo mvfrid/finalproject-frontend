@@ -47,12 +47,14 @@
     margin: 0 10px;
   }
 
-  @media (min-width: 550px) {      
+  /* Styling for large mobile */
+@media (min-width: 550px) {      
     .main-explore {
       max-width: 750px;
     }
   }
   
+/* Styling for tablet */
   @media (min-width: 750px) {
     .main-explore {
       margin: 30px auto;

@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import WorkIcon from '@mui/icons-material/Work';
 import { IconButton, Stack } from '@mui/material';
-import * as styles from './StyledAbout'
+import * as styles from './StyledAboutCards'
 
 export const AboutCards = ({ title, image, linkLinked, linkGit, linkPortfolio }) => {
   return (
@@ -16,9 +16,13 @@ export const AboutCards = ({ title, image, linkLinked, linkGit, linkPortfolio })
       <img
         src={image}
         className="photo-circle"
-        alt="about photos" />
+        alt={`${title}'s Portrait`} />
       <CardContent>
-        <Typography gutterBottom variant="h5" color="#446173" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          color="#446173"
+          component="h2">
           {title}
         </Typography>
       </CardContent>
@@ -26,15 +30,27 @@ export const AboutCards = ({ title, image, linkLinked, linkGit, linkPortfolio })
       <Stack alignItems="center">
         <CardActions>
 
-          <IconButton href={linkLinked} target="_blank">
+          <IconButton
+            href={linkLinked}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Link to ${title}'s LinkedIn`}>
             <LinkedInIcon sx={{ color: '#495057' }} />
           </IconButton>
 
-          <IconButton href={linkGit} target="_blank">
+          <IconButton
+            href={linkGit}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Link to ${title}'s Github`}>
             <GitHubIcon sx={{ color: '#495057' }} />
           </IconButton>
 
-          <IconButton href={linkPortfolio} target="_blank">
+          <IconButton
+            href={linkPortfolio}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Link to ${title}'s portfolio`}>
             <WorkIcon sx={{ color: '#495057' }} />
           </IconButton>
 

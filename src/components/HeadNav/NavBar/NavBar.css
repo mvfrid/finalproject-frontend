@@ -1,0 +1,20 @@
+.header-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.MenuBtn {
+    font-size: 18px;
+    border: none;
+    color: white;
+    background-color: transparent;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.MenuBtn:hover {
+    text-decoration: underline;
+}

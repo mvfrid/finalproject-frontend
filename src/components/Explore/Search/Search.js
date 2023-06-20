@@ -11,7 +11,6 @@ import { API_KEY, PLACES_URL } from 'utils/urls';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
 import * as styles from './StyledSearch'
-import './Search.css';
 
 export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) => {
   const [input, setInput] = useState('');
@@ -70,9 +69,9 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
   }
 
   return (
-    <Box sx={styles.StyledSearchBox}>
+    <Box sx={styles.StyledSearchBox} role="search">
       <Box sx={styles.StyledInputBox}>
-        <LocationOnIcon sx={{ color: 'action.active', ml: 1, mr: 2, my: 2 }} />
+        <LocationOnIcon sx={{ color: 'action.active', ml: 1, mr: 2, my: 2 }} aria-hidden="true" />
         <TextField
           id="input-with-sx"
           label="Destination"
@@ -176,15 +175,7 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
         variant="contained"
         endIcon={<SearchIcon />}
         onClick={handleFormSubmit}
-        sx={{
-          m: 0.5,
-          px: '10px',
-          backgroundColor: '#43B97F',
-          fontSize: '14px',
-          '&:hover': {
-            backgroundColor: '#2A8D5C'
-          }
-        }}>
+        sx={styles.StyledSearchBtn}>
           Explore now
       </Button>
     </Box>

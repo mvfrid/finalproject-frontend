@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SingleTrip } from 'components/SingleTrip/SingleTrip/SingleTrip.js';
-import { Header } from './components/HeadNavFoot/Header/Header.js'
+import { Header } from './components/HeadNav/Header/Header.js'
 import { Explore } from './components/Explore/Explore/Explore.js'
 import { StartPage } from './components/Startpage/StartPage.js'
 import { LogInRegister } from './components/LoginRegister/LogInRegister'

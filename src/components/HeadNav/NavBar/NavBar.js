@@ -4,6 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
+import './NavBar.css'
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export const NavBar = () => {
   }
 
   return (
-    <div className="header-nav">
+    <nav className="header-nav">
       <button className="MenuBtn" type="button" onClick={onClickGoToStart}>Home</button>
       <button className="MenuBtn" type="button" onClick={onClickGoToExplore}>Explore</button>
       <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
@@ -48,6 +49,6 @@ export const NavBar = () => {
       {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToLogin}>Log In</button>)}
       {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToRegister}>Register</button>)}
       {accessToken && (<button className="MenuBtn" type="button" onClick={handleLogOut}>Log out</button>)}
-    </div>
+    </nav>
   )
 }

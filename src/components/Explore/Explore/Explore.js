@@ -18,13 +18,12 @@ export const Explore = ({ onPageChange }) => {
   const [openCard, setOpenCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [locationNotFound, setLocationNotFound] = useState(false);
-
-  const [placesData, setPlacesData] = useState([]); // All 20 places fetched
-  const [selectedPlace, setSelectedPlace] = useState(null); // One object
-  const [photoUrl, setPhotoUrl] = useState([]); // For storing image URLs
+  const [placesData, setPlacesData] = useState([]);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState([]);
 
   useEffect(() => {
-    onPageChange('explore'); // Invoke onPageChange with the current page information
+    onPageChange('explore');
   }, []);
 
   const handleClose = () => {
@@ -37,15 +36,11 @@ export const Explore = ({ onPageChange }) => {
   };
 
   const handleCardClick = (place) => {
-    // We get a selected object back from SingleCardPreviewExplore
-    // We store it in selectedPlace, to use later
-    // Then we launch the handleOpen function to open Modal
     setSelectedPlace(place);
     handleOpen();
   };
 
   const handleLoadingChange = (loading) => {
-    // Handle the loading state change in the parent component
     setIsLoading(loading);
   };
 
@@ -76,18 +71,20 @@ export const Explore = ({ onPageChange }) => {
       <Search
         onDataFetched={handleDataFetched}
         onLoadingChange={handleLoadingChange}
-        onLocationNotFound={handleLocationNotFound} />
+        onLocationNotFound={handleLocationNotFound}
+        aria-label="Search for places" />
       <div className="main-explore">
         <div className="places">
           {isLoading ? (
-            <Loading />
+            <Loading aria-label="Loading..." />
           ) : placesData.length > 0 ? (
             placesData.map((place, index) => (
               <SingleCardPreviewExplore
                 place={place}
                 photoUrl={photoUrl[index]}
                 key={place.place_id}
-                onCardClick={handleCardClick} />
+                onCardClick={handleCardClick}
+                alt={place.name} />
             ))
           ) : !isLoading && locationNotFound ? (
             <div className="location-not-found">
@@ -105,7 +102,8 @@ export const Explore = ({ onPageChange }) => {
             <SingleCardModal
               selectedPlace={selectedPlace}
               open={openCard}
-              handleClose={handleClose} />
+              handleClose={handleClose}
+              aria-labelledby={selectedPlace.name} />
           </div>
         )}
       </div>

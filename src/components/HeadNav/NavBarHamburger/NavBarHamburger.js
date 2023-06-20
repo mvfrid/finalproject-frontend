@@ -7,6 +7,7 @@ import { user } from 'reducers/user';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { ToggleButton } from '@mui/material';
+import './NavBarHamburger.css'
 
 export const NavBarHamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,7 +81,7 @@ export const NavBarHamburger = () => {
   }, [isOpen]);
 
   return (
-    <div className="hamburger-menu">
+    <nav className="hamburger-menu">
       <ToggleButton value="" onClick={() => setIsOpen(!isOpen)} sx={{ border: 'none' }}>
         {isOpen ? <CloseIcon
           sx={{ fontSize: '56px', mt: '8px', color: 'white' }}
@@ -98,6 +99,6 @@ export const NavBarHamburger = () => {
           {accessToken && (<button className="MenuBtn" type="button" onClick={handleLogOut}>Log out</button>)}
         </div>
       )}
-    </div>
+    </nav>
   )
 }

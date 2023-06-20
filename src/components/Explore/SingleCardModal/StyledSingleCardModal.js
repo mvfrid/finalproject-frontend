@@ -103,8 +103,6 @@ export const StyledCircularProgress = {
   zIndex: 1
 };
 
-// From single trip
-
 export const StyledTypographyName = {
   fontSize: '24px',
   marginTop: '4px',

@@ -14,7 +14,10 @@ export const NotFound = () => {
     <div className="main-notfound">
       <h2>Oh no!</h2>
       <h3>It looks like you tried to reach a page which does not exist.</h3>
-      <ErrorOutlineIcon sx={{ mb: 3, fontSize: '50px', color: '#E2A228' }} />
+      <ErrorOutlineIcon
+        sx={{ mb: 3, fontSize: '50px', color: '#E2A228' }}
+        title="Error Icon"
+        aria-hidden="false" />
       <div className="button-container">
         <Button
           sx={{
@@ -26,7 +29,8 @@ export const NotFound = () => {
           }}
           variant="contained"
           type="button"
-          onClick={onClickGoHome}>
+          onClick={onClickGoHome}
+          aria-label="Go to Home page">
           Go to Home
         </Button>
       </div>

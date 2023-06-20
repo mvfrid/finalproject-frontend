@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable linebreak-style */
 import React from 'react';
 import Card from '@mui/material/Card';
@@ -10,17 +11,21 @@ import * as styles from './StyledSingleCardPreviewExplore'
 
 const SingleCardPreviewExplore = ({ place, photoUrl, onCardClick }) => {
   const handleButtonClick = (clickedPlace) => {
-    // We take the place and send it in a callback function
-    // We sent it through onCardClick back to Explore, to use later
     onCardClick(clickedPlace);
   };
 
   return (
     <Card sx={styles.StyledPreviewContainerExplore}>
       {photoUrl ? (
-        <img src={photoUrl} alt="" className="place-photo" />
+        <img
+          src={photoUrl}
+          alt={`Photo of ${place.name}`}
+          className="place-photo" />
       ) : (
-        <img src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" alt="" className="place-photo" />
+        <img
+          src="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
+          alt={`Missing photo of ${place.name}`}
+          className="place-photo" />
       )}
       <CardContent
         sx={styles.StyledPreviewContentExplore}>

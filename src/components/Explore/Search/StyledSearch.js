@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-
 export const StyledSearchBox = {
   display: 'flex',
   flexDirection: 'column',
@@ -98,3 +97,13 @@ export const StyledMenuItem = {
   '@media (min-width: 750px)': {
   }
 };
+
+export const StyledSearchBtn = {
+  m: 0.5,
+  px: '10px',
+  backgroundColor: '#43B97F',
+  fontSize: '14px',
+  '&:hover': {
+    backgroundColor: '#2A8D5C'
+  }
+}

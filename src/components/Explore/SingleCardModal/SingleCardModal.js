@@ -95,7 +95,8 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
             <IconButton
               type="button"
               sx={styles.StyledCloseBtn}
-              onClick={closeModal}>
+              onClick={closeModal}
+              aria-label="Close the modal">
               <CloseRoundedIcon />
             </IconButton>
           </Box>
@@ -104,6 +105,7 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
             <CardMedia
               component="img"
               image={url}
+              alt={`Image of ${selectedPlace.name}`}
               sx={styles.StyledModalImg} />
           </Box>
 
@@ -172,7 +174,10 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
                 {loading && (
                   <CircularProgress
                     size={68}
-                    sx={styles.StyledCircularProgress} />
+                    sx={styles.StyledCircularProgress}
+                    role="status"
+                    aria-live="polite"
+                    aria-label="Content is loading" />
                 )}
               </Box>
             </Box>
