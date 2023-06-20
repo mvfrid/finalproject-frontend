@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable no-undef */
 /* eslint-disable quote-props */
 import { createSlice } from '@reduxjs/toolkit';
 import { MONGO_DB_URL } from '../utils/urls';
@@ -11,11 +10,7 @@ export const trip = createSlice({
     isLoadingPost: false,
     isLoadingGet: false,
     isSuccessful: false,
-    tripList: [],
-    newTrip: null,
-    deleteTrip: null,
-    deleteCardFromTrip: null,
-    updateCardInTrip: null
+    tripList: []
   },
   reducers: {
     setError: (store, action) => {
@@ -35,21 +30,6 @@ export const trip = createSlice({
         console.error('setTripList was called with a non-array value:', action.payload);
       }
       store.tripList = action.payload;
-    },
-    setNewTrip: (store, action) => {
-      store.newTrip = action.payload;
-    },
-    setDeleteTrip: (store, action) => {
-      store.deleteTrip = action.payload;
-    },
-    setDeleteCardFromTrip: (store, action) => {
-      store.deleteCardFromTrip = action.payload;
-    },
-    setUpdateCardInTrip: (store, action) => {
-      store.updateCardInTrip = action.payload;
-    },
-    setSingleTrip: (store, action) => {
-      store.singleTrip = action.payload;
     }
   }
 });
@@ -109,10 +89,7 @@ export const postNewTrip = (value) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          const responseData = response.response.data; // this is expected to be a single trip
-          dispatch(trip.actions.setNewTrip(responseData));
         } else {
-          dispatch(trip.actions.setTripList([]));
           dispatch(trip.actions.setError(response));
         }
       })
@@ -152,10 +129,7 @@ export const getSingleTrip = (tripId) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          const responseData = response.response.data; // this is expected to be a single trip
-          dispatch(trip.actions.setSingleTrip(responseData));
         } else {
-          dispatch(trip.actions.setSingleTrip(null));
           dispatch(trip.actions.setError(response));
         }
       })
@@ -235,7 +209,6 @@ export const deleteTrip = (tripId) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          dispatch(trip.actions.setDeleteTrip(tripId));
           dispatch(fetchTrips());
         } else {
           dispatch(trip.actions.setError(response));
@@ -274,7 +247,6 @@ export const deleteSingleCard = (tripId, cardId) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          dispatch(trip.actions.setDeleteCardFromTrip(cardId));
         } else {
           dispatch(trip.actions.setError(response));
         }
@@ -313,8 +285,6 @@ export const updateSingleCard = (tripId, cardId, cardComment, cardStars) => {
       .then((response) => {
         if (response.success) {
           dispatch(trip.actions.setError(null));
-          const responseData = response.response.data;
-          dispatch(trip.actions.setUpdateCardInTrip(responseData));
         } else {
           dispatch(trip.actions.setError(response));
         }
