@@ -53,12 +53,6 @@ export const NavBarHamburger = () => {
     navigate('/');
   }
 
-  useEffect(() => {
-    if (!accessToken) {
-      navigate('/');
-    }
-  }, [accessToken]);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };

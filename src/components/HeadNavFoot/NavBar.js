@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable linebreak-style */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { user } from 'reducers/user';
@@ -38,12 +38,6 @@ export const NavBar = () => {
     dispatch(user.actions.signOut());
     navigate('/');
   }
-
-  useEffect(() => {
-    if (!accessToken) {
-      navigate('/');
-    }
-  }, [accessToken]);
 
   return (
     <div className="header-nav">
