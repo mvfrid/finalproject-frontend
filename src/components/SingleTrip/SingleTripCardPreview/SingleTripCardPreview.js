@@ -45,7 +45,7 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
           // aria-labelledby={`Rating: ${card.cardRating}`}
           // aria-label={`Rating: ${card.cardRating}`}
           variant="body2">
-          <span aria-label="puppy">⭐️</span>
+          <span role="img" aria-label="puppy">⭐️</span>
           {card.cardRating}
         </Typography>
       </CardContent>
