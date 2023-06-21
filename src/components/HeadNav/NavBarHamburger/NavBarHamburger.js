@@ -82,7 +82,7 @@ export const NavBarHamburger = () => {
 
   return (
     <nav className="hamburger-menu">
-      <ToggleButton value="" onClick={() => setIsOpen(!isOpen)} sx={{ border: 'none' }}>
+      <ToggleButton value="" onClick={() => setIsOpen(!isOpen)} sx={{ border: 'none' }} aria-label="Open navigation menu">
         {isOpen ? <CloseIcon
           sx={{ fontSize: '56px', mt: '8px', color: 'white' }}
           onClick={toggleMenu} />
@@ -90,13 +90,13 @@ export const NavBarHamburger = () => {
       </ToggleButton>
       {isOpen && (
         <div className="hamburger-open" ref={hamburgerOpenRef}>
-          <button className="MenuBtn" type="button" onClick={onClickGoToStart}>Home</button>
-          <button className="MenuBtn" type="button" onClick={onClickGoToExplore}>Explore</button>
-          <button className="MenuBtn" type="button" onClick={onClickGoToProfile}>Profile</button>
-          <button className="MenuBtn" type="button" onClick={onClickGoToAbout}>About Us</button>
-          {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToLogin}>Log In</button>)}
-          {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToRegister}>Register</button>)}
-          {accessToken && (<button className="MenuBtn" type="button" onClick={handleLogOut}>Log out</button>)}
+          <button className="MenuBtn" type="button" onClick={onClickGoToStart} aria-label="Go to Home">Home</button>
+          <button className="MenuBtn" type="button" onClick={onClickGoToExplore} aria-label="Go to Explore">Explore</button>
+          <button className="MenuBtn" type="button" onClick={onClickGoToProfile} aria-label="Go to profile">Profile</button>
+          <button className="MenuBtn" type="button" onClick={onClickGoToAbout} aria-label="Go to about us">About Us</button>
+          {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToLogin} aria-label="Go to login">Log In</button>)}
+          {!accessToken && (<button className="MenuBtn" type="button" onClick={onClickGoToRegister} aria-label="Go to register">Register</button>)}
+          {accessToken && (<button className="MenuBtn" type="button" onClick={handleLogOut} aria-label="Log out">Log out</button>)}
         </div>
       )}
     </nav>

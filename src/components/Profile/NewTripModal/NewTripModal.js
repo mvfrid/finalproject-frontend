@@ -59,7 +59,8 @@ export const NewTripModal = ({ open, onClose }) => {
           <IconButton
             type="button"
             sx={styles.StyledCloseBtn}
-            onClick={closeModal}>
+            onClick={closeModal}
+            aria-label="Close">
             <CloseRoundedIcon />
           </IconButton>
         </Box>
@@ -98,7 +99,10 @@ export const NewTripModal = ({ open, onClose }) => {
               {loading && (
                 <CircularProgress
                   size={68}
-                  sx={styles.StyledCircularProgress} />
+                  sx={styles.StyledCircularProgress}
+                  role="status"
+                  aria-live="polite"
+                  aria-label="Content is loading" />
               )}
             </Box>
           </Box>

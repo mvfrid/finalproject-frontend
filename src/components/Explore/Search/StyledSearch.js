@@ -101,7 +101,7 @@ export const StyledMenuItem = {
 export const StyledSearchBtn = {
   m: 0.5,
   px: '10px',
-  backgroundColor: '#43B97F',
+  backgroundColor: '#2E7D32',
   fontSize: '14px',
   '&:hover': {
     backgroundColor: '#2A8D5C'

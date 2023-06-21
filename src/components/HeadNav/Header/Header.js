@@ -21,7 +21,10 @@ export const Header = () => {
   return (
     <header className="header">
       <h1>
-        <a href="/" className="header-link">
+        <a
+          href="/"
+          className="header-link"
+          aria-label="Logo link to home page">
           <img
             src="https://i.postimg.cc/rwCLvnxZ/Namnlo-s-500-200-px-500-150-px-800-200-px-1.png"
             alt="Logo Link to Home page" />
