@@ -11,7 +11,7 @@ import { user } from 'reducers/user';
 import { MONGO_DB_URL } from '../../../utils/urls';
 import * as styles from './StyledEditProfileModal'
 
-export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
+export const EditProfileModal = ({ open, onClose }) => {
   const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
@@ -49,7 +49,7 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
     event.preventDefault();
     const updatedData = {}; // Initialize an empty object to store the updated values
 
-    // Check each field and update the corresponding property in updatedData
+    // Check each field and update the corresponding property in updatedData,
     // if the value is non-empty
     if (nameValue.trim() !== '') {
       updatedData.profileName = nameValue.trim();
@@ -78,8 +78,6 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
           console.log(data);
           dispatch(user.actions.setUserInfo(data.response.data));
           dispatch(user.actions.setError(null));
-          // Pass the updated profile text back to the parent component
-          setUpdatedProfile(data.response.data);
           setNameValue('');
           setTextValue('');
           setInstaValue('');

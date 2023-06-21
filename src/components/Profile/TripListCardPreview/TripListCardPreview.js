@@ -37,7 +37,8 @@ export const TripListCardPreview = ({ card, showButton, onCardClick }) => {
           variant="body2"
           color="text.secondary"
           sx={styles.StyledTypoRate}>
-          ⭐️{card.cardRating}
+          <span role="img" aria-label="Rating">⭐️</span>
+          {card.cardRating}
         </Typography>
       </CardContent>
       <CardActions>

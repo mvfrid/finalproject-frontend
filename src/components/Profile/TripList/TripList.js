@@ -40,7 +40,7 @@ export const TripList = () => {
           size="small"
           onClick={handleOpen}
           endIcon={<AddPhotoAlternateIcon />}>
-        Add new trip
+        New trip
         </Button>
         <NewTripModal open={open} onClose={handleClose} />
         <Button type="button" size="small" sx={{ color: '#446173' }} onClick={() => onClickGoToExplore()}>Looking for inspiration? Go to Explore</Button>
