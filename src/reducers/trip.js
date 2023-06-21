@@ -161,7 +161,7 @@ export const patchTripWithNewCard = (tripId, place) => {
       body: JSON.stringify({
         cardIcon: place.icon,
         cardName: place.name,
-        cardPhotoRef: place.photos[0].photo_reference,
+        cardPhotoRef: place.photos ? place.photos[0].photo_reference : null,
         cardPlaceId: place.place_id,
         cardRating: place.rating,
         cardVicinity: place.vicinity

@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable camelcase */
 import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,20 +11,14 @@ import { API_KEY } from 'utils/urls';
 import * as styles from './StyledSingleTripCardPreview.js'
 
 export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
-  console.log('SingleTripCardPreview card:', card)
-  /*
-  const photoWidth = 500;
-  const photoReference = selectedPlace.photos[0].photo_reference
-  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
-*/
-
   const handleOpenModal = () => {
     onCardClick(card);
   }
 
   const photoWidth = 500;
   const photoReference = card.cardPhotoRef
-  const photourl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
+  const placeholderImg = 'https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg';
+  const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
 
   return (
     <Card
@@ -33,8 +26,7 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
       sx={styles.StyledPreviewContainer}>
       <CardMedia
         sx={styles.StyledCardPreviewImg}
-        // image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
-        image={photourl} />
+        image={photoReference ? photoUrl : placeholderImg} />
       <CardContent
         sx={styles.StyledCardContentSingle}>
         <Typography
@@ -46,6 +38,10 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
         </Typography>
         <Typography
           sx={styles.StyledCardTypoRat}
+          aria-labelledby="aria labelled by"
+          aria-label="aria label"
+          // aria-labelledby={`Rating: ${card.cardRating}`}
+          // aria-label={`Rating: ${card.cardRating}`}
           variant="body2">
           ⭐️ {card.cardRating}
         </Typography>

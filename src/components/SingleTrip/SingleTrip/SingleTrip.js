@@ -9,26 +9,22 @@ import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRound
 import { deleteTrip } from 'reducers/trip';
 import { SingleTripCardPreview } from '../SingleTripCardPreview/SingleTripCardPreview';
 import { SingleTripModal } from '../SingleTripModal/SingleTripModal';
-import * as styles from './StyledSingleTrip'
 import { EmptyStateSingleTrip } from '../EmptyStateSingleTrip/EmptyStateSingleTrip';
+import * as styles from './StyledSingleTrip'
 
 export const SingleTrip = () => {
   const { id } = useParams();
-  const tripList = useSelector((store) => store.trip.tripList);
-  const accessToken = useSelector((store) => store.user.accessToken)
-  console.log('data from singletrip', tripList)
-  console.log('accesstoken singletrip', accessToken)
-
-  const trip = tripList.find((singleTrip) => singleTrip._id === id);
-  console.log('data from trip', trip)
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const tripList = useSelector((store) => store.trip.tripList);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const [selectedCardId, setSelectedCardId] = useState(null);
-  console.log('selected card id', selectedCardId)
+
+  const trip = tripList.find((singleTrip) => singleTrip._id === id);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   const handleClickDelete = (event) => {
     event.preventDefault();
