@@ -99,7 +99,7 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
                   <Typography sx={styles.StyledIcon}>
                     <img
                       src={singleCard.cardIcon}
-                      alt="card icon"
+                      alt="card type icon"
                       style={{ maxWidth: '40px', maxHeight: '35px' }} />
                   </Typography>
 

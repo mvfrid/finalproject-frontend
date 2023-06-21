@@ -9,7 +9,7 @@ export const StyledPreviewContainer = {
 export const StyledCardPreviewImg = {
   height: '50%',
   width: '100%',
-  m: '10px'
+  m: '0'
 };
 
 export const StyledCardContentSingle = {
