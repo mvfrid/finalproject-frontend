@@ -32,7 +32,7 @@ const SingleCardPreviewExplore = ({ place, photoUrl, onCardClick }) => {
         <Typography
           sx={styles.StyledCardNameExp}
           gutterBottom
-          component="h3"
+          component="h2"
           className="card-preview-name-explore">
           {place.name}
         </Typography>

@@ -80,93 +80,32 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
           onChange={(event) => setInput(event.target.value)}
           sx={styles.StyledInputField} />
         <FormControl sx={styles.StyledFormControl}>
-          <InputLabel sx={{ mt: 1 }} htmlFor="grouped-native-select">Type</InputLabel>
+          <InputLabel id="grouped-native-select-label" sx={{ mt: 1 }} htmlFor="grouped-native-select">Type</InputLabel>
           <Select
             defaultValue=""
             id="grouped-native-select"
             onChange={handleSelectChange}
             label="Type"
+            aria-labelledby="grouped-native-select-label"
             variant="standard">
-            <MenuItem
-              value=""
-              sx={styles.StyledMenuItem}>
-              <em>None</em>
-            </MenuItem>
+            <MenuItem value="" sx={styles.StyledMenuItem}><em>None</em></MenuItem>
+            <ListSubheader sx={styles.StyledListSubheader}>Food & Drink</ListSubheader>
+            <MenuItem value="restaurant" sx={styles.StyledMenuItem}>Restaurant</MenuItem>
+            <MenuItem value="cafe" sx={styles.StyledMenuItem}>Café</MenuItem>
+            <MenuItem value="bar" sx={styles.StyledMenuItem}>Bar</MenuItem>
+            <MenuItem value="bakery" sx={styles.StyledMenuItem}>Bakery</MenuItem>
 
-            <ListSubheader
-              sx={styles.StyledListSubheader}>
-              Food & Drink
-            </ListSubheader>
-            <MenuItem
-              value="restaurant"
-              sx={styles.StyledMenuItem}>
-              Restaurant
-            </MenuItem>
-            <MenuItem
-              value="cafe"
-              sx={styles.StyledMenuItem}>
-              Cafe
-            </MenuItem>
-            <MenuItem
-              value="bar"
-              sx={styles.StyledMenuItem}>
-              Bar
-            </MenuItem>
-            <MenuItem
-              value="bakery"
-              sx={styles.StyledMenuItem}>
-              Bakery
-            </MenuItem>
+            <ListSubheader sx={styles.StyledListSubheader}>Accomodation</ListSubheader>
+            <MenuItem value="establishment" sx={styles.StyledMenuItem}>Establishment</MenuItem>
+            <MenuItem value="campground" sx={styles.StyledMenuItem}>Campground</MenuItem>
+            <MenuItem value="lodging" sx={styles.StyledMenuItem}>Lodging</MenuItem>
 
-            <ListSubheader
-              sx={styles.StyledListSubheader}>
-              Accomodation
-            </ListSubheader>
-            <MenuItem
-              value="establishment"
-              sx={styles.StyledMenuItem}>
-              Establishment
-            </MenuItem>
-            <MenuItem
-              value="campground"
-              sx={styles.StyledMenuItem}>
-              Campground
-            </MenuItem>
-            <MenuItem
-              value="lodging"
-              sx={styles.StyledMenuItem}>
-              Lodging
-            </MenuItem>
-
-            <ListSubheader
-              sx={styles.StyledListSubheader}>
-              Entertainment
-            </ListSubheader>
-            <MenuItem
-              value="tourist_attraction"
-              sx={styles.StyledMenuItem}>
-              Tourist attraction
-            </MenuItem>
-            <MenuItem
-              value="museum"
-              sx={styles.StyledMenuItem}>
-              Museum
-            </MenuItem>
-            <MenuItem
-              value="amusement_park"
-              sx={styles.StyledMenuItem}>
-              Amusement park
-            </MenuItem>
-            <MenuItem
-              value="park"
-              sx={styles.StyledMenuItem}>
-              Park
-            </MenuItem>
-            <MenuItem
-              value="zoo"
-              sx={styles.StyledMenuItem}>
-              Zoo
-            </MenuItem>
+            <ListSubheader sx={styles.StyledListSubheader}>Entertainment</ListSubheader>
+            <MenuItem value="tourist_attraction" sx={styles.StyledMenuItem}>Tourist attraction</MenuItem>
+            <MenuItem value="museum" sx={styles.StyledMenuItem}>Museum</MenuItem>
+            <MenuItem value="amusement_park" sx={styles.StyledMenuItem}>Amusement park</MenuItem>
+            <MenuItem value="park" sx={styles.StyledMenuItem}>Park</MenuItem>
+            <MenuItem value="zoo" sx={styles.StyledMenuItem}>Zoo</MenuItem>
 
           </Select>
         </FormControl>
@@ -179,6 +118,5 @@ export const Search = ({ onDataFetched, onLoadingChange, onLocationNotFound }) =
           Explore now
       </Button>
     </Box>
-
   )
 }
