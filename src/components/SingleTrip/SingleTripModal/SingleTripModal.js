@@ -76,6 +76,7 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
                 <IconButton
                   type="button"
                   sx={styles.StyledCloseBtn}
+                  aria-label="Close the modal"
                   onClick={closeModal}>
                   <CloseRoundedIcon />
                 </IconButton>
@@ -103,7 +104,8 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
                   </Typography>
 
                   <Typography sx={styles.StyledRating}>
-                    ⭐️ {singleCard.cardRating}
+                    <span role="img" aria-label="Rating">⭐️</span>
+                    {singleCard.cardRating}
                   </Typography>
                 </Box>
               </Box>

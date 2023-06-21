@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable max-len */
 /* eslint-disable quote-props */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,13 +12,13 @@ import { MONGO_DB_URL } from '../../../utils/urls';
 import * as styles from './StyledEditProfileModal'
 
 export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
+  const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
   const [instaValue, setInstaValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const dispatch = useDispatch();
   const userId = useSelector((store) => store.user.userId);
   const accessToken = useSelector((store) => store.user.accessToken);
   const currentNameValue = useSelector((store) => store.user.userInfo.profileName);
@@ -50,7 +49,8 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
     event.preventDefault();
     const updatedData = {}; // Initialize an empty object to store the updated values
 
-    // Check each field and update the corresponding property in updatedData if the value is non-empty
+    // Check each field and update the corresponding property in updatedData
+    // if the value is non-empty
     if (nameValue.trim() !== '') {
       updatedData.profileName = nameValue.trim();
     }
@@ -124,6 +124,7 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
           <IconButton
             type="button"
             sx={styles.StyledCloseBtn}
+            aria-label="Close the modal"
             onClick={closeModal}>
             <CloseRoundedIcon />
           </IconButton>

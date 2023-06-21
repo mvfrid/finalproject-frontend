@@ -59,8 +59,8 @@ export const NewTripModal = ({ open, onClose }) => {
           <IconButton
             type="button"
             sx={styles.StyledCloseBtn}
-            onClick={closeModal}
-            aria-label="Close">
+            aria-label="Close the modal"
+            onClick={closeModal}>
             <CloseRoundedIcon />
           </IconButton>
         </Box>
