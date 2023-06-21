@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable jsx-quotes */
 /* eslint-disable react/jsx-closing-tag-location */
 import React from 'react';
 import Card from '@mui/material/Card';
@@ -38,8 +39,8 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
         </Typography>
         <Typography
           sx={styles.StyledCardTypoRat}
-          aria-labelledby="aria labelled by"
-          aria-label="aria label"
+          aria-labelledby='aria labelled by'
+          aria-label='aria label'
           // aria-labelledby={`Rating: ${card.cardRating}`}
           // aria-label={`Rating: ${card.cardRating}`}
           variant="body2">
