@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { EditProfileModal } from '../EditProfileModal/EditProfileModal';
@@ -36,9 +36,13 @@ export const UserInfo = () => {
               <p>About me:</p>
               <p><span>{userInfo.profileText}</span></p>
             </div>
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-              <InstagramIcon sx={{ color: '#446173' }} />
-            </a>
+            <IconButton
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Link to ${userInfo.username}'s LinkedIn`}>
+              <InstagramIcon sx={{ color: '#495057' }} />
+            </IconButton>
           </div>
         </div>
       </div>
@@ -57,3 +61,9 @@ export const UserInfo = () => {
     </div>
   )
 }
+
+/*
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+              <InstagramIcon sx={{ color: '#446173' }} />
+            </a>
+            */
