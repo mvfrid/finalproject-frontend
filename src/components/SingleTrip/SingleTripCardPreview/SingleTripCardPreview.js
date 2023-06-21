@@ -38,6 +38,7 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
         </Typography>
         <Typography
           sx={styles.StyledCardTypoRat}
+          aria-labelledby={`Rating: ${card.cardRating}`}
           aria-label={`Rating: ${card.cardRating}`}
           variant="body2">
           ⭐️ {card.cardRating}
