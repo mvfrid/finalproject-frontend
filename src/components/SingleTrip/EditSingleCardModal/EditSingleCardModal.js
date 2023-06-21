@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
 /* eslint-disable quote-props */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,17 +14,12 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
   const { id } = useParams();
   const currentCommentValue = card.cardComment;
   const currentStarsValue = card.cardStars;
-  console.log('currentCommentValue', currentCommentValue);
-  console.log('currentStarsValue', currentStarsValue);
-
   const cardId = card._id;
-  console.log('cardId:', cardId)
-
-  const [commentValue, setCommentValue] = useState(currentCommentValue || '');
-  const [starsValue, setStarsValue] = useState(currentStarsValue || 0);
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.trip.isLoadingPost);
   const success = useSelector((state) => state.trip.isSuccessful);
+  const [commentValue, setCommentValue] = useState(currentCommentValue || '');
+  const [starsValue, setStarsValue] = useState(currentStarsValue || 0);
 
   const buttonSx = success
     ? {
@@ -51,7 +45,6 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
 
   const handleCommentChange = (event) => {
     const newValue = event.target.value;
-    console.log(`New commentValue: ${newValue}`);
     setCommentValue(newValue);
   };
 
@@ -67,7 +60,6 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
       updatedData.cardStars = starsValue;
     }
 
-    console.log('Dispatching update with data:', updatedData);
     dispatch(updateSingleCard(id, cardId, commentValue.trim(), starsValue));
 
     setTimeout(() => {
@@ -152,54 +144,3 @@ export const EditSingleCardModal = ({ open, handleClose, card }) => {
     </Modal>
   );
 };
-
-/*
-              <Box sx={{ m: 1, position: 'relative' }}>
-                <Button
-                  variant="contained"
-                  sx={buttonSx}
-                  disabled={loading}
-                  endIcon={<DeleteIcon />}
-                  onClick={handleClickDeleteCard}>
-                  Delete Card
-                </Button>
-
-                {loading && (
-                  <CircularProgress
-                    size={24}
-                    sx={{
-                      color: green[500],
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      marginTop: '-12px',
-                      marginLeft: '-12px'
-                    }} />
-                )}
-              </Box>
-
-                          <Box sx={styles.StyledBtnBox}>
-              <Button
-                sx={styles.StyledUpdBtn}
-                type="submit"
-                variant="contained">
-            Update
-              </Button>
-
-                const patchCardUpdate = (event) => {
-    event.preventDefault();
-    const updatedData = {};
-
-    if (commentValue.trim() !== '' && commentValue !== currentCommentValue) {
-      updatedData.cardComment = commentValue.trim();
-    }
-
-    if (starsValue !== currentStarsValue) {
-      updatedData.cardStars = starsValue;
-    }
-
-    console.log('Dispatching update with data:', updatedData);
-    dispatch(updateSingleCard(id, cardId, commentValue.trim(), starsValue));
-    handleClose();
-  };
-*/
