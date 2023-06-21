@@ -15,8 +15,9 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
   console.log('SingleTripCardPreview card:', card)
   /*
   const photoWidth = 500;
-  const photoReference = selectedPlace.photos[0].photo_reference
-  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
+  const photoReference = selectedPlace.photos[0].photo_reference;
+  const placeholderImg = 'https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg';
+  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`;
 */
 
   const handleOpenModal = () => {
@@ -25,7 +26,8 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
 
   const photoWidth = 500;
   const photoReference = card.cardPhotoRef
-  const photourl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
+  const placeholderImg = 'https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg';
+  const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
 
   return (
     <Card
@@ -34,7 +36,8 @@ export const SingleTripCardPreview = ({ card, showButton, onCardClick }) => {
       <CardMedia
         sx={styles.StyledCardPreviewImg}
         // image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
-        image={photourl} />
+        // image={photourl}
+        image={photoReference ? photoUrl : placeholderImg} />
       <CardContent
         sx={styles.StyledCardContentSingle}>
         <Typography

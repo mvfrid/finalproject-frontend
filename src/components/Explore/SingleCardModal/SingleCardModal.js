@@ -31,8 +31,9 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
   const success = useSelector((state) => state.trip.isSuccessful);
 
   const photoWidth = 500;
-  const photoReference = selectedPlace.photos[0].photo_reference
-  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
+  const photoReference = selectedPlace.photos ? selectedPlace.photos[0].photo_reference : null;
+  const placeholderImg = 'https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg';
+  const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
 
   const handleOpenAdd = () => {
     setOpenAdd(true);
@@ -104,7 +105,7 @@ export const SingleCardModal = ({ selectedPlace, open, handleClose }) => {
           <Box sx={styles.StyledMediaBox}>
             <CardMedia
               component="img"
-              image={url}
+              image={photoReference ? photoUrl : placeholderImg}
               alt={`Image of ${selectedPlace.name}`}
               sx={styles.StyledModalImg} />
           </Box>
