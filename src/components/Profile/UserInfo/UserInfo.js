@@ -14,17 +14,16 @@ export const UserInfo = () => {
   const handleClose = () => setOpen(false);
   const userInfo = useSelector((store) => store.user.userInfo);
 
-  const setUpdatedProfile = (updatedText) => {
-    console.log('logging the updatedText:', updatedText)
-  };
-
   return (
     <div className="profile-section">
       <div className="profile-info">
         <h2>Hi {userInfo.username}!</h2>
         <div className="user-container">
           <div className="profile-user-info">
-            <img src={userInfo.profilePicture} alt="user profile" className="profilepic" />
+            <img
+              src={userInfo.profilePicture}
+              alt="user profile avatar"
+              className="profilepic" />
             <div className="name-div" />
           </div>
           <div className="profile-text">
@@ -52,18 +51,13 @@ export const UserInfo = () => {
           className="insta-button"
           variant="contained"
           size="small"
+          aria-label="Edit Profile"
           endIcon={<ManageAccountsIcon />}
           onClick={handleOpen}>
         Edit
         </Button>
-        <EditProfileModal open={open} onClose={handleClose} setUpdatedProfile={setUpdatedProfile} />
+        <EditProfileModal open={open} onClose={handleClose} />
       </div>
     </div>
   )
 }
-
-/*
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-              <InstagramIcon sx={{ color: '#446173' }} />
-            </a>
-            */
