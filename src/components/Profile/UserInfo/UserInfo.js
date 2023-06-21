@@ -39,7 +39,7 @@ export const UserInfo = () => {
               href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Link to ${userInfo.username}'s LinkedIn`}>
+              aria-label={`Link to ${userInfo.username}'s Instagram`}>
               <InstagramIcon sx={{ color: '#495057' }} />
             </IconButton>
           </div>

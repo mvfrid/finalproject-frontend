@@ -15,11 +15,13 @@ import { TripListCardPreview } from '../TripListCardPreview/TripListCardPreview'
 import { EmptyStateTripList } from '../EmptyStateTripList/EmptyStateTripList';
 
 export const TripList = () => {
-  const tripList = useSelector((store) => store.trip.tripList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const tripList = useSelector((store) => store.trip.tripList);
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const TripList = () => {
         <h2>Trip collections</h2>
         <Button
           variant="contained"
-          sx={{ color: 'white', backgroundColor: '#446173', my: '20px', width: '150px' }}
+          sx={{ color: 'white', backgroundColor: '#446173', my: '20px', width: '120px' }}
           size="small"
           onClick={handleOpen}
           endIcon={<AddPhotoAlternateIcon />}>
