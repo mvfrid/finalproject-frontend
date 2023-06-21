@@ -6,60 +6,26 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { API_KEY } from 'utils/urls';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteSingleCard, trip } from 'reducers/trip';
-// import { trip, deleteSingleCard } from 'reducers/trip';
-// import CircularProgress from '@mui/material/CircularProgress';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Divider from '@mui/material/Divider';
-// import { green } from '@mui/material/colors';
 import { EditSingleCardModal } from '../EditSingleCardModal/EditSingleCardModal';
 import * as styles from './StyledSingleTripModal.js'
 
 export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
-  console.log('cardID from props', cardId)
-  console.log('tripID from props', tripId)
-
   const dispatch = useDispatch();
   const [openEditModal, setOpenEditModal] = useState(false);
   const tripList = useSelector((state) => state.trip.tripList);
 
-  console.log('tripList från SingleTripModal från Redux on mount:', tripList)
-  // const loading = useSelector((state) => state.trip.isLoadingPost);
-  // const success = useSelector((state) => state.trip.isSuccessful);
-
-  /*
-  const buttonSx = success
-    ? {
-      bgcolor: green[500],
-      '&:hover': {
-        bgcolor: green[700]
-      }
-    }
-    : {
-      bgcolor: '#446173',
-      '&:hover': {
-        bgcolor: '#2a3d47'
-      }
-    };
-    */
-
   const singleCard = useSelector((store) => {
     if (!cardId) return null;
     const singleTrip = store.trip.tripList.find((tripItem) => tripItem._id === tripId);
-    console.log('singletrip', singleTrip)
     return singleTrip.cards.find((card) => card._id === cardId);
   });
-  console.log('singlecard', singleCard)
 
   const photoWidth = 500;
   const photoReference = singleCard?.cardPhotoRef;
-  const placeholderUrl = 'https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg'
-  const photoUrl = singleCard ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}` : placeholderUrl;
-
-  /*
-  const photoWidth = 500;
-  const photoReference = singleCard.cardPhotoRef
-  const photourl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}`
-*/
+  const placeholderImg = 'https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg'
+  const photoUrl = singleCard ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${photoWidth}&photoreference=${photoReference}&key=${API_KEY}` : placeholderImg;
 
   const handleOpen = () => {
     setOpenEditModal(true);
@@ -71,7 +37,6 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
 
   const updateTripList = () => {
     const updatedTripListAfterDelete = tripList.map((oneTrip) => {
-      console.log('oneTrip inside updateTripList function', oneTrip)
       if (oneTrip._id === tripId) {
         return {
           ...oneTrip,
@@ -81,10 +46,6 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
       return oneTrip;
     });
 
-    console.log('updatedTripListAfterDelete:', updatedTripListAfterDelete)
-
-    // dispatch(trip.setTripList(updatedTripListAfterDelete));
-    // dispatch(trip.action.setTripList(updatedTripListAfterDelete));
     dispatch(trip.actions.setTripList(updatedTripListAfterDelete));
     handleClose();
   };
@@ -93,23 +54,6 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
     dispatch(deleteSingleCard(tripId, singleCard._id))
     updateTripList();
   };
-
-  /*
-  const handleClickDeleteCard = () => {
-    dispatch(deleteSingleCard(tripId, singleCard._id))
-    handleClose();
-    // dispatch(fetchTrips(tripId));
-  };
-
-  const handleClickDeleteCard = () => {
-    dispatch(deleteSingleCard(tripId, singleCard._id));
-
-    setTimeout(() => {
-      handleClose();
-      dispatch(trip.actions.setSuccess(false));
-    }, 3000);
-  };
-      */
 
   const handleEditModalClose = () => {
     setOpenEditModal(false);
@@ -140,8 +84,7 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
               <Box sx={styles.StyledMediaBox}>
                 <CardMedia
                   sx={styles.StyledCardMediaImg}
-                  // image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg"
-                  image={photoUrl} />
+                  image={photoReference ? photoUrl : placeholderImg} />
               </Box>
 
               <Box sx={styles.StyledPlaceTextBox}>
@@ -215,33 +158,6 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
                   onClick={handleClickDeleteCard}>
                   Delete Card
                 </Button>
-
-                {/*
-                <Box sx={{ m: 1, position: 'relative' }}>
-                  <Button
-                    variant="contained"
-                    sx={buttonSx}
-                    disabled={loading}
-                    endIcon={<DeleteIcon />}
-                    onClick={handleClickDeleteCard}>
-                    Delete Card
-                  </Button>
-
-                  {loading && (
-                    <CircularProgress
-                      size={24}
-                      sx={{
-                        color: green[500],
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        marginTop: '-12px',
-                        marginLeft: '-12px'
-                      }} />
-                  )}
-                </Box>
-                */}
-
               </Box>
             </>
           ) : (
@@ -254,140 +170,3 @@ export const SingleTripModal = ({ open, handleClose, cardId, tripId }) => {
     );
   } else { return (null) }
 }
-
-/*
-  return (
-    <Modal
-      sx={styles.StyledModal}
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description">
-      <Box sx={styles.StyledBoxContainer}>
-        {cardDataAvailable ? (
-          <>
-            <Box sx={styles.StyledCloseBtnBox}>
-              <IconButton
-                type="button"
-                sx={styles.StyledCloseBtn}
-                onClick={closeModal}>
-                <CloseRoundedIcon />
-              </IconButton>
-            </Box>
-
-            <Box sx={styles.StyledMediaBox}>
-              <CardMedia
-                sx={styles.StyledCardMediaImg}
-                image="https://i.postimg.cc/c4zXpFPD/thomas-kinto-6-Ms-MKWz-JWKc-unsplash.jpg" />
-            </Box>
-
-            <Box sx={styles.StyledPlaceTextBox}>
-              <Typography
-                sx={styles.StyledTypographyName}
-                id="modal-modal-title">
-                {singleCard.cardName}
-              </Typography>
-
-              <Box sx={styles.StyledPlaceTextIconBox}>
-                <Typography sx={styles.StyledIcon}>
-                  <img
-                    src={singleCard.cardIcon}
-                    alt="card icon"
-                    style={{ maxWidth: '40px', maxHeight: '35px' }} />
-                </Typography>
-
-                <Typography sx={styles.StyledRating}>
-                  ⭐️ {singleCard.cardRating}
-                </Typography>
-              </Box>
-            </Box>
-
-            <Typography sx={styles.StyledTypoVic}>
-              {singleCard.cardVicinity}
-            </Typography>
-
-            <Divider sx={{ my: 2 }} />
-
-            <Box sx={styles.StyledReviewBox}>
-              <Typography
-                id="modal-modal-description"
-                sx={styles.StyledTypoReviewTitle}>
-                My review:
-              </Typography>
-
-              <Typography
-                id="modal-modal-description"
-                sx={styles.StyledTypoReview}>
-                {singleCard.cardComment}
-              </Typography>
-
-              <Rating
-                name="read-only"
-                size="large"
-                value={singleCard.cardStars}
-                readOnly />
-            </Box>
-
-            <Box sx={styles.StyledBtnBox}>
-              <Button
-                sx={styles.StyledBottomBtns}
-                type="button"
-                size="small"
-                variant="outlined"
-                onClick={handleOpen}>
-                Update review
-              </Button>
-
-              <EditSingleCardModal
-                open={openEditModal}
-                handleClose={handleEditModalClose}
-                card={singleCard} />
-
-              <Button
-                sx={styles.StyledBottomBtns}
-                type="submit"
-                size="small"
-                variant="outlined"
-                endIcon={<DeleteIcon />}
-                onClick={handleClickDeleteCard}>
-                Delete Card
-              </Button>
-
-              {/*
-              <Box sx={{ m: 1, position: 'relative' }}>
-                <Button
-                  variant="contained"
-                  sx={buttonSx}
-                  disabled={loading}
-                  endIcon={<DeleteIcon />}
-                  onClick={handleClickDeleteCard}>
-                  Delete Card
-                </Button>
-
-                {loading && (
-                  <CircularProgress
-                    size={24}
-                    sx={{
-                      color: green[500],
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      marginTop: '-12px',
-                      marginLeft: '-12px'
-                    }} />
-                )}
-              </Box>
-
-            </Box>
-          </>
-        ) : (
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            No card selected
-          </Typography>
-        )}
-      </Box>
-    </Modal>
-  );
-}
-
-*/
