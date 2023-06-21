@@ -1,4 +1,5 @@
-# Technigo Final Project - OdysseyIntroduction
+# Technigo Final Project - Odyssey
+# Introduction
 This is a website where you can find and gather inspiration for traveling. It’s like a mashup between Pinterest and TripAdvisor. By enabling Google Places API we enable users to find information about places all over the world. Users can specify what category of place they’re looking for, for example restaurants, points of interest or accommodation.  
   
 To make the application into a personalized board users can then create their own trips and to those trips add all the places that they would like to remember in the future.  
