@@ -143,6 +143,7 @@ export const EditProfileModal = ({ open, onClose, setUpdatedProfile }) => {
               inputProps={{ maxLength: 30 }}
               sx={styles.StyledTextField} />
             <FormHelperText
+              aria-label="max length"
               sx={{ textAlign: 'right', marginLeft: 'auto', mb: '10px' }}>
               {`${nameValue.length}/30`}
             </FormHelperText>
